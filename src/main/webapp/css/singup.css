@@ -1,0 +1,62 @@
+body {
+    background-image: url("../img/singup.jpg");
+    margin:0;
+    padding: 0;
+    background-size:cover;
+
+}
+
+#login_user{
+    opacity: 0.8;
+    -moz-opacity: 0.8;
+    filter: alpha(opacity=10);
+    -khtml-opacity: 0.8;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 0;
+}
+
+#validacion{
+    margin-top:15%;
+    margin-left: 25%;
+    position: relative;
+    width: 50%;
+    height: 300px;
+
+}
+h1{
+    font-family: Quicksand;
+
+}
+
+
+#name{
+    border-radius: 15px;
+}
+#lastname{
+    border-radius: 15px;
+}
+
+#email{
+    border-radius: 15px;
+}
+
+#password{
+    border-right: 15px;
+}
+
+#username{
+    border-radius: 15px;
+}
+
+#password{
+    border-radius: 15px;
+}
+#boton_register{
+    margin-top: 4px;
+    width: 40%;
+    font-family: Quicksand;
+    background-color: mintcream;
+    border-radius: 15px;
+}
+
