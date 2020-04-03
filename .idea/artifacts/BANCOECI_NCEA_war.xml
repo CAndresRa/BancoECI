@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="BANCOECI-NCEA:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>BANCOECI-NCEA</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="BANCOECI-NCEA.war">
+      <element id="artifact" artifact-name="BANCOECI-NCEA:war exploded" />
+    </root>
+  </artifact>
+</component>
