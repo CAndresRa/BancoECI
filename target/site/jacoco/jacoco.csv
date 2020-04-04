@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+BANCOECI-NCEA Maven Webapp,edu.eci.cvds.samples.services.client,MyBatisExample,41,0,2,0,15,0,4,0,3,0
+BANCOECI-NCEA Maven Webapp,edu.eci.cvds.guice,GuiceContextListener,29,0,0,0,7,0,3,0,3,0
+BANCOECI-NCEA Maven Webapp,edu.eci.cvds.guice,GuiceContextListener.new XMLMyBatisModule() {...},22,0,0,0,6,0,2,0,2,0
+BANCOECI-NCEA Maven Webapp,edu.eci.cvds.samples.services,ServiciosBancoProyectosFactory,57,0,4,0,12,0,8,0,6,0
+BANCOECI-NCEA Maven Webapp,edu.eci.cvds.samples.services,ServiciosBancoProyectosFactory.new XMLMyBatisModule() {...},33,0,0,0,6,0,2,0,2,0
+BANCOECI-NCEA Maven Webapp,edu.eci.cvds.samples.services,ExcepcionServiciosBancoProyectos,9,0,0,0,4,0,2,0,2,0
+BANCOECI-NCEA Maven Webapp,edu.eci.cvds.samples.entities,Usuario,106,0,0,0,36,0,16,0,16,0
+BANCOECI-NCEA Maven Webapp,edu.eci.cvds.sampleprj.dao,PersistenceException,9,0,0,0,4,0,2,0,2,0
+BANCOECI-NCEA Maven Webapp,edu.eci.cvds.sampleprj.dao.mybatis,MyBatisUsuarioDAO,22,0,0,0,4,0,2,0,2,0
+BANCOECI-NCEA Maven Webapp,edu.eci.cvds.samples.services.impl,ServiciosBancoProyectosImpl,15,0,0,0,4,0,2,0,2,0
