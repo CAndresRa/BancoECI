@@ -37,4 +37,4 @@ CREATE TABLE votacion(
 );
 
 
-
+insert into usuario (documento,email,nombre,apellido,password,rol) values (2154021,'ernesto.camacho@mail.escuelaing.edu.co','Ernesto','Camacho','1234','Administrador');

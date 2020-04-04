@@ -29,4 +29,23 @@ public class ServiciosBancoProyectosTest {
     public ServiciosBancoProyectosTest() {
         serviciosBancoProyectos = ServiciosBancoProyectosFactory.getInstance().getServiciosBancoProyectosTesting();
     }
+    @Test
+    public void deberiaConsultarUsuario() {
+    	try {
+    		serviciosBancoProyectos.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co");
+    	}catch(ExcepcionServiciosBancoProyectos e) {
+    		fail();    		
+    	}
+    	
+    }
+    
+    @Test
+    public void lanzaExcepcionUsuarioNoExiste() {
+    	try {
+    		serviciosBancoProyectos.consultarUsuario("NN@mail.com");
+    		fail();
+    	}catch(ExcepcionServiciosBancoProyectos e) {
+    		Assert.assertEquals(e.getMessage(),"Error al consultar clientes");
+    	}    	
+    }
 }
