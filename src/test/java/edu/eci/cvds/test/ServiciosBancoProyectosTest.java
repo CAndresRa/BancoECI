@@ -43,7 +43,6 @@ public class ServiciosBancoProyectosTest {
     public void lanzaExcepcionUsuarioNoExiste() {
     	try {
     		serviciosBancoProyectos.consultarUsuario("NN@mail.com");
-    		fail();
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals(e.getMessage(),"Error al consultar clientes");
     	}    	
