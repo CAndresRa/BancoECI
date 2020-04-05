@@ -48,7 +48,7 @@ public class LoginBean extends BasePageBean {
             */
         }
         else {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
         }
     }
 
