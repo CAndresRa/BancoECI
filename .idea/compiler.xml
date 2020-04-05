@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="BANCOECI-NCEA" target="8" />
+      <module name="BANCOECI-NCEA" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
