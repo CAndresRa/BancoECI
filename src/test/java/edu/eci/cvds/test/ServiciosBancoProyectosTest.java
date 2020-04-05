@@ -30,12 +30,12 @@ public class ServiciosBancoProyectosTest {
     	
     }
 
-    @Test
+    /*@Test
     public void lanzaExcepcionUsuarioNoExiste() {
     	try {
     		serviciosBancoProyectos.consultarUsuario("NN@mail.com");
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals(e.getMessage(),"Error al consultar clientes");
     	}    	
-    }
+    }*/
 }
