@@ -1,0 +1,28 @@
+Lista de Clases De Equivalencia proyecto CVDS-2020-1
+1) Sprint 1:
+	Tareas:
+	1.1) Autenticar usuarios básica:
+		- Buscar un usuario que existe.
+		- Buscar un usuario que no existe. (Debe Fallar)
+	1.2) Asignar perfil a los usuarios :
+		-Buscar los usuarios que existen en la base de datos
+		- Asignar perfil a un usuario.
+		- Asignar un rol que no es valido a un usuario. (Debe Fallar)
+		- Asignar un rol a un usuario que no existe. (Debe Fallar)
+	1.3) Registrar una idea o iniciativa:
+		- Que un usuario pueda registrar una idea.
+		- Que registre una idea que le falte Descripcion. (Debe Fallar)
+		- Que registre una idea que le falte Fecha. (Debe Fallar)
+		- Que registre una idea que le falte Informacion del Proponente. (Debe Fallar)
+		- Que registre una idea que le falte Palabras Clave. (Debe Fallar)
+		- Que registre una idea que le falte Area del proponente. (Debe Fallar)
+	1.4) Modificar el estado de la idea iniciativa:
+		- Que un usuario pueda modificar una iniciativa.
+		- Que la modificacion deje valor null para Descripcion. (Debe Fallar)
+		- Que la modificacion deje valor null para Fecha. (Debe Fallar)
+		- Que la modificacion deje valor null Informacion del Proponente. (Debe Fallar)
+		- Que la modificacion deje valor null Palabras Clave. (Debe Fallar)
+		- Que la modificacion deje valor null Area del proponente. (Debe Fallar)
+	1.5) Consultar ideas o iniciativas por palabras clave:
+		- Que un usuario pueda consultar iniciativas por palabras clave.
+		
