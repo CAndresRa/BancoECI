@@ -10,6 +10,9 @@ import javax.persistence.PersistenceException;
 import java.util.List;
 
 public class MyBatisUsuarioDAO implements UsuarioDAO {
+	@Inject
+    private UsuarioMapper usuarioMapper;
+	
     @Override
     public List<Usuario> consultarUsuarios() throws PersistenceException {
         try {
@@ -33,9 +36,6 @@ public class MyBatisUsuarioDAO implements UsuarioDAO {
             throw new PersistenceException(e.getMessage(),e);
         }
     }
-
-    @Inject
-    private UsuarioMapper usuarioMapper;
 
     public Usuario consultarUsuario(String email) throws PersistenceException{
         try {
