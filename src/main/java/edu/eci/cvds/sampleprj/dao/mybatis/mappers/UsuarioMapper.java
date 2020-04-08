@@ -20,4 +20,5 @@ public interface UsuarioMapper {
 
     public void  asignarRolUsuario(@Param("rol") String rol,@Param("usuario") Usuario usuario);
 
+    public void registrarUsuario(@Param("usuario") Usuario u);
 }

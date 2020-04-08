@@ -22,8 +22,6 @@ import org.h2.engine.User;
 import java.io.IOException;
 import java.io.Serializable;
 
-
-
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "loginBean")
 @SessionScoped
@@ -39,13 +37,10 @@ public class LoginBean extends BasePageBean {
         if (serviciosBancoProyectos.consultarUsuario(username) != null && serviciosBancoProyectos.consultarUsuario(username).getPassword().equals(password)) {
             HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
             session.setAttribute("correo", username);
-            FacesContext.getCurrentInstance().getExternalContext().redirect("singup.xhtml");
 
-            /* Cuando se agreguen los roles
-            if (serviciosBancoProyectos.consultarUsuario(username).getRol().equals("administrador")) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("administracion.xhtml");
+            if (serviciosBancoProyectos.consultarUsuario(username).getRol().equals("Administrador")) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("administrador.xhtml");
             }
-            */
         }
         else {
             FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");

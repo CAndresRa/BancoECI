@@ -18,63 +18,39 @@
 </h:head>
 
 <h:body>
-    <p:commandButton id="boton_salir" value="Salir"/>
-    <br/>
-    <br/>
-    <h1>Asignación de Roles</h1>
-    <h:outputLabel value="Busqueda: " style="font-weight:bold"/>
-    <p:inputText id="busqueda" placeholder="Correo Electronico" value="" />
-    <table id="tabla">
-        <thead>
-            <tr>
-                <td><strong>Documento</strong></td>
-                <td><strong>Email</strong></td>
-                <td><strong>Password</strong></td>
-                <td><strong>Nombre</strong></td>
-                <td><strong>Apellido</strong></td>
-                <td><strong>Rol</strong></td>
-            </tr>
-        </thead>
-        <tr>
-            <td>1014299123</td>
-            <td>daniel.alfonso-b@mail.escuelaing.edu.co</td>
-            <td>***********</td>
-            <td>Daniel Felipe</td>
-            <td>Alfonso Bueno</td>
-            <td><select name="rol">
-                    <option>Administrador</option>
-                    <option>Consulta</option>
-                    <option>Ponente</option>
-                    <option>Publico</option>
-            </select></td>
-        </tr>
-    </table>
-    <p:commandButton id="boton_guardar" value="Guardar"/>
+    <h:form id="busquedaUsuario" prependId="false" >
+        <p:commandButton id="boton_salir" value="Salir"/>
+        <br/>
+        <br/>
+        <h1>Asignación de Roles</h1>
+        <h:outputLabel value="Busqueda: " style="font-weight:bold"/>
+        <p:inputText id="busqueda" placeholder="Correo Electronico" required="true" type="String" binding="#{mail}"/>
+        <p:commandButton id="buscar" value="Buscar" actionListener="#{adminBean.buscarUsuario(mail.value)}" action="actualizarRol.xhtml?faces-redirect = true"/>
+    </h:form>
+
     <h1>Registrar Usuario</h1>
 
-    <h:form id="login_user" prependId="false">
-
-        <p:panelGrid id="validacion" columns="2" styleClass="ui-fluid center ui-noborder" style="background-color: black">
-            <h:outputLabel for="email" value="Correo Electronico:" style="font-weight:bold"/>
-            <p:inputText id="email" placeholder="Email" value=""  required="true"/>
-            <h:outputLabel for="nombre" value="Nombre:" style="font-weight:bold"/>
-            <p:inputText id="name"  placeholder="Nombres" value="" required="true" label="Name"/>
-            <h:outputLabel for="apellidos" value="Apellidos:" style="font-weight:bold"/>
-            <p:inputText id="lastname" value="" placeholder="Apellidos" required="true" label="Name"/>
-            <h:outputLabel for="nombreusuario" value="Nombre de Usuario:" style="font-weight:bold"/>
-            <p:inputText id="username" value="" placeholder="Nombre de usuario" required="true"/>
-            <h:outputLabel for="contraseña" value="Contraseña:" style="font-weight:bold"/>
-            <p:inputText id="password" value="" required="true" placeholder="Contraseña"/>
-
-        </p:panelGrid>
-        <p:commandButton id="boton_register" value="Registrarse"/>
-
-
-
-
-
-
+    <h:form id="registrarUsuario">
+        <h:panelGrid columns="2" cellpadding="6">
+            <p:outputLabel for="@next" value="Ingrese el documento del usuario" />
+            <p:inputText  id= "documento" type="String" binding="#{documento}" > </p:inputText>
+            <p:outputLabel for="@next" value="Ingrese el correo electronico" />
+            <p:inputText  id= "correo" type="String" binding="#{email}" > </p:inputText>
+            <p:outputLabel for="@next" value="Ingrese el nombre del usuario" />
+            <p:inputText  id= "nombre" type="String" binding="#{nombre}" > </p:inputText>
+            <p:outputLabel for="@next" value="Ingrese el apellido del usuario" />
+            <p:inputText  id= "apellido" type="String" binding="#{apellido}" > </p:inputText>
+            <p:outputLabel for="@next" value="Ingrese la contraseña" />
+            <p:inputText  id= "contraseña" type="String" binding="#{contraseña}" > </p:inputText>
+            <p:outputLabel for="@next" value="Ingrese el rol del usuario" />
+            <p:inputText  id= "rol" type="String" binding="#{rol}" > </p:inputText>
+            <p:commandButton value="Registrar"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value, rol.value)}" />
+        </h:panelGrid>
     </h:form>
+
+
+
+
 </h:body>
 
 </html>

@@ -7,6 +7,7 @@ import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Singleton
@@ -35,6 +36,16 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
         try {
             return usuarioDAO.consultarUsuarios();
         } catch (PersistenceException e){
+            throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+        }
+    }
+
+    @Transactional
+    @Override
+    public void registrarUsuario( Usuario u) throws ExcepcionServiciosBancoProyectos {
+        try{
+            usuarioDAO.registrarUsuario(u);
+        } catch (PersistenceException e) {
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
         }
     }

@@ -5,6 +5,7 @@ import edu.eci.cvds.sampleprj.dao.UsuarioDAO;
 import edu.eci.cvds.samples.entities.Usuario;
 
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper;
+import org.mybatis.guice.transactional.Transactional;
 
 import javax.persistence.PersistenceException;
 import java.util.List;
@@ -36,6 +37,16 @@ public class MyBatisUsuarioDAO implements UsuarioDAO {
             throw new PersistenceException(e.getMessage(),e);
         }
     }
+    @Transactional
+    @Override
+    public void registrarUsuario(Usuario u) throws edu.eci.cvds.sampleprj.dao.PersistenceException {
+        try{
+            usuarioMapper.registrarUsuario(u);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al registrar al cliente" ,e);
+        }
+    }
+
 
     public Usuario consultarUsuario(String email) throws PersistenceException{
         try {

@@ -21,6 +21,12 @@
         update usuario set rol = #{rol} where email = #{usuario.email};
     </update>
 
+    <insert id="registrarUsuario" parameterType="map">
+        INSERT INTO usuario VALUES( #{usuario.documento}, #{usuario.email} , #{usuario.nombre}, #{usuario.apellido}, #{usuario.password}, #{usuario.rol});
+    </insert>
+
+
+
     <select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
         select
 	        u.documento,

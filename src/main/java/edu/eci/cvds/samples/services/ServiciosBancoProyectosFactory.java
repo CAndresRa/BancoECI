@@ -6,6 +6,8 @@ import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisUsuarioDAO;
 
 import edu.eci.cvds.samples.services.impl.ServiciosBancoProyectosImpl;
 
+import edu.eci.cvds.view.AdministracionBean;
+import edu.eci.cvds.view.BasePageBean;
 import org.mybatis.guice.XMLMyBatisModule;
 
 import java.util.Optional;
@@ -26,6 +28,7 @@ public class ServiciosBancoProyectosFactory {
                 setClassPathResource(pathResource);
                 bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
                 bind(ServiciosBancoProyectos.class).to(ServiciosBancoProyectosImpl.class);
+                bind(BasePageBean.class).to(AdministracionBean.class);
 
             }
         });

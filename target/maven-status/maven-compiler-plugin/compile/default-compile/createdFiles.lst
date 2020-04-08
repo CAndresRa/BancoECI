@@ -5,6 +5,7 @@ edu/eci/cvds/samples/services/impl/ServiciosBancoProyectosImpl.class
 edu/eci/cvds/sampleprj/dao/UsuarioDAO.class
 edu/eci/cvds/view/BasePageBean.class
 edu/eci/cvds/samples/services/ServiciosBancoProyectos.class
+edu/eci/cvds/view/AdministracionBean.class
 edu/eci/cvds/samples/services/ServiciosBancoProyectosFactory.class
 edu/eci/cvds/samples/entities/Usuario.class
 edu/eci/cvds/view/LoginBean.class
