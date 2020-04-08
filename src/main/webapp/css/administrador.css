@@ -5,38 +5,18 @@ body {
     background-size:cover;
     text-align: center;
     font-family: Quicksand;
-
 }
 
 h1{
     color: yellowgreen ;
 }
 
-#tabla{
-    margin:50px auto;
-    width: 80%;
-    background-color: white;
-    text-align: left;
-    border-collapse: collapse;
-}
-
-th, td{
-    padding: 15px;
-}
-
-thead{
-    background-color: yellowgreen;
-    border-bottom: solid 3px;
-    color: black;
-}
-
-tr:nth-child(even){
-    background-color: #ddd ;
-}
-
-tr:hover td{
-    background-color: #369681;
-    color: black;
+#buscar{
+    margin-top: 4px;
+    width: 5%;
+    font-family: Quicksand;
+    background-color: mintcream;
+    border-radius: 15px;
 }
 
 #busqueda{
@@ -44,54 +24,15 @@ tr:hover td{
     height: 15px;
 }
 
-#login_user{
-    opacity: 0.8;
-    -moz-opacity: 0.8;
-    filter: alpha(opacity=10);
-    -khtml-opacity: 0.8;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 0 0;
-}
 
-#validacion{
-    margin-top:2%;
-    margin-left: 25%;
-    position: relative;
-    width: 50%;
-    height: 300px;
-
-}
 h1{
     font-family: Quicksand;
 }
 
 
-#name{
-    border-radius: 15px;
-}
-#lastname{
-    border-radius: 15px;
-}
-
-#email{
-    border-radius: 15px;
-}
-
-#password{
-    border-right: 15px;
-}
-
-#username{
-    border-radius: 15px;
-}
-
-#password{
-    border-radius: 15px;
-}
 #boton_register{
     margin-top: 4px;
-    width: 40%;
+    width: 20%;
     font-family: Quicksand;
     background-color: mintcream;
     border-radius: 15px;
@@ -112,6 +53,18 @@ h1{
     margin: 1px 1px;
     float: right;
 
+}
+
+#registrarUsuario{
+    margin-left: 30%;
+    margin-top: 2%;
+    font-family: Quicksand;
+    color: yellowgreen;
+    font-size: 20px;
+}
+
+th, td{
+    padding: 15px;
 }
 
 

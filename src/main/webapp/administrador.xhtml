@@ -27,26 +27,27 @@
         <p:inputText id="busqueda" placeholder="Correo Electronico" required="true" type="String" binding="#{mail}"/>
         <p:commandButton id="buscar" value="Buscar" actionListener="#{adminBean.buscarUsuario(mail.value)}" action="actualizarRol.xhtml?faces-redirect = true"/>
     </h:form>
-
+    <br/>
     <h1>Registrar Usuario</h1>
-
     <h:form id="registrarUsuario">
-        <h:panelGrid columns="2" cellpadding="6">
-            <p:outputLabel for="@next" value="Ingrese el documento del usuario" />
-            <p:inputText  id= "documento" type="String" binding="#{documento}" > </p:inputText>
-            <p:outputLabel for="@next" value="Ingrese el correo electronico" />
-            <p:inputText  id= "correo" type="String" binding="#{email}" > </p:inputText>
-            <p:outputLabel for="@next" value="Ingrese el nombre del usuario" />
-            <p:inputText  id= "nombre" type="String" binding="#{nombre}" > </p:inputText>
-            <p:outputLabel for="@next" value="Ingrese el apellido del usuario" />
-            <p:inputText  id= "apellido" type="String" binding="#{apellido}" > </p:inputText>
-            <p:outputLabel for="@next" value="Ingrese la contraseña" />
-            <p:inputText  id= "contraseña" type="String" binding="#{contraseña}" > </p:inputText>
-            <p:outputLabel for="@next" value="Ingrese el rol del usuario" />
-            <p:inputText  id= "rol" type="String" binding="#{rol}" > </p:inputText>
-            <p:commandButton value="Registrar"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value, rol.value)}" />
+        <h:panelGrid id="validacion" columns="2" cellpadding="6">
+            <p:outputLabel for="@next" value="Ingrese el documento del usuario" style="font-family: Quicksand; font-weight: bold"/>
+            <p:inputText  id= "documento" required="true" type="String" binding="#{documento}" style="border-radius: 15px"> </p:inputText>
+            <p:outputLabel for="@next"  value="Ingrese el correo electronico" style="font-family: Quicksand; font-weight: bold" />
+            <p:inputText  id= "correo" required="true" type="String" binding="#{email}" style="border-radius: 15px"> </p:inputText>
+            <p:outputLabel for="@next" value="Ingrese el nombre del usuario" style="font-family: Quicksand; font-weight: bold" />
+            <p:inputText  id= "nombre" required="true" type="String" binding="#{nombre}" style="border-radius: 15px"> </p:inputText>
+            <p:outputLabel for="@next" value="Ingrese el apellido del usuario" style="font-family: Quicksand;font-weight: bold" />
+            <p:inputText  id= "apellido" required="true" type="String" binding="#{apellido}" style="border-radius: 15px" > </p:inputText>
+            <p:outputLabel for="@next" value="Ingrese la contraseña" style="font-family: Quicksand; font-weight: bold" />
+            <p:inputText  id= "contraseña" required="true" type="String" binding="#{contraseña}" style="border-radius: 15px"> </p:inputText>
+            <p:outputLabel for="@next" value="Ingrese el rol del usuario" style="font-family: Quicksand; font-weight: bold" />
+            <p:inputText  id= "rol" required="true" type="String" binding="#{rol}" style="border-radius: 15px"> </p:inputText>
+            <p:commandButton id="registrar" value="Registrar"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value, rol.value)}" style="margin-top: 4px;width: 50%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
         </h:panelGrid>
     </h:form>
+    <br/>
+
 
 
 
