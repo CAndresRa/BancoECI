@@ -30,17 +30,8 @@ public class AdministracionBean extends BasePageBean {
     }
 
     public void registrarUsuario(String documento, String email, String nombre, String apellido, String password, String rol) throws ExcepcionServiciosBancoProyectos {
-        try {
-            if(rol.equals("Administrador") || rol.equals("PMO") || rol.equals("Publico") || rol.equals("Proponente")) {
-                Long doc = Long.parseLong(documento);
-                serviciosBancoProyectos.registrarUsuario(new Usuario(doc, email, nombre, apellido, password, rol));
-            }
-            else{
-                throw new ExcepcionServiciosBancoProyectos("Rol invalido");
-            }
-        } catch (ExcepcionServiciosBancoProyectos ex) {
-            throw new ExcepcionServiciosBancoProyectos("Error al registrar el Cliente", ex);
-        }
+    	Long doc = Long.parseLong(documento);
+        serviciosBancoProyectos.registrarUsuario(new Usuario(doc, email, nombre, apellido, password, rol));
     }
 
     public Usuario getUsuario(){

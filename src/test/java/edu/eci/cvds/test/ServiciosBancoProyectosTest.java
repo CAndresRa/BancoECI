@@ -41,7 +41,7 @@ public class ServiciosBancoProyectosTest {
     	}  	
     }
 
-    /*
+    
     @Test
     public void lanzaExcepcionUsuarioNoExiste() {
     	try {
@@ -49,7 +49,7 @@ public class ServiciosBancoProyectosTest {
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("El usuario no existe",e.getMessage());
     	}    	
-    }*/
+    }
     
     @Test
     public void deberiaConsultarUsuarios() {
@@ -61,8 +61,8 @@ public class ServiciosBancoProyectosTest {
     	}  	
     }
     
-    /*
-    @Test
+    
+    /*@Test
     public void deberiaAsignarRolAUsuario() {
     	try {
     		Usuario noRol= serviciosBancoProyectos.consultarUsuario("no.rol@mail.escuelaing.edu.co");
@@ -84,15 +84,32 @@ public class ServiciosBancoProyectosTest {
     	}  	
     }
     
-    /*
+    
     @Test
     public void lanzaExcepcionAsignacionDeRolDeUsuarionNoExistente() {
     	try {
     		serviciosBancoProyectos.asignarRolUsuario("rol", serviciosBancoProyectos.consultarUsuario("NN@mail.com"));
     		fail(); 
-    	}catch(Exception e) {
+    	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("El usuario no existe",e.getMessage());
     		}
-    	}*/
+    	}
     
+    @Test
+    public void deberiaInsertarUsuario() {
+    	try {
+    		serviciosBancoProyectos.registrarUsuario(new Usuario(000, "nuevo@mail.com", "nuevo", "nuevo", "1234", "Publico"));
+    	}catch(ExcepcionServiciosBancoProyectos e) {
+    		fail();
+    	}
+    }
+    
+    @Test
+    public void lanzaExcepcionDeRolAlInsertarUsuario() {
+    	try {
+    		serviciosBancoProyectos.registrarUsuario(new Usuario(000, "nuevo@mail.com", "nuevo", "nuevo", "1234", "otro"));
+    	}catch(ExcepcionServiciosBancoProyectos e) {
+    		Assert.assertEquals("Rol invalido",e.getMessage());
+    	}
+    }
 }

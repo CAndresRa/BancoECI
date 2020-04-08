@@ -39,24 +39,29 @@ public class MyBatisUsuarioDAO implements UsuarioDAO {
     }
     @Transactional
     @Override
-    public void registrarUsuario(Usuario u) throws edu.eci.cvds.sampleprj.dao.PersistenceException {
+    public void registrarUsuario(Usuario u) throws PersistenceException, edu.eci.cvds.sampleprj.dao.PersistenceException {
         try{
-            usuarioMapper.registrarUsuario(u);
+        	if(u.getRol().equals("Administrador") || u.getRol().equals("PMO") || u.getRol().equals("Publico") || u.getRol().equals("Proponente")) {
+        		usuarioMapper.registrarUsuario(u);
+            }
+            else{
+                throw new edu.eci.cvds.sampleprj.dao.PersistenceException("Rol invalido");
+            }
         } catch (org.apache.ibatis.exceptions.PersistenceException e){
             throw new PersistenceException("Error al registrar al cliente" ,e);
         }
     }
 
-
     public Usuario consultarUsuario(String email) throws PersistenceException{
         try {
             Usuario usuario = usuarioMapper.consultarUsuario(email);
-            if(usuario == null){
+            /*if(usuario == null){
                 throw new PersistenceException("El usuario no existe");
-            }
+            }*/
             return usuario;
         } catch (PersistenceException e){
-            throw new PersistenceException(e.getMessage(),e);
+            /*throw new PersistenceException(e.getMessage(),e);*/
+            throw new PersistenceException("El usuario no existe");
         }
     }
 }

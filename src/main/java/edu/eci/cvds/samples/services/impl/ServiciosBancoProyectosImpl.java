@@ -46,7 +46,7 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
         try{
             usuarioDAO.registrarUsuario(u);
         } catch (PersistenceException e) {
-            throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+            throw new ExcepcionServiciosBancoProyectos("Rol invalido");
         }
     }
 
@@ -54,12 +54,13 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
     public Usuario consultarUsuario(String email) throws ExcepcionServiciosBancoProyectos {
         try {
             Usuario usuario = usuarioDAO.consultarUsuario(email);
-            if(usuario == null){
+            /*if(usuario == null){
                 throw new ExcepcionServiciosBancoProyectos("El usuario no existe");
-            }
+            }*/
             return usuarioDAO.consultarUsuario(email);
         } catch (PersistenceException e){
-            throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+            /*throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);*/
+            throw new ExcepcionServiciosBancoProyectos("El usuario no existe");
         }
     }
 }
