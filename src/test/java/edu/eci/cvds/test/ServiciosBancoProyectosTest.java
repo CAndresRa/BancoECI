@@ -27,7 +27,7 @@ public class ServiciosBancoProyectosTest {
     private SqlSession sqlSession;
 
     ServiciosBancoProyectos serviciosBancoProyectos;
-
+    
     public ServiciosBancoProyectosTest() {
         serviciosBancoProyectos = ServiciosBancoProyectosFactory.getInstance().getServiciosBancoProyectosTesting();
     }
@@ -62,16 +62,17 @@ public class ServiciosBancoProyectosTest {
     }
     
     
-    /*@Test
+    @Test
     public void deberiaAsignarRolAUsuario() {
     	try {
     		Usuario noRol= serviciosBancoProyectos.consultarUsuario("no.rol@mail.escuelaing.edu.co");
     		serviciosBancoProyectos.asignarRolUsuario("nuevoRol", noRol);
-    		Assert.assertEquals("nuevoRol",noRol.getRol());
+    		Usuario siRol= serviciosBancoProyectos.consultarUsuario("no.rol@mail.escuelaing.edu.co");
+    		Assert.assertEquals("nuevoRol",siRol.getRol());
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();    		
     	}  	
-    }*/
+    }
     
     @Test
     public void lanzaExcepcionAsignacionDeRolNula() {
