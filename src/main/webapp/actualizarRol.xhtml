@@ -12,6 +12,7 @@
     <br/>
     <h1>Información de Usuario</h1>
     <h:form id="FormaInfoUser">
+        <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
         <p:dataTable var="user" value="#{adminBean.usuario}" >
 
             <p:column headerText="Documento" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">

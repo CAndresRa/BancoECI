@@ -28,7 +28,6 @@ import java.io.Serializable;
 public class LoginBean extends BasePageBean {
     @Inject
     private ServiciosBancoProyectos serviciosBancoProyectos;
-    private String username;
     private String password;
 
     public void iniciarSesion(String username, String password) throws IOException, ExcepcionServiciosBancoProyectos {
@@ -47,12 +46,14 @@ public class LoginBean extends BasePageBean {
         }
     }
 
-    public String getUsername() {
-        return username;
+    public void logOut() throws  IOException{
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        session.removeAttribute("correo");
+        facesContext.getExternalContext().redirect("login.xhtml");
     }
-    public void setUsername(String username) {
-        this.username = username;
-    }
+
+
     public String getPassword() {
         return password;
     }
