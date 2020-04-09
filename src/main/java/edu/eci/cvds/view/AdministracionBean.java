@@ -21,7 +21,7 @@ public class AdministracionBean extends BasePageBean {
 
 
     public void actualizarRol(String rol, String email) throws ExcepcionServiciosBancoProyectos {
-        serviciosBancoProyectos.asignarRolUsuario(rol, serviciosBancoProyectos.consultarUsuario(email));
+            serviciosBancoProyectos.asignarRolUsuario(rol, serviciosBancoProyectos.consultarUsuario(email));
     }
 
     public Usuario buscarUsuario(String mail) throws ExcepcionServiciosBancoProyectos {

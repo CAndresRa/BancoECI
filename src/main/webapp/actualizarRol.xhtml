@@ -59,5 +59,17 @@
         <br/>
         <p:commandButton id="Regresar" value="regresar" action="administrador.xhtml?faces-redirect = true" style="margin-top: 4px;width: 10%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
     </h:form>
+
+    <style type="text/css">
+        body .ui-staticmessage.ui-message {
+            width: 100%;
+        }
+    </style>
+
+    <div class="ui-g">
+        <div class="ui-g-12 ui-md-3">
+            <p:staticMessage severity="info" summary="INFO!" detail="Verifica los cambios regresando y volviendo a consultar" />
+        </div>
+    </div>
 </h:body>
 </html>
