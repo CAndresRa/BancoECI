@@ -30,6 +30,14 @@ public class LoginBean extends BasePageBean {
     private ServiciosBancoProyectos serviciosBancoProyectos;
     private String password;
 
+    /**
+     * Metodo que permite iniciar sesion a un usuario validando sus credenciales mediante
+     * protocolo HTML
+     * @param username Corresponde al correo electronico
+     * @param password Contraseña ingresada por el usuario que intenta ingresar
+     * @throws IOException
+     * @throws ExcepcionServiciosBancoProyectos
+     */
     public void iniciarSesion(String username, String password) throws IOException, ExcepcionServiciosBancoProyectos {
 
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -46,6 +54,10 @@ public class LoginBean extends BasePageBean {
         }
     }
 
+    /**
+     * Metodo que permite cerrar sesion de usuario
+     * @throws IOException
+     */
     public void logOut() throws  IOException{
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
