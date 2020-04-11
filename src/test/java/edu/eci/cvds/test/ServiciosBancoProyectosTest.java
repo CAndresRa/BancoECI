@@ -3,23 +3,20 @@ package edu.eci.cvds.test;
 
 import com.google.inject.Inject;
 
-import edu.eci.cvds.sampleprj.dao.PersistenceException;
+import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
+
 import edu.eci.cvds.samples.services.ServiciosBancoProyectosFactory;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 import org.junit.Assert;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
-import java.io.InputStream;
+
 import java.util.List;
 
 public class ServiciosBancoProyectosTest {
@@ -31,7 +28,7 @@ public class ServiciosBancoProyectosTest {
     public ServiciosBancoProyectosTest() {
         serviciosBancoProyectos = ServiciosBancoProyectosFactory.getInstance().getServiciosBancoProyectosTesting();
     }
-    
+
     @Test
     public void deberiaConsultarUsuario() {
     	try {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.RegistroMapper">
+
+    <insert id="registrarIniciativaAUsuario" parameterType="map">
+        INSERT INTO registro (fecha_registro , usuario , iniciativa) VALUES( #{fecha_registro}, #{usuario.documento} , #{iniciativa.nombre});
+    </insert>
+
+    <resultMap type='Registro' id='RegistroResult'>
+        <id property='fecha_registro' column='fecha_registro'/>
+        <association property="usuario" javaType="Usuario" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult" columnPrefix="usuario_" ></association>
+        <association property="iniciativa" javaType="Iniciativa" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper.IniciativaResult" columnPrefix="iniciativa_" ></association>
+    </resultMap>
+
+
+</mapper>

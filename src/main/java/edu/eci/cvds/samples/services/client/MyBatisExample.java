@@ -22,9 +22,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.RegistroMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper;
+import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.PalabraClave;
 import edu.eci.cvds.samples.entities.Usuario;
+import org.apache.commons.collections.iterators.ArrayListIterator;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -66,8 +74,9 @@ public class MyBatisExample {
 
         SqlSession sqlss = sessionfact.openSession();
 
-        UsuarioMapper u=sqlss.getMapper(UsuarioMapper.class);
-        Usuario usuario = u.consultarUsuario("carlos.ramirez-t@mail.escuelaing.edu.co");
+        //UsuarioMapper u=sqlss.getMapper(UsuarioMapper.class);
+
+
         sqlss.commit();
 
 

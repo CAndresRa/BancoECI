@@ -1,13 +1,17 @@
 package edu.eci.cvds.samples.services;
 
 import com.google.inject.Injector;
+import edu.eci.cvds.sampleprj.dao.IniciativaDAO;
+import edu.eci.cvds.sampleprj.dao.RegistroDAO;
 import edu.eci.cvds.sampleprj.dao.UsuarioDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisIniciativaDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisRegistroDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisUsuarioDAO;
 
-import edu.eci.cvds.samples.services.impl.ServiciosBancoProyectosImpl;
 
-import edu.eci.cvds.view.AdministracionBean;
-import edu.eci.cvds.view.BasePageBean;
+import edu.eci.cvds.samples.services.impl.ServiciosBancoProyectosImpl;
+import edu.eci.cvds.view.*;
+
 import org.mybatis.guice.XMLMyBatisModule;
 
 import java.util.Optional;
@@ -27,36 +31,38 @@ public class ServiciosBancoProyectosFactory {
                 setEnvironmentId(env);
                 setClassPathResource(pathResource);
                 bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
+                bind(RegistroDAO.class).to(MyBatisRegistroDAO.class);
+                bind(IniciativaDAO.class).to(MyBatisIniciativaDAO.class);
                 bind(ServiciosBancoProyectos.class).to(ServiciosBancoProyectosImpl.class);
                 bind(BasePageBean.class).to(AdministracionBean.class);
 
             }
         });
     }
-    private ServiciosBancoProyectosFactory(){
+
+    private ServiciosBancoProyectosFactory() {
         optInjector = Optional.empty();
     }
 
-    public ServiciosBancoProyectos getServiciosBancoProyectos(){
+    public ServiciosBancoProyectos getServiciosBancoProyectos() {
         if (!optInjector.isPresent()) {
-            optInjector = Optional.of(myBatisInjector("development","mybatis-config.xml"));
+            optInjector = Optional.of(myBatisInjector("development", "mybatis-config.xml"));
         }
 
         return optInjector.get().getInstance(ServiciosBancoProyectos.class);
     }
 
 
-    public ServiciosBancoProyectos getServiciosBancoProyectosTesting(){
+    public ServiciosBancoProyectos getServiciosBancoProyectosTesting() {
         if (!optInjector.isPresent()) {
-            optInjector = Optional.of(myBatisInjector("test","mybatis-config-h2.xml"));
+            optInjector = Optional.of(myBatisInjector("test", "mybatis-config-h2.xml"));
         }
 
         return optInjector.get().getInstance(ServiciosBancoProyectos.class);
     }
 
 
-    public static ServiciosBancoProyectosFactory getInstance(){
+    public static ServiciosBancoProyectosFactory getInstance() {
         return instance;
     }
-
 }

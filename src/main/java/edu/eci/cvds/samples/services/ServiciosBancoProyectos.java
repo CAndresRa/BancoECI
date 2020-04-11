@@ -1,6 +1,10 @@
 package edu.eci.cvds.samples.services;
 
+import edu.eci.cvds.sampleprj.dao.PersistenceException;
+import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Usuario;
+
+import java.util.Date;
 import java.util.List;
 
 public interface ServiciosBancoProyectos {
@@ -25,7 +29,14 @@ public interface ServiciosBancoProyectos {
      * @param u Usuario que se va a registrar
      * @throws ExcepcionServiciosBancoProyectos
      */
+
+    public void  insertarIniciativa(Iniciativa i) throws ExcepcionServiciosBancoProyectos;
+
+    public void agregarPalabrasClaveAIniciativa(Iniciativa iniciativa , List <String> palabras) throws ExcepcionServiciosBancoProyectos;
+
     public abstract void registrarUsuario(Usuario u) throws ExcepcionServiciosBancoProyectos;
+
+    public abstract void registrarIniciativaAUsuario(Date fecha_registro , Iniciativa iniciativa , Usuario usuario , List<String> palabras) throws ExcepcionServiciosBancoProyectos;
 
     public abstract void asignarRolUsuario(String rol , Usuario usuario) throws ExcepcionServiciosBancoProyectos;
 }
