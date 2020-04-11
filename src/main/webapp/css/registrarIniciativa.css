@@ -1,0 +1,40 @@
+body{
+    background-image: url("../img/singup.jpg");
+    margin:0;
+    padding: 0;
+    background-size:cover;
+    text-align: center;
+    font-family: Quicksand;
+}
+
+h1{
+    float:left;
+    margin: 2.5% 5%;
+    color: #4070a0;
+}
+
+#registroIniciativa{
+    float: left;
+    margin-top: 6%;
+    margin-left: -15%;
+    opacity: 0.8;
+    -moz-opacity: 0.8;
+    filter: alpha(opacity=10);
+    -khtml-opacity: 0.8;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 0;
+    background-color: #4070a0;
+    border-radius: 10px;
+    width: 50%;
+}
+
+#descripcion{
+    margin-left: 20%;
+    width: 250%;
+}
+
+#display{
+    font-size: large;
+    color: black;
+}
