@@ -15,6 +15,7 @@ public class Usuario implements Serializable{
     private String apellido;
     private String password;
     private String rol;
+    private String area;
 
     public Usuario() {}
 
@@ -26,14 +27,16 @@ public class Usuario implements Serializable{
      * @param apellido apellido del usuario
      * @param password contraseña del usuario
      * @param rol rol del usuario
+     * @param area Area a donde pertenece el usuario
      */
-    public Usuario(long documento,  String email , String nombre ,  String apellido  , String password , String rol ) {
+    public Usuario(long documento,  String email , String nombre ,  String apellido  , String password , String rol, String area) {
         this.documento=documento;
         this.email=email;
         this.nombre=nombre;
         this.apellido=apellido;
         this.password=password;
         this.rol=rol;
+        this.area=area;
     }
 
     /**
@@ -101,9 +104,13 @@ public class Usuario implements Serializable{
         this.rol = rol;
     }
 
+    public String getArea() { return area; }
+
+    public void setArea(String area) { this.area = area; }
+
     @Override
     public String toString() {
-        return "Usuario{" + "nombre=" + nombre + ", documento=" + documento + ", email= "+ email + ", rol= "+ rol + '}';
+        return "Usuario{" + "nombre=" + nombre + ", documento=" + documento + ", email= "+ email + ", rol= "+ rol + "area= "+ area + '}';
     }
 
 

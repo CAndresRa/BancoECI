@@ -44,12 +44,12 @@
             <p:outputLabel for="@next" value="Ingrese el rol del usuario" style="font-family: Quicksand; font-weight: bold" />
             <p:inputText  id= "rol" required="true" type="String" binding="#{rol}" style="border-radius: 15px"> </p:inputText>
             <p:outputLabel for="@next" value="Área de usuario"  style="font-family: Quicksand; font-weight: bold" />
-            <p:selectOneMenu id="area" value="" style="width:80%">
+            <p:selectOneMenu id="area" value="#{adminBean.area}" style="width:80%">
                 <f:selectItem itemLabel="" itemValue="" />
-                <f:selectItem itemLabel="Finanzas" itemValue="" />
-                <f:selectItem itemLabel="Innovación" itemValue="" />
-                <f:selectItem itemLabel="Ventas" itemValue="" />
-                <f:selectItem itemLabel="Ventas" itemValue="" />
+                <f:selectItem itemLabel="Finanzas" itemValue="Finanzas" />
+                <f:selectItem itemLabel="Innovación" itemValue="Innovacion" />
+                <f:selectItem itemLabel="Ventas" itemValue="Ventas" />
+                <f:selectItem itemLabel="Proyectos" itemValue="Proyectos" />
             </p:selectOneMenu>
             <p:commandButton id="registrar" value="Registrar"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value, rol.value)}" style="margin-top: 4px;width: 50%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
         </h:panelGrid>

@@ -4,7 +4,8 @@ CREATE TABLE usuario(
    `nombre` VARCHAR (50) NOT NULL,
    `apellido` VARCHAR (50) NOT NULL,
    `password` VARCHAR (50) NOT NULL,
-   `rol` VARCHAR (50) 
+   `rol` VARCHAR (50),
+   `area` VARCHAR (50)
 );
 
 CREATE TABLE iniciativa(
@@ -37,7 +38,7 @@ CREATE TABLE votacion(
 );
 
 
-insert into usuario (documento,email,nombre,apellido,password,rol) values (2154021,'ernesto.camacho@mail.escuelaing.edu.co','Ernesto','Camacho','1234','Administrador');
-insert into usuario (documento,email,nombre,apellido,password,rol) values (2000001,'pepito.perez@mail.escuelaing.edu.co','pepito','perez','1234','publico');
-insert into usuario (documento,email,nombre,apellido,password,rol) values (2000002,'diana.hernandez@mail.escuelaing.edu.co','diana','hernandez','1234','publico');
-insert into usuario (documento,email,nombre,apellido,password,rol) values (2000003,'no.rol@mail.escuelaing.edu.co','no','rol','1234',null);
+insert into usuario (documento,email,nombre,apellido,password,rol,area ) values (2154021,'ernesto.camacho@mail.escuelaing.edu.co','Ernesto','Camacho','1234','Administrador',null);
+insert into usuario (documento,email,nombre,apellido,password,rol,area) values (2000001,'pepito.perez@mail.escuelaing.edu.co','pepito','perez','1234','publico',null );
+insert into usuario (documento,email,nombre,apellido,password,rol,area ) values (2000002,'diana.hernandez@mail.escuelaing.edu.co','diana','hernandez','1234','publico',null );
+insert into usuario (documento,email,nombre,apellido,password,rol,area ) values (2000003,'no.rol@mail.escuelaing.edu.co','no','rol','1234',null,null);

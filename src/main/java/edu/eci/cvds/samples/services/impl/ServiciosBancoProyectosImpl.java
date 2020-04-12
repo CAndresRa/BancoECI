@@ -98,7 +98,7 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
 
     @Transactional
     @Override
-    public void registrarUsuario( Usuario u) throws ExcepcionServiciosBancoProyectos {
+    public void registrarUsuario(Usuario u) throws ExcepcionServiciosBancoProyectos {
         try{
             usuarioDAO.registrarUsuario(u);
         } catch (PersistenceException e) {

@@ -17,6 +17,7 @@ public class AdministracionBean extends BasePageBean {
     private ServiciosBancoProyectos serviciosBancoProyectos;
     private String rol;
     private Usuario usuario;
+    private String area;
 
     /**
      * Metodo que permite modificar rol de un usuario
@@ -51,7 +52,7 @@ public class AdministracionBean extends BasePageBean {
      */
     public void registrarUsuario(String documento, String email, String nombre, String apellido, String password, String rol) throws ExcepcionServiciosBancoProyectos {
     	Long doc = Long.parseLong(documento);
-        serviciosBancoProyectos.registrarUsuario(new Usuario(doc, email, nombre, apellido, password, rol));
+        serviciosBancoProyectos.registrarUsuario(new Usuario(doc, email, nombre, apellido, password, rol, area));
     }
 
     public Usuario getUsuario(){
@@ -64,6 +65,14 @@ public class AdministracionBean extends BasePageBean {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 }
 
