@@ -46,23 +46,28 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
     }
 
     @Override
-    public void insertarIniciativa(Iniciativa i) throws ExcepcionServiciosBancoProyectos {
+    public void insertarIniciativa(Iniciativa i) throws ExcepcionServiciosBancoProyectos, PersistenceException {
         try{
+        	if(i.getDescripcion() == null) {
+        		throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
+        	}
             iniciativaDAO.insertarIniciativa(i);
-            if(i == null){
+            /*if(i == null){
                 throw new ExcepcionServiciosBancoProyectos("La iniciativa no existe");
-            }
-        } catch (PersistenceException e){
+            }*/
+        } catch (javax.persistence.PersistenceException e){
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
         }
     }
-
 
     @Override
     public void agregarPalabrasClaveAIniciativa(Iniciativa iniciativa, String[] palabras) throws ExcepcionServiciosBancoProyectos {
         try{
             if(iniciativa == null){
                 throw new ExcepcionServiciosBancoProyectos("La iniciativa no existe");
+            }
+            if(palabras == null || palabras.length == 0){
+                throw new ExcepcionServiciosBancoProyectos("No hay palabras Clave");
             }
             for(int i=0 ; i < palabras.length ; i++){
                 iniciativaDAO.agregarPalabraClaveAIniciativa(iniciativa , palabras[i]);

@@ -26,7 +26,7 @@ public interface ServiciosBancoProyectos {
 
 
 
-    public void  insertarIniciativa(Iniciativa i) throws ExcepcionServiciosBancoProyectos;
+    public void  insertarIniciativa(Iniciativa i) throws ExcepcionServiciosBancoProyectos, PersistenceException;
 
     public void agregarPalabrasClaveAIniciativa(Iniciativa iniciativa , String[] palabras) throws ExcepcionServiciosBancoProyectos;
 

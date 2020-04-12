@@ -13,7 +13,7 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     private IniciativaMapper iniciativaMapper;
 
     @Override
-    public void insertarIniciativa(Iniciativa i) throws PersistenceException{
+    public void insertarIniciativa(Iniciativa i) throws javax.persistence.PersistenceException{
         try {
             if(i == null){
                 throw new javax.persistence.PersistenceException("La iniciativa es nula");

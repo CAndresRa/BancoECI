@@ -9,32 +9,42 @@ CREATE TABLE usuario(
 );
 
 CREATE TABLE iniciativa(
-   `id` int PRIMARY KEY,
-   `nombre` VARCHAR (50) NOT NULL,
+   `id` serial ,
+   `nombre` VARCHAR (50) unique NOT NULL,
    `descripcion` VARCHAR (50) NOT NULL,
-   `estado` VARCHAR (50) NOT NULL,
-   `palabras_clave` VARCHAR (50)
+   `estado` VARCHAR (50) NOT null,
+   primary key (id)
 );
 
 CREATE TABLE registro(
-   `id` int PRIMARY KEY,
+   `id` serial ,
    `fecha_registro` date not null,
-   `usuario` INTEGER REFERENCES usuario(documento) ,
-   `iniciativa` INTEGER references iniciativa(id) 
+   `usuario` INTEGER REFERENCES usuario(documento) DEFERRABLE,
+   `iniciativa` VARCHAR (50) references iniciativa(nombre)  DEFERRABLE,
+   primary key (id)
 );
 
 CREATE TABLE comentario(
-   `id` int PRIMARY KEY,
+   `id` serial ,
    `fecha_comentario` date not null,
    `contenido` VARCHAR (50) NOT NULL,
-   `usuario` INTEGER REFERENCES usuario(documento) ,
-   `iniciativa` INTEGER references iniciativa(id) 
+   `usuario` INTEGER REFERENCES usuario(documento)  DEFERRABLE,
+   `iniciativa` VARCHAR (50) references iniciativa(nombre) DEFERRABLE,
+   primary key (id)
 );
 
 CREATE TABLE votacion(
-   `id` int PRIMARY KEY,
-   `usuario` INTEGER REFERENCES usuario(documento) ,
-   `iniciativa` INTEGER references iniciativa(id) 
+   `id` serial ,
+   `usuario` INTEGER REFERENCES usuario(documento)  DEFERRABLE,
+   `iniciativa` VARCHAR (50) references iniciativa(nombre) DEFERRABLE,
+   primary key (id)
+);
+
+CREATE TABLE palabraClave(
+   `id` serial ,
+   `iniciativa` VARCHAR (50) REFERENCES iniciativa(nombre)  DEFERRABLE,
+   `palabra` varchar(50) not null,
+   primary key (id)
 );
 
 

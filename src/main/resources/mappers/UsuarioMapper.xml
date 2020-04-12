@@ -35,7 +35,7 @@
 	        u.nombre,
 	        u.apellido,
 	        u.password,
-	        u.rol
+	        u.rol,
 	        u.area
         from usuario u
         where u.rol is null or u.rol != 'Administrador' ;
