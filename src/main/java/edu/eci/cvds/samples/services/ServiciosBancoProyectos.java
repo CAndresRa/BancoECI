@@ -24,19 +24,20 @@ public interface ServiciosBancoProyectos {
      */
     public abstract List<Usuario> consultarUsuarios() throws ExcepcionServiciosBancoProyectos;
 
+
+
+    public void  insertarIniciativa(Iniciativa i) throws ExcepcionServiciosBancoProyectos;
+
+    public void agregarPalabrasClaveAIniciativa(Iniciativa iniciativa , String[] palabras) throws ExcepcionServiciosBancoProyectos;
+
     /**
      * Permite registrar a un usuario
      * @param u Usuario que se va a registrar
      * @throws ExcepcionServiciosBancoProyectos
      */
-
-    public void  insertarIniciativa(Iniciativa i) throws ExcepcionServiciosBancoProyectos;
-
-    public void agregarPalabrasClaveAIniciativa(Iniciativa iniciativa , List <String> palabras) throws ExcepcionServiciosBancoProyectos;
-
     public abstract void registrarUsuario(Usuario u) throws ExcepcionServiciosBancoProyectos;
 
-    public abstract void registrarIniciativaAUsuario(Date fecha_registro , Iniciativa iniciativa , Usuario usuario , List<String> palabras) throws ExcepcionServiciosBancoProyectos;
+    public abstract void registrarIniciativaAUsuario(Date fecha_registro , Iniciativa iniciativa , Usuario usuario , String[] palabras) throws ExcepcionServiciosBancoProyectos;
 
     public abstract void asignarRolUsuario(String rol , Usuario usuario) throws ExcepcionServiciosBancoProyectos;
 }

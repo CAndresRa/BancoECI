@@ -26,7 +26,7 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
     private RegistroDAO registroDAO;
 
     @Override
-    public void registrarIniciativaAUsuario(Date fecha_registro, Iniciativa iniciativa, Usuario usuario , List<String> palabras) throws ExcepcionServiciosBancoProyectos {
+    public void registrarIniciativaAUsuario(Date fecha_registro, Iniciativa iniciativa, Usuario usuario , String[] palabras) throws ExcepcionServiciosBancoProyectos {
         try {
             if (iniciativa == null) {
                 throw new ExcepcionServiciosBancoProyectos("La iniciativa no existe");
@@ -59,13 +59,13 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
 
 
     @Override
-    public void agregarPalabrasClaveAIniciativa(Iniciativa iniciativa, List <String> palabras) throws ExcepcionServiciosBancoProyectos {
+    public void agregarPalabrasClaveAIniciativa(Iniciativa iniciativa, String[] palabras) throws ExcepcionServiciosBancoProyectos {
         try{
             if(iniciativa == null){
                 throw new ExcepcionServiciosBancoProyectos("La iniciativa no existe");
             }
-            for(int i=0 ; i<palabras.size() ; i++){
-                iniciativaDAO.agregarPalabraClaveAIniciativa(iniciativa , palabras.get(i));
+            for(int i=0 ; i < palabras.length ; i++){
+                iniciativaDAO.agregarPalabraClaveAIniciativa(iniciativa , palabras[i]);
             }
         } catch (ExcepcionServiciosBancoProyectos e){
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);

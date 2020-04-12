@@ -48,6 +48,9 @@ public class LoginBean extends BasePageBean {
             if (serviciosBancoProyectos.consultarUsuario(username).getRol().equals("Administrador")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("administrador.xhtml");
             }
+            else if (serviciosBancoProyectos.consultarUsuario(username).getRol().equals("Proponente")) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("registrarIniciativa.xhtml");
+            }
         }
         else {
             FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");

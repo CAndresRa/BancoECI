@@ -16,8 +16,7 @@ public class Usuario implements Serializable{
     private String password;
     private String rol;
 
-    public Usuario() {
-    }
+    public Usuario() {}
 
     /**
      * Contructor de usuario

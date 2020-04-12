@@ -27,6 +27,13 @@ public class Iniciativa {
         this.palabras_clave=palabras_clave;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public int getId() {
         return id;

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 public interface IniciativaDAO {
 
 
-    public void  insertarIniciativa(Iniciativa i) throws PersistenceException;
+    public void insertarIniciativa(Iniciativa i) throws PersistenceException;
 
 
     public void agregarPalabraClaveAIniciativa(Iniciativa iniciativa , String palabra);
