@@ -46,6 +46,24 @@ public class Usuario implements Serializable{
      * @param nombre nombre del usuario
      * @param apellido apellido del usuario
      * @param password contraseña del usuario
+     * @param rol rol del usuario
+     */
+    public Usuario(long documento,  String email , String nombre ,  String apellido  , String password , String rol ) {
+        this.documento=documento;
+        this.email=email;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.password=password;
+        this.rol = rol;
+    }
+
+    /**
+     * Contructor de usuario
+     * @param documento documento del usuario
+     * @param email correo del usuario
+     * @param nombre nombre del usuario
+     * @param apellido apellido del usuario
+     * @param password contraseña del usuario
      */
     public Usuario(long documento,  String email , String nombre ,  String apellido  , String password ) {
         this.documento=documento;

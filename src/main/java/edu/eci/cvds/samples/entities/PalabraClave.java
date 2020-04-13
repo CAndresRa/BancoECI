@@ -1,6 +1,5 @@
 package edu.eci.cvds.samples.entities;
 
-import java.util.List;
 
 public class PalabraClave {
     private int id;

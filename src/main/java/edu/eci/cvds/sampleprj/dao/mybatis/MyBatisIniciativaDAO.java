@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import edu.eci.cvds.sampleprj.dao.IniciativaDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper;
-import edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper;
 import edu.eci.cvds.samples.entities.Iniciativa;
 
 import java.util.List;

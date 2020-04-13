@@ -1,26 +1,16 @@
 package edu.eci.cvds.view;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-
-import java.io.Serializable;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
-import org.h2.engine.User;
 
 
 import java.io.IOException;
-import java.io.Serializable;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "loginBean")

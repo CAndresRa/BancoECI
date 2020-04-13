@@ -17,8 +17,6 @@
 package edu.eci.cvds.samples.services.client;
 
 
-import edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper;
-import edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -62,10 +60,7 @@ public class MyBatisExample {
     public static void main(String args[]) throws SQLException, ParseException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
-        //UsuarioMapper u=sqlss.getMapper(UsuarioMapper.class);
-        IniciativaMapper i = sqlss.getMapper(IniciativaMapper.class);
-        //i.cambiarEstadoAiniciativa("hola", i.consultarIniciativasPorId(7));
-        //System.out.println(i.consultarIniciativasPorId(7));
+        /*UsuarioMapper u=sqlss.getMapper(UsuarioMapper.class);*/
         sqlss.commit();
         sqlss.close();
     }

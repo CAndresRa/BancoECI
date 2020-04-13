@@ -29,6 +29,12 @@ public interface UsuarioDAO {
      */
     public void  asignarRolUsuario(String rol, Usuario usuario) throws PersistenceException;
 
+    /**
+     * Metodo que permite registrar a un usuario
+     * @param u Usuario al que se le asignara el nuevo rol
+     * @throws PersistenceException
+     */
+
     public void registrarUsuario(Usuario u) throws PersistenceException;
 
 }

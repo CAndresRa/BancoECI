@@ -31,7 +31,7 @@
     </update>
 
     <insert id="insertarIniciativa" parameterType="map">
-        INSERT INTO iniciativa (nombre , descripcion , estado) VALUES ( #{iniciativa.nombre}, #{iniciativa.descripcion} , #{iniciativa.estado} );
+        INSERT INTO iniciativa (nombre , descripcion , estado , fecha_registro , usuario) VALUES ( #{iniciativa.nombre}, #{iniciativa.descripcion} , #{iniciativa.estado} , #{iniciativa.fecha_registro} , #{iniciativa.usuario.documento});
     </insert>
 
     <insert id="agregarPalabraClaveAIniciativa" parameterType="map">

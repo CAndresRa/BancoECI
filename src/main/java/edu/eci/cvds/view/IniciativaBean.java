@@ -2,12 +2,14 @@ package edu.eci.cvds.view;
 
 
 import com.google.inject.Inject;
+import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -21,12 +23,11 @@ public class IniciativaBean extends BasePageBean {
     private Iniciativa iniciativa;
     private Date date;
 
-    public void agregarIniciativa(String nombre, String descripcion, String palabras, String email) throws ExcepcionServiciosBancoProyectos {
-        String[] palabrasListas = palabras.split(",");
-        this.iniciativa = new Iniciativa(nombre, descripcion, estado);
-        this.date = new Date((new java.util.Date()).getTime());
+    public void agregarIniciativa(String nombre, String descripcion, String palabras, String email) throws ExcepcionServiciosBancoProyectos, PersistenceException {
+        List<String> palabrasListas = Arrays.asList(palabras.split(","));
         Usuario usuario = serviciosBancoProyectos.consultarUsuario(email);
-        serviciosBancoProyectos.registrarIniciativaAUsuario(date, iniciativa, usuario, palabrasListas);
+        this.iniciativa = new Iniciativa(nombre, descripcion, estado,new Date((new java.util.Date()).getTime()),usuario);
+        serviciosBancoProyectos.insertarIniciativa(iniciativa, palabrasListas);
     }
 
     public List<Iniciativa> consultarIniciativasBasico() throws ExcepcionServiciosBancoProyectos {

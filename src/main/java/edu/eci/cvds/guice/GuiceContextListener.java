@@ -5,10 +5,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import edu.eci.cvds.sampleprj.dao.IniciativaDAO;
-import edu.eci.cvds.sampleprj.dao.RegistroDAO;
 import edu.eci.cvds.sampleprj.dao.UsuarioDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisIniciativaDAO;
-import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisRegistroDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisUsuarioDAO;
 
 import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
@@ -37,7 +35,6 @@ public class GuiceContextListener implements ServletContextListener {
                 // TODO Add service class associated to Stub implementation
                 bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
                 bind(IniciativaDAO.class).to(MyBatisIniciativaDAO.class);
-                bind(RegistroDAO.class).to(MyBatisRegistroDAO.class);
                 bind(BasePageBean.class).to(LoginBean.class);
                 bind(ServiciosBancoProyectos.class).to(ServiciosBancoProyectosImpl.class);
 
