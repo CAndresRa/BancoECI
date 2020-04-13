@@ -29,8 +29,8 @@
     </h:form>
     <br/>
     <h1>Registrar Usuario</h1>
-    <h:form id="registrarUsuario">
-        <h:panelGrid id="validacion" columns="2" cellpadding="6">
+    <h:form id="registrarUsuario" >
+        <h:panelGrid id="validacion" columns="2" cellpadding="6" style="background-color: gainsboro; border-radius: 15px">
             <p:outputLabel for="@next" value="Ingrese el documento del usuario" style="font-family: Quicksand; font-weight: bold"/>
             <p:inputText  id= "documento" required="true" type="String" binding="#{documento}" style="border-radius: 15px"> </p:inputText>
             <p:outputLabel for="@next"  value="Ingrese el correo electronico" style="font-family: Quicksand; font-weight: bold" />

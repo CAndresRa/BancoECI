@@ -13,7 +13,7 @@ h1{
 
 #buscar{
     margin-top: 4px;
-    width: 5%;
+    width: 8%;
     font-family: Quicksand;
     background-color: mintcream;
     border-radius: 15px;
@@ -56,11 +56,19 @@ h1{
 }
 
 #registrarUsuario{
-    margin-left: 30%;
+    margin-left: 32%;
     margin-top: 2%;
     font-family: Quicksand;
     color: yellowgreen;
     font-size: 20px;
+    opacity: 0.8;
+    -moz-opacity: 0.8;
+    filter: alpha(opacity=10);
+    -khtml-opacity: 0.8;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 0;
+    width: 50%;
 }
 
 th, td{
@@ -68,3 +76,14 @@ th, td{
 }
 
 
+#iniciativasPMO{
+    width: 70%;
+    margin-left: 15%;
+
+}
+
+#tbl{
+    width: 100%;
+
+
+}

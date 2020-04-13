@@ -18,11 +18,13 @@
 </h:head>
 
 <h:body>
+    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <br/>
+    <br/>
+    <h1>Cambiar estado de iniciativa</h1>
     <h:form id="iniciativasPMO" prependId="false" >
-        <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
-        <br/>
-        <br/>
-        <h1>Cambiar estado de iniciativa</h1>
+
+
         <h:outputLabel value="BusquedaIni: " style="font-weight:bold"/>
         <p:inputText id="busquedaIni" placeholder="Id Iniciativa" required="true" type="String" binding="#{id}"/>
         <p:commandButton id="buscar" value="Buscar" actionListener="#{iniciativaBean.consultarIniciativasPorId(id.value)}" action="cambioEstado.xhtml?faces-redirect = true"/>
@@ -32,29 +34,29 @@
         <h1>Lista de iniciativas</h1>
         <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.consultarIniciativasBasico()}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                     paginator="true" rows="10" style="margin-bottom:20px">
-            <p:column>
+                     paginator="true" rows="10" style="margin-bottom: 30%; width: 100%; font-family: Quicksand; background-color:blue !important" >
+            <p:column style="background-color: yellowgreen">
                 <f:facet name="header">
                     <h:outputText value="Id" />
                 </f:facet>
-                <h:outputText value="#{iniciative.id}" />
+                <h:outputText value="#{iniciative.id}"  />
             </p:column>
 
-            <p:column>
+            <p:column style="background-color: mintcream">
                 <f:facet name="header">
                     <h:outputText value="Nombre"/>
                 </f:facet>
                 <h:outputText value="#{iniciative.nombre}" />
             </p:column>
 
-            <p:column>
+            <p:column style="background-color: yellowgreen">
                 <f:facet name="header">
                     <h:outputText value="Descripcion" />
                 </f:facet>
                 <h:outputText value="#{iniciative.descripcion}" />
             </p:column>
 
-            <p:column>
+            <p:column style="background-color: mintcream">
                 <f:facet name="header">
                     <h:outputText value="Estado" />
                 </f:facet>
