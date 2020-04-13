@@ -9,6 +9,14 @@ import java.util.List;
 public interface ServiciosBancoProyectos {
 
     /**
+     * Metodo que permite consultar iniciativas que contengan una de ciertas palabras clave
+     * @param palabras palabras clave que deben contener las iniciativas
+     * @return Lista de iniciativas
+     */
+
+    public List<Iniciativa> consultarIniciativasPorPalabrasClaves(List<String> palabras) throws ExcepcionServiciosBancoProyectos;
+
+    /**
      * Permite consultar a un usuario dado su correo
      * @param email correo del usuario que se desea consultar
      * @return Usuario cuyo correo sea el ingresado

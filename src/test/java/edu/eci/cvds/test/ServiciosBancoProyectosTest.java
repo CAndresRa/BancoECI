@@ -3,10 +3,7 @@ package edu.eci.cvds.test;
 
 import com.google.inject.Inject;
 
-import edu.eci.cvds.sampleprj.dao.PersistenceException;
-import edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper;
-import edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper;
-import edu.eci.cvds.samples.entities.Iniciativa;
+
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
@@ -19,9 +16,6 @@ import org.junit.Assert;
 
 import static org.junit.Assert.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ServiciosBancoProyectosTest {

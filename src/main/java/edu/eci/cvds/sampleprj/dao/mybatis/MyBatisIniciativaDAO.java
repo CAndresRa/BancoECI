@@ -26,6 +26,16 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     }
 
     @Override
+    public List<Iniciativa> consultarIniciativasPorPalabraClave(String palabra) throws PersistenceException {
+        try{
+            List<Iniciativa> iniciativas= iniciativaMapper.consultarIniciativasPorPalabraClave(palabra);
+            return iniciativas;
+        } catch (javax.persistence.PersistenceException e){
+            throw new javax.persistence.PersistenceException(e.getMessage(),e);
+        }
+    }
+
+    @Override
     public void agregarPalabraClaveAIniciativa(Iniciativa iniciativa, String palabra){
         try {
             if(iniciativa == null){

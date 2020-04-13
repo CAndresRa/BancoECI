@@ -16,7 +16,6 @@
  */
 package edu.eci.cvds.samples.services.client;
 
-
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -60,7 +59,7 @@ public class MyBatisExample {
     public static void main(String args[]) throws SQLException, ParseException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
-        /*UsuarioMapper u=sqlss.getMapper(UsuarioMapper.class);*/
+        /*IniciativaMapper i=sqlss.getMapper(IniciativaMapper.class);*/
         sqlss.commit();
         sqlss.close();
     }

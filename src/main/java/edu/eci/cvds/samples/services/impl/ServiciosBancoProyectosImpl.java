@@ -9,6 +9,7 @@ import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
@@ -21,7 +22,26 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
     @Inject
     private IniciativaDAO iniciativaDAO;
 
-
+    @Override
+    public List<Iniciativa> consultarIniciativasPorPalabrasClaves(List<String> palabras) throws ExcepcionServiciosBancoProyectos{
+        try{
+            List<Iniciativa> iniciativas = new ArrayList<>();
+            List<Integer> idIniciativas = new ArrayList<>();
+            for(int i=0 ; i<palabras.size() ; i++){
+                List<Iniciativa> iniciativasTemporales = iniciativaDAO.consultarIniciativasPorPalabraClave(palabras.get(i));
+                for(int j=0 ; j<iniciativasTemporales.size() ; j++){
+                    Iniciativa iniciativa = iniciativasTemporales.get(j);
+                    if(!idIniciativas.contains(iniciativa.getId())){
+                        iniciativas.add(consultarIniciativasPorId(iniciativa.getId()));
+                        idIniciativas.add(iniciativa.getId());
+                    }
+                }
+            }
+            return iniciativas;
+        } catch (javax.persistence.PersistenceException | PersistenceException e) {
+            throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+        }
+    }
     @Override
     public void insertarIniciativa(Iniciativa iniciativa , List<String> palabras) throws ExcepcionServiciosBancoProyectos, PersistenceException {
         try{

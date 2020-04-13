@@ -30,6 +30,14 @@ public interface IniciativaMapper {
     public List<Iniciativa> consultarIniciativas();
 
     /**
+     * Metodo que permite consultar iniciativas que contengan una palabra clave
+     * @param palabra palabra la cual va a filtrar la lista de iniciativas
+     * @return Lista de iniciativas
+     */
+
+    public List<Iniciativa> consultarIniciativasPorPalabraClave(@Param("palabra") String palabra);
+
+    /**
      * Metodo que permite consultar todas las iniciativas por id
      * @param id id de la iniciativa a consultar
      * @return Iniciativa que coincida con el id ingresado como parametro

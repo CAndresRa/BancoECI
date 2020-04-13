@@ -5,23 +5,69 @@
 
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper">
 
-    <select parameterType="map" id="consultarIniciativas" resultMap="IniciativaConsultaBasicaResult">
-	SELECT
-        i.id,
-        i.nombre,
-        i.descripcion,
-        i.estado
-    FROM iniciativa AS i;
+    <select parameterType="map" id="consultarIniciativas" resultMap="IniciativaResult">
+        SELECT
+            i.id,
+            i.nombre,
+            i.descripcion,
+            i.estado,
+            i.fecha_registro,
+            u.documento as usuario_documento,
+            u.email as usuario_email,
+            u.nombre as usuario_nombre,
+            u.apellido as usuario_apellido,
+            u.password as usuario_password,
+            u.area as usuario_area,
+            u.rol as usuario_rol,
+            p.id as palabraclave_id,
+            p.palabra as palabraclave_palabra
+        FROM iniciativa i , usuario u , palabraclave p
+        WHERE i.usuario = u.documento
+        AND p.iniciativa = i.nombre;
     </select>
 
-    <select parameterType="map" id="consultarIniciativasPorId" resultMap="IniciativaConsultaBasicaResult">
-	SELECT
-        i.id,
-        i.nombre,
-        i.descripcion,
-        i.estado
-    FROM iniciativa AS i
-    WHERE i.id=#{id};
+    <select parameterType="map" id="consultarIniciativasPorId" resultMap="IniciativaResult">
+	    SELECT
+            i.id,
+            i.nombre,
+            i.descripcion,
+            i.estado,
+            i.fecha_registro,
+            u.documento as usuario_documento,
+            u.email as usuario_email,
+            u.nombre as usuario_nombre,
+            u.apellido as usuario_apellido,
+            u.password as usuario_password,
+            u.area as usuario_area,
+            u.rol as usuario_rol,
+            p.id as palabraclave_id,
+            p.palabra as palabraclave_palabra
+        FROM iniciativa i , usuario u , palabraclave p
+        WHERE i.usuario = u.documento
+        AND p.iniciativa = i.nombre
+        AND i.id = #{id};
+    </select>
+
+    <select parameterType="map" id="consultarIniciativasPorPalabraClave" resultMap="IniciativaResult">
+	    SELECT
+            i.id,
+            i.nombre,
+            i.descripcion,
+            i.estado,
+            i.fecha_registro,
+            u.documento as usuario_documento,
+            u.email as usuario_email,
+            u.nombre as usuario_nombre,
+            u.apellido as usuario_apellido,
+            u.password as usuario_password,
+            u.area as usuario_area,
+            u.rol as usuario_rol,
+            p.id as palabraclave_id,
+            p.palabra as palabraclave_palabra
+        FROM iniciativa i , usuario u , palabraclave p
+        WHERE i.usuario = u.documento
+        AND p.iniciativa = i.nombre
+        AND p.palabra = #{palabra};
     </select>
 
     <update parameterType="map" id="cambiarEstadoAiniciativa">
@@ -43,15 +89,11 @@
         <result property='nombre' column='nombre'/>
         <result property='descripcion' column='descripcion'/>
         <result property='estado' column='estado'/>
-        <collection property='palabras_clave' ofType='PalabraClave'  resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.PalabraClave.PalabraClaveResult" columnPrefix='palabraclave_'></collection>
+        <result property='fecha_registro' column='fecha_registro'/>
+        <association property='usuario' javaType="Usuario"  resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult" columnPrefix='usuario_'></association>
+        <collection property='palabras_clave' ofType='PalabraClave'  resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.PalabraClaveMapper.PalabraClaveResult" columnPrefix='palabraclave_'></collection>
     </resultMap>
 
-    <resultMap id="IniciativaConsultaBasicaResult" type="Iniciativa">
-        <id property='id' column='id'/>
-        <result property='nombre' column='nombre'/>
-        <result property='descripcion' column='descripcion'/>
-        <result property='estado' column='estado'/>
-    </resultMap>
 
 
 </mapper>

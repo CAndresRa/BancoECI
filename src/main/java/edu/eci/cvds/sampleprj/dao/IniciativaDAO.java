@@ -1,15 +1,19 @@
 package edu.eci.cvds.sampleprj.dao;
 
 import edu.eci.cvds.samples.entities.Iniciativa;
-import edu.eci.cvds.samples.entities.Usuario;
-import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
-import org.apache.ibatis.annotations.Param;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 
 public interface IniciativaDAO {
+
+    /**
+     * Metodo que permite consultar iniciativas que contengan una palabra clave
+     * @param palabra palabra la cual va a filtrar la lista de iniciativas
+     * @return Lista de iniciativas
+     */
+
+    public List<Iniciativa> consultarIniciativasPorPalabraClave(String palabra) throws PersistenceException;
 
     /**
      * Metodo que permite registrar una iniciativa
