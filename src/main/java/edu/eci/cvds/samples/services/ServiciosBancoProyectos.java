@@ -40,4 +40,10 @@ public interface ServiciosBancoProyectos {
     public abstract void registrarIniciativaAUsuario(Date fecha_registro , Iniciativa iniciativa , Usuario usuario , String[] palabras) throws ExcepcionServiciosBancoProyectos;
 
     public abstract void asignarRolUsuario(String rol , Usuario usuario) throws ExcepcionServiciosBancoProyectos;
+
+    public abstract List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBancoProyectos;
+
+    public abstract Iniciativa consultarIniciativasPorId(int id) throws ExcepcionServiciosBancoProyectos;
+
+    public abstract void cambiarEstadoAiniciativa(String estado, Iniciativa iniciativa) throws  ExcepcionServiciosBancoProyectos;
 }

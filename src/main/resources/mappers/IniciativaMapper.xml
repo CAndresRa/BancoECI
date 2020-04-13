@@ -5,6 +5,31 @@
 
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper">
 
+    <select parameterType="map" id="consultarIniciativas" resultMap="IniciativaConsultaBasicaResult">
+	SELECT
+        i.id,
+        i.nombre,
+        i.descripcion,
+        i.estado
+    FROM iniciativa AS i;
+    </select>
+
+    <select parameterType="map" id="consultarIniciativasPorId" resultMap="IniciativaConsultaBasicaResult">
+	SELECT
+        i.id,
+        i.nombre,
+        i.descripcion,
+        i.estado
+    FROM iniciativa AS i
+    WHERE i.id=#{id};
+    </select>
+
+    <update parameterType="map" id="cambiarEstadoAiniciativa">
+        UPDATE iniciativa
+        SET estado = #{estado}
+        WHERE id =  #{iniciativa.id};
+    </update>
+
     <insert id="insertarIniciativa" parameterType="map">
         INSERT INTO iniciativa (nombre , descripcion , estado) VALUES ( #{iniciativa.nombre}, #{iniciativa.descripcion} , #{iniciativa.estado} );
     </insert>
@@ -19,6 +44,13 @@
         <result property='descripcion' column='descripcion'/>
         <result property='estado' column='estado'/>
         <collection property='palabras_clave' ofType='PalabraClave'  resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.PalabraClave.PalabraClaveResult" columnPrefix='palabraclave_'></collection>
+    </resultMap>
+
+    <resultMap id="IniciativaConsultaBasicaResult" type="Iniciativa">
+        <id property='id' column='id'/>
+        <result property='nombre' column='nombre'/>
+        <result property='descripcion' column='descripcion'/>
+        <result property='estado' column='estado'/>
     </resultMap>
 
 

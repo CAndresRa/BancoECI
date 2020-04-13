@@ -72,7 +72,7 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
             for(int i=0 ; i < palabras.length ; i++){
                 iniciativaDAO.agregarPalabraClaveAIniciativa(iniciativa , palabras[i]);
             }
-        } catch (ExcepcionServiciosBancoProyectos e){
+        } catch (ExcepcionServiciosBancoProyectos | PersistenceException e){
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
         }
     }
@@ -87,6 +87,33 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
                 throw new ExcepcionServiciosBancoProyectos("El rol es nulo");
             }
             usuarioDAO.asignarRolUsuario(rol,usuario);
+        } catch (PersistenceException e){
+            throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBancoProyectos {
+        try {
+            return iniciativaDAO.consultarIniciativas();
+        } catch (PersistenceException e){
+            throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Iniciativa consultarIniciativasPorId(int id) throws ExcepcionServiciosBancoProyectos {
+        try{
+            return  iniciativaDAO.consultarIniciativasPorId(id);
+        }catch (PersistenceException e){
+            throw new  ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void cambiarEstadoAiniciativa(String estado, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
+        try{
+            iniciativaDAO.cambiarEstadoAiniciativa(estado,iniciativa);
         } catch (PersistenceException e){
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
         }

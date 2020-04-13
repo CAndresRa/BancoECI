@@ -17,26 +17,16 @@
 package edu.eci.cvds.samples.services.client;
 
 
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper;
-import edu.eci.cvds.sampleprj.dao.mybatis.mappers.RegistroMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper;
-import edu.eci.cvds.samples.entities.Iniciativa;
-import edu.eci.cvds.samples.entities.PalabraClave;
-import edu.eci.cvds.samples.entities.Usuario;
-import org.apache.commons.collections.iterators.ArrayListIterator;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.SQLException;
+import java.text.ParseException;
 
 /**
  *
@@ -71,20 +61,12 @@ public class MyBatisExample {
      */
     public static void main(String args[]) throws SQLException, ParseException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
-
         SqlSession sqlss = sessionfact.openSession();
-
         //UsuarioMapper u=sqlss.getMapper(UsuarioMapper.class);
-
-
+        IniciativaMapper i = sqlss.getMapper(IniciativaMapper.class);
+        //i.cambiarEstadoAiniciativa("hola", i.consultarIniciativasPorId(7));
+        //System.out.println(i.consultarIniciativasPorId(7));
         sqlss.commit();
-
-
         sqlss.close();
-
-
-
     }
-
-
 }
