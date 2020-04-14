@@ -128,10 +128,18 @@ public class Usuario implements Serializable{
 
     @Override
     public String toString() {
-        return "Usuario{" + "nombre=" + nombre + ", documento=" + documento + ", email= "+ email + ", rol= "+ rol + "area= "+ area + '}';
+        return "Usuario{" + "nombre=" + nombre + ", documento=" + documento + ", email= "+ email + ", rol= "+ rol + ", area= "+ area + '}';
     }
-
-
-
-
+    
+    @Override
+    public boolean equals(Object o) {
+    	Usuario user= (Usuario) o;
+    	boolean flag= false;
+    	if(user.getEmail().equals(getEmail())) {
+    		if(user.getPassword().equals(getPassword())) {
+        		flag= true;
+        	}
+    	}
+		return flag;    	
+    }
 }

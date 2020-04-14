@@ -55,7 +55,7 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
         		throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
         	}
             iniciativaDAO.insertarIniciativa(iniciativa);
-        	//agregarPalabrasClaveAIniciativa(iniciativa , palabras );
+        	agregarPalabrasClaveAIniciativa(iniciativa , palabras );
         } catch (javax.persistence.PersistenceException e){
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
         }
@@ -114,6 +114,9 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
     @Override
     public void cambiarEstadoAiniciativa(String estado, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
         try{
+        	if(estado == null) {
+        		throw new ExcepcionServiciosBancoProyectos("el estado es nulo");
+        	}
             iniciativaDAO.cambiarEstadoAiniciativa(estado,iniciativa);
         } catch (PersistenceException e){
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
