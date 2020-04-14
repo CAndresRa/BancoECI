@@ -48,8 +48,14 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
         	if(iniciativa.getDescripcion() == null) {
         		throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
         	}
+        	if(iniciativa.getFecha_registro() == null) {
+        		throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
+        	}
+        	if(iniciativa.getUsuario() == null) {
+        		throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
+        	}
             iniciativaDAO.insertarIniciativa(iniciativa);
-        	agregarPalabrasClaveAIniciativa(iniciativa , palabras );
+        	//agregarPalabrasClaveAIniciativa(iniciativa , palabras );
         } catch (javax.persistence.PersistenceException e){
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
         }

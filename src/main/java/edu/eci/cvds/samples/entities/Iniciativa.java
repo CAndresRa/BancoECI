@@ -28,6 +28,7 @@ public class Iniciativa {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;
+        this.fecha_registro= fecha_registro;
         this.palabras_clave=palabras_clave;
         this.usuario = usuario;
     }

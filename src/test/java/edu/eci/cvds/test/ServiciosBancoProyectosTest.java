@@ -3,7 +3,9 @@ package edu.eci.cvds.test;
 
 import com.google.inject.Inject;
 
-
+import edu.eci.cvds.sampleprj.dao.PersistenceException;
+import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.PalabraClave;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
@@ -16,6 +18,9 @@ import org.junit.Assert;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServiciosBancoProyectosTest {
@@ -107,36 +112,98 @@ public class ServiciosBancoProyectosTest {
     	}
     }
     
-  /*  @Test
+    @Test
     public void deberiaInsertarIniciativa() {
     	try {
-    		Iniciativa iniciativaDePrueba= new Iniciativa(000,"prueba","prueba","prueba");
-    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba);
+    		List<PalabraClave> palabrasPrueba= new ArrayList<PalabraClave>();
+    		List<String> palabrasVacio= new ArrayList<String>();
+    		palabrasPrueba.add(new PalabraClave("prueba"));
+    		Iniciativa iniciativaDePrueba= new Iniciativa("prueba","prueba","prueba",
+    				new SimpleDateFormat("yyyy/MM/dd").parse("2020/04/13"), palabrasPrueba
+    				,serviciosBancoProyectos.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co"));
+    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
     	}catch(ExcepcionServiciosBancoProyectos e) {
+    		System.out.println(e.getMessage());
     		fail();
     	}catch (PersistenceException e) {
     		fail();
+		} catch (ParseException e) {
+			fail();
 		}
-    }*/
+    }
     
-    /*@Test
-    public void deberiaLanzarExcepticonAlIntnentarInsertarIniciativa() {
+    @Test
+    public void deberiaLanzarExcepticonAlIntnentarInsertarIniciativaDescripcionNula() {
     	try {
-    		Iniciativa iniciativaDePrueba= new Iniciativa(000,"prueba",null,"prueba");
-    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba);
+    		List<PalabraClave> palabrasPrueba= new ArrayList<PalabraClave>();
+    		List<String> palabrasVacio= new ArrayList<String>();
+    		palabrasPrueba.add(new PalabraClave("prueba"));
+    		Iniciativa iniciativaDePrueba= new Iniciativa(000,"prueba",null,"prueba",
+    				new SimpleDateFormat("yyyy/MM/dd").parse("2020/04/13"), palabrasPrueba);
+    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("La iniciativa no tiene toda la informacion necesaria", e.getMessage());
     	}catch (PersistenceException e) {
     		fail();
+		} catch (ParseException e) {
+			fail();
 		}
+    }
+    
+    @Test
+    public void deberiaLanzarExcepticonAlIntnentarInsertarIniciativaFechaNula() {
+    	try {
+    		List<PalabraClave> palabrasPrueba= new ArrayList<PalabraClave>();
+    		List<String> palabrasVacio= new ArrayList<String>();
+    		palabrasPrueba.add(new PalabraClave("prueba"));
+    		Iniciativa iniciativaDePrueba= new Iniciativa(000,"prueba","prueba","prueba", null, palabrasPrueba);
+    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
+    	}catch(ExcepcionServiciosBancoProyectos e) {
+    		Assert.assertEquals("La iniciativa no tiene toda la informacion necesaria", e.getMessage());
+    	}catch (PersistenceException e) {
+    		fail();
+    	}
+    }
+    
+    @Test
+    public void deberiaLanzarExcepticonAlIntnentarInsertarIniciativaUsuarioNulo() {
+    	try {
+    		List<PalabraClave> palabrasPrueba= new ArrayList<PalabraClave>();
+    		List<String> palabrasVacio= new ArrayList<String>();
+    		palabrasPrueba.add(new PalabraClave("prueba"));
+    		Iniciativa iniciativaDePrueba= new Iniciativa(000,"prueba","prueba","prueba",
+    				new SimpleDateFormat("yyyy/MM/dd").parse("2020/04/13"), palabrasPrueba);
+    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
+    	}catch(ExcepcionServiciosBancoProyectos e) {
+    		Assert.assertEquals("La iniciativa no tiene toda la informacion necesaria", e.getMessage());
+    	}catch (PersistenceException e) {
+    		fail();
+		} catch (ParseException e) {
+			fail();
+		}
+    }   	
+    
+    /*@Test
+    public void deberiaConsultarIniciativaPorId() {
+    	try {
+    		System.out.println(serviciosBancoProyectos.consultarIniciativas().get(0));
+    		Iniciativa iniciativaDePrueba= serviciosBancoProyectos.consultarIniciativasPorId(000);
+    		System.out.println(iniciativaDePrueba);
+    		//System.out.println(iniciativaDePrueba.getPalabras_clave().size());
+    		//Assert.assertEquals(serviciosBancoProyectos.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co"), iniciativaDePrueba.getUsuario());
+    	}catch(ExcepcionServiciosBancoProyectos e) {
+    		fail();
+    	}
     }*/
     
     /*@Test
     public void deberiaAgregarPalabrasClaveAIniciativa() {
     	try {
-    		String[] palabrasTest= {"prueba","test","intento","ayudeme profe"};
-    		Iniciativa iniciativaDePrueba2= new Iniciativa("prueba2","prueba2","prueba2");
-    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba2);
+    		List<String> palabrasTest= new ArrayList<String>();
+    		palabrasTest.add("test");
+    		palabrasTest.add("intento");
+    		palabrasTest.add("ayudeme profe");
+    		Iniciativa iniciativaDePrueba= serviciosBancoProyectos.consultarIniciativasPorId(000);
     		serviciosBancoProyectos.agregarPalabrasClaveAIniciativa(iniciativaDePrueba2, palabrasTest);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();
@@ -145,22 +212,24 @@ public class ServiciosBancoProyectosTest {
 		}
     }*/
     
-    /*@Test
+    @Test
     public void deberiaLanzarExepecionAlAgregarPalabrasClaveAIniciativaNula() {
     	try {
-    		String[] palabrasTest= {"prueba","test","intento","ayudeme profe"};
+    		List<String> palabrasTest= new ArrayList<String>();
+    		palabrasTest.add("test");
+    		palabrasTest.add("intento");
+    		palabrasTest.add("ayudeme profe");
     		serviciosBancoProyectos.agregarPalabrasClaveAIniciativa(null, palabrasTest);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("La iniciativa no existe", e.getMessage());
     		}
-    }*/
+    }
     
     /*@Test
     public void deberiaLanzarExepecionAlAgregarPalabrasClaveNulasAIniciativa() {
     	try {
-    		Iniciativa iniciativaDePrueba3= new Iniciativa("prueba3","prueba3","prueba3");
-    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba3);
-    		serviciosBancoProyectos.agregarPalabrasClaveAIniciativa(iniciativaDePrueba3, null);
+    		Iniciativa iniciativaDePrueba= serviciosBancoProyectos.consultarIniciativasPorId(000);
+    		serviciosBancoProyectos.agregarPalabrasClaveAIniciativa(iniciativaDePrueba, null);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("No hay palabras Clave", e.getMessage());
     	} catch (PersistenceException e) {
@@ -168,18 +237,4 @@ public class ServiciosBancoProyectosTest {
 		}
     }*/
     
-    /*@Test
-    public void deberiaLanzarExcepcionAlAgregarPalabrasClaveVaciaAIniciativa() {
-    	try {
-    		String[] palabrasTest= {};
-    		Iniciativa iniciativaDePrueba4= new Iniciativa("prueba4","prueba4","prueba4");
-    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba4);
-    		serviciosBancoProyectos.agregarPalabrasClaveAIniciativa(iniciativaDePrueba4, palabrasTest);
-    	}catch(ExcepcionServiciosBancoProyectos e) {
-    		Assert.assertEquals("No hay palabras Clave", e.getMessage());
-    	} catch (PersistenceException e) {
-			e.printStackTrace();
-		}
-    }*/
-
 }
