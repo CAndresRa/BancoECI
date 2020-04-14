@@ -9,8 +9,10 @@ import edu.eci.cvds.sampleprj.dao.UsuarioDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisIniciativaDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisUsuarioDAO;
 
-import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
-import edu.eci.cvds.samples.services.impl.ServiciosBancoProyectosImpl;
+import edu.eci.cvds.samples.services.ServiciosIniciativa;
+import edu.eci.cvds.samples.services.ServiciosUsuario;
+import edu.eci.cvds.samples.services.impl.ServiciosIniciativaImpl;
+import edu.eci.cvds.samples.services.impl.ServiciosUsuarioImpl;
 import edu.eci.cvds.view.*;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
@@ -36,7 +38,8 @@ public class GuiceContextListener implements ServletContextListener {
                 bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
                 bind(IniciativaDAO.class).to(MyBatisIniciativaDAO.class);
                 bind(BasePageBean.class).to(LoginBean.class);
-                bind(ServiciosBancoProyectos.class).to(ServiciosBancoProyectosImpl.class);
+                bind(ServiciosUsuario.class).to(ServiciosUsuarioImpl.class);
+                bind(ServiciosIniciativa.class).to(ServiciosIniciativaImpl.class);
 
             }
         });

@@ -1,21 +1,17 @@
 package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
-import edu.eci.cvds.sampleprj.dao.*;
+import edu.eci.cvds.sampleprj.dao.IniciativaDAO;
+import edu.eci.cvds.sampleprj.dao.PersistenceException;
+import edu.eci.cvds.sampleprj.dao.UsuarioDAO;
 import edu.eci.cvds.samples.entities.Iniciativa;
-import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
-import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
+import edu.eci.cvds.samples.services.ServiciosIniciativa;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@Singleton
-public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
-
-
+public class ServiciosIniciativaImpl implements ServiciosIniciativa {
     @Inject
     private UsuarioDAO usuarioDAO;
 
@@ -23,7 +19,7 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
     private IniciativaDAO iniciativaDAO;
 
     @Override
-    public List<Iniciativa> consultarIniciativasPorPalabrasClaves(List<String> palabras) throws ExcepcionServiciosBancoProyectos{
+    public List<Iniciativa> consultarIniciativasPorPalabrasClaves(List<String> palabras) throws ExcepcionServiciosBancoProyectos {
         try{
             List<Iniciativa> iniciativas = new ArrayList<>();
             List<Integer> idIniciativas = new ArrayList<>();
@@ -45,17 +41,17 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
     @Override
     public void insertarIniciativa(Iniciativa iniciativa , List<String> palabras) throws ExcepcionServiciosBancoProyectos, PersistenceException {
         try{
-        	if(iniciativa.getDescripcion() == null) {
-        		throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
-        	}
-        	if(iniciativa.getFecha_registro() == null) {
-        		throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
-        	}
-        	if(iniciativa.getUsuario() == null) {
-        		throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
-        	}
+            if(iniciativa.getDescripcion() == null) {
+                throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
+            }
+            if(iniciativa.getFecha_registro() == null) {
+                throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
+            }
+            if(iniciativa.getUsuario() == null) {
+                throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
+            }
             iniciativaDAO.insertarIniciativa(iniciativa);
-        	agregarPalabrasClaveAIniciativa(iniciativa , palabras );
+            agregarPalabrasClaveAIniciativa(iniciativa , palabras );
         } catch (javax.persistence.PersistenceException e){
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
         }
@@ -78,20 +74,6 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
         }
     }
 
-    @Override
-    public void asignarRolUsuario(String rol, Usuario usuario) throws ExcepcionServiciosBancoProyectos {
-        try {
-            if(usuario == null){
-                throw new ExcepcionServiciosBancoProyectos("El usuario no existe");
-            }
-            if(rol == null){
-                throw new ExcepcionServiciosBancoProyectos("El rol es nulo");
-            }
-            usuarioDAO.asignarRolUsuario(rol,usuario);
-        } catch (PersistenceException e){
-            throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
-        }
-    }
 
     @Override
     public List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBancoProyectos {
@@ -114,45 +96,13 @@ public class ServiciosBancoProyectosImpl implements ServiciosBancoProyectos {
     @Override
     public void cambiarEstadoAiniciativa(String estado, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
         try{
-        	if(estado == null) {
-        		throw new ExcepcionServiciosBancoProyectos("el estado es nulo");
-        	}
+            if(estado == null) {
+                throw new ExcepcionServiciosBancoProyectos("el estado es nulo");
+            }
             iniciativaDAO.cambiarEstadoAiniciativa(estado,iniciativa);
         } catch (PersistenceException e){
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
         }
     }
 
-    @Override
-    public List<Usuario> consultarUsuarios() throws ExcepcionServiciosBancoProyectos {
-        try {
-            return usuarioDAO.consultarUsuarios();
-        } catch (PersistenceException e){
-            throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
-        }
-    }
-
-    @Transactional
-    @Override
-    public void registrarUsuario(Usuario u) throws ExcepcionServiciosBancoProyectos {
-        try{
-            usuarioDAO.registrarUsuario(u);
-        } catch (PersistenceException e) {
-            throw new ExcepcionServiciosBancoProyectos("Rol invalido");
-        }
-    }
-
-    @Override
-    public Usuario consultarUsuario(String email) throws ExcepcionServiciosBancoProyectos {
-        try {
-            Usuario usuario = usuarioDAO.consultarUsuario(email);
-            /*if(usuario == null){
-                throw new ExcepcionServiciosBancoProyectos("El usuario no existe");
-            }*/
-            return usuarioDAO.consultarUsuario(email);
-        } catch (PersistenceException e){
-            /*throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);*/
-            throw new ExcepcionServiciosBancoProyectos("El usuario no existe");
-        }
-    }
 }

@@ -8,10 +8,10 @@ import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.PalabraClave;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
-import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
-
 import edu.eci.cvds.samples.services.ServiciosBancoProyectosFactory;
 
+import edu.eci.cvds.samples.services.ServiciosIniciativa;
+import edu.eci.cvds.samples.services.ServiciosUsuario;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.Assert;
@@ -23,16 +23,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.Past;
+
 
 public class ServiciosBancoProyectosTest {
     @Inject
     private SqlSession sqlSession;
 
-    ServiciosBancoProyectos serviciosBancoProyectos;
+    ServiciosUsuario serviciosUsuario;
+	ServiciosIniciativa serviciosIniciativa;
     
     public ServiciosBancoProyectosTest() {
-        serviciosBancoProyectos = ServiciosBancoProyectosFactory.getInstance().getServiciosBancoProyectosTesting();
+        serviciosUsuario = ServiciosBancoProyectosFactory.getInstance().getServiciosUsuarioTesting();
+		serviciosIniciativa = ServiciosBancoProyectosFactory.getInstance().getServiciosIniciativaTesting();
     }
 
     @Test
