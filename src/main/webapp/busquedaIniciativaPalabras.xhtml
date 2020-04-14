@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" type="text/css" href="css/busquedaIniciativaPalabras.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+    <title>#{msg['application.title']}</title>
+</h:head>
+
+<h:body>
+    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <br/>
+    <br/>
+    <h1>Busqueda de Iniciativas por Palabras Clave</h1>
+    <h:form id="iniciativasPMO" prependId="false" >
+
+
+        <h:outputLabel value="Palabras Clave: " style="font-weight:bold"/>
+        <p:inputText id="busquedaIni" placeholder="Separadas por Comas" required="true" type="String" binding="#{id}"/>
+        <p:commandButton id="buscar" value="Buscar" actionListener="#{iniciativaBean.consultarIniciativasPorId(id.value)}" action="cambioEstado.xhtml?faces-redirect = true"/>
+
+        <br/>
+        <br/>
+        <h1>Lista de iniciativas</h1>
+        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.consultarIniciativasBasico()}"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                     paginator="true" rows="10" style="margin-bottom: 30%; width: 100%; font-family: Quicksand; background-color:blue !important" >
+            <p:column style="background-color: mintcream">
+                <f:facet name="header">
+                    <h:outputText value="Usuario" />
+                </f:facet>
+                <h:outputText value="#{iniciative.usuario}"  />
+            </p:column>
+            <p:column style="background-color: yellowgreen">
+                <f:facet name="header">
+                    <h:outputText value="Fecha" />
+                </f:facet>
+                <h:outputText value="#{iniciative.fecha_registro}"  />
+            </p:column>
+            <p:column style="background-color: mintcream">
+                <f:facet name="header">
+                    <h:outputText value="Id" />
+                </f:facet>
+                <h:outputText value="#{iniciative.id}"  />
+            </p:column>
+
+            <p:column style="background-color: yellowgreen">
+                <f:facet name="header">
+                    <h:outputText value="Nombre"/>
+                </f:facet>
+                <h:outputText value="#{iniciative.nombre}" />
+            </p:column>
+
+            <p:column style="background-color: mintcream">
+                <f:facet name="header">
+                    <h:outputText value="Descripcion" />
+                </f:facet>
+                <h:outputText value="#{iniciative.descripcion}" />
+            </p:column>
+
+            <p:column style="background-color: yellowgreen">
+                <f:facet name="header">
+                    <h:outputText value="Estado" />
+                </f:facet>
+                <h:outputText value="#{iniciative.estado}" />
+            </p:column>
+            <p:column style="background-color: mintcream">
+                <f:facet name="header">
+                    <h:outputText value="Palabras Clave" />
+                </f:facet>
+                <h:outputText value="#{iniciative.palabras_clave}"  />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
