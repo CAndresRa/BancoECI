@@ -21,6 +21,7 @@ public class IniciativaBean extends BasePageBean {
     private ServiciosBancoProyectos serviciosBancoProyectos;
     private String estado;
     private Iniciativa iniciativa;
+    private List<Iniciativa> iniciativasPorPalabra;
     private Date date;
 
     public void agregarIniciativa(String nombre, String descripcion, String palabras, String email) throws ExcepcionServiciosBancoProyectos, PersistenceException {
@@ -47,12 +48,30 @@ public class IniciativaBean extends BasePageBean {
         }
     }
 
+    public List<Iniciativa> consultarIniciativasPorPalabras(String palabras) throws ExcepcionServiciosBancoProyectos{
+        try {
+            List<String> palabrasListas = Arrays.asList(palabras.split(","));
+            this.iniciativasPorPalabra = serviciosBancoProyectos.consultarIniciativasPorPalabrasClaves(palabrasListas);
+            return  iniciativasPorPalabra;
+        } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos){
+            throw new ExcepcionServiciosBancoProyectos("No se encuentran iniciativas con esas palabras clave");
+        }
+    }
+
     public void cambiarEstadoAiniciativa(String estado, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
         try{
             serviciosBancoProyectos.cambiarEstadoAiniciativa(estado,iniciativa);
         } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos) {
             throw new ExcepcionServiciosBancoProyectos("Error cambiando el estado de la iniciativa");
         }
+    }
+
+    public List<Iniciativa> getIniciativasPorPalabra() {
+        return iniciativasPorPalabra;
+    }
+
+    public void setIniciativasPorPalabra(List<Iniciativa> iniciativasPorPalabra) {
+        this.iniciativasPorPalabra = iniciativasPorPalabra;
     }
 
     public Iniciativa getIniciativa() {

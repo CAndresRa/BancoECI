@@ -105,7 +105,6 @@ public class Usuario implements Serializable{
         this.apellido = apellido;
     }
 
-
     public String getPassword() {
         return password;
     }

@@ -25,7 +25,6 @@ public class PalabraClave {
         this.id = id;
     }
 
-
     public String getPalabra() {
         return palabra;
     }
@@ -36,10 +35,7 @@ public class PalabraClave {
 
     @Override
     public String toString() {
-        return "PalabraClave{" +
-                "id=" + id +
-                ", palabra='" + palabra + '\'' +
-                '}';
+        return palabra + '\'';
     }
 
 }

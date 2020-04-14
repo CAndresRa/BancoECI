@@ -34,7 +34,6 @@ public class LoginBean extends BasePageBean {
         if (serviciosBancoProyectos.consultarUsuario(username) != null && serviciosBancoProyectos.consultarUsuario(username).getPassword().equals(password)) {
             HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
             session.setAttribute("correo", username);
-
             if (serviciosBancoProyectos.consultarUsuario(username).getRol().equals("Administrador")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("administrador.xhtml");
             }
@@ -43,6 +42,9 @@ public class LoginBean extends BasePageBean {
             }
             else if (serviciosBancoProyectos.consultarUsuario(username).getRol().equals("PMO")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("pmo.xhtml");
+            }
+            else if (serviciosBancoProyectos.consultarUsuario(username).getRol().equals("Publico")){
+                FacesContext.getCurrentInstance().getExternalContext().redirect("busquedaIniciativaPalabras.xhtml");
             }
         }
         else {

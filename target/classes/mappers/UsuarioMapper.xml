@@ -23,7 +23,7 @@
     </update>
 
     <insert id="registrarUsuario" parameterType="map">
-        INSERT INTO usuario VALUES( #{usuario.documento}, #{usuario.email} , #{usuario.nombre}, #{usuario.apellido}, #{usuario.password}, #{usuario.rol}, #{usuario.area});
+        INSERT INTO usuario VALUES( #{usuario.documento}, #{usuario.email} , #{usuario.nombre}, #{usuario.apellido}, #{usuario.password},#{usuario.area}, #{usuario.rol});
     </insert>
 
 
