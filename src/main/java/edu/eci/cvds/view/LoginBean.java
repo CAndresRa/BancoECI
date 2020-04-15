@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
-import edu.eci.cvds.samples.services.ServiciosBancoProyectos;
+import edu.eci.cvds.samples.services.ServiciosUsuario;
 
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.io.IOException;
 @SessionScoped
 public class LoginBean extends BasePageBean {
     @Inject
-    private ServiciosBancoProyectos serviciosBancoProyectos;
+    private ServiciosUsuario serviciosUsuario;
     private String password;
 
     /**
@@ -31,19 +31,19 @@ public class LoginBean extends BasePageBean {
     public void iniciarSesion(String username, String password) throws IOException, ExcepcionServiciosBancoProyectos {
 
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        if (serviciosBancoProyectos.consultarUsuario(username) != null && serviciosBancoProyectos.consultarUsuario(username).getPassword().equals(password)) {
+        if (serviciosUsuario.consultarUsuario(username) != null && serviciosUsuario.consultarUsuario(username).getPassword().equals(password)) {
             HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
             session.setAttribute("correo", username);
-            if (serviciosBancoProyectos.consultarUsuario(username).getRol().equals("Administrador")) {
+            if (serviciosUsuario.consultarUsuario(username).getRol().equals("Administrador")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("administrador.xhtml");
             }
-            else if (serviciosBancoProyectos.consultarUsuario(username).getRol().equals("Proponente")) {
+            else if (serviciosUsuario.consultarUsuario(username).getRol().equals("Proponente")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("registrarIniciativa.xhtml");
             }
-            else if (serviciosBancoProyectos.consultarUsuario(username).getRol().equals("PMO")) {
+            else if (serviciosUsuario.consultarUsuario(username).getRol().equals("PMO")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("pmo.xhtml");
             }
-            else if (serviciosBancoProyectos.consultarUsuario(username).getRol().equals("Publico")){
+            else if (serviciosUsuario.consultarUsuario(username).getRol().equals("Publico")){
                 FacesContext.getCurrentInstance().getExternalContext().redirect("busquedaIniciativaPalabras.xhtml");
             }
         }

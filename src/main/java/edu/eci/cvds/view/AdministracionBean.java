@@ -3,6 +3,8 @@ package edu.eci.cvds.view;
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
+import edu.eci.cvds.samples.services.ServiciosUsuario;
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 
@@ -11,7 +13,7 @@ import javax.faces.bean.ManagedBean;
 @SessionScoped
 public class AdministracionBean extends BasePageBean {
     @Inject
-    private ServiciosBancoProyectos serviciosBancoProyectos;
+    private ServiciosUsuario serviciosUsuario;
     private String rol;
     private Usuario usuario;
     private String area;
@@ -23,7 +25,7 @@ public class AdministracionBean extends BasePageBean {
      * @throws ExcepcionServiciosBancoProyectos
      */
     public void actualizarRol(String rol, String email) throws ExcepcionServiciosBancoProyectos {
-            serviciosBancoProyectos.asignarRolUsuario(rol, serviciosBancoProyectos.consultarUsuario(email));
+            serviciosUsuario.asignarRolUsuario(rol, serviciosUsuario.consultarUsuario(email));
     }
 
     /**
@@ -33,7 +35,7 @@ public class AdministracionBean extends BasePageBean {
      * @throws ExcepcionServiciosBancoProyectos
      */
     public Usuario buscarUsuario(String mail) throws ExcepcionServiciosBancoProyectos {
-        this.usuario  = serviciosBancoProyectos.consultarUsuario(mail);
+        this.usuario  = serviciosUsuario.consultarUsuario(mail);
         return usuario;
     }
 
@@ -49,7 +51,7 @@ public class AdministracionBean extends BasePageBean {
      */
     public void registrarUsuario(String documento, String email, String nombre, String apellido, String password, String rol) throws ExcepcionServiciosBancoProyectos {
     	Long doc = Long.parseLong(documento);
-        serviciosBancoProyectos.registrarUsuario(new Usuario(doc, email, nombre, apellido, password, rol, area));
+        serviciosUsuario.registrarUsuario(new Usuario(doc, email, nombre, apellido, password, rol, area));
     }
 
     public Usuario getUsuario(){
