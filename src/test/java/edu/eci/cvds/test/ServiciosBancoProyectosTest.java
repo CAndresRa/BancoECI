@@ -40,7 +40,7 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void deberiaConsultarUsuario() {
     	try {
-    		serviciosBancoProyectos.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co");
+    		serviciosUsuario.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co");
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();    		
     	}  	
@@ -49,7 +49,7 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void lanzaExcepcionUsuarioNoExiste() {
     	try {
-    		serviciosBancoProyectos.consultarUsuario("NN@mail.com");
+    		serviciosUsuario.consultarUsuario("NN@mail.com");
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("El usuario no existe",e.getMessage());
     	}    	
@@ -58,7 +58,7 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void deberiaConsultarUsuarios() {
     	try {
-    		List<Usuario> lista= serviciosBancoProyectos.consultarUsuarios();
+    		List<Usuario> lista= serviciosUsuario.consultarUsuarios();
     		Assert.assertEquals(3,lista.size());
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();    		
@@ -68,9 +68,9 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void deberiaAsignarRolAUsuario() {
     	try {
-    		Usuario noRol= serviciosBancoProyectos.consultarUsuario("no.rol@mail.escuelaing.edu.co");
-    		serviciosBancoProyectos.asignarRolUsuario("nuevoRol", noRol);
-    		Usuario siRol= serviciosBancoProyectos.consultarUsuario("no.rol@mail.escuelaing.edu.co");
+    		Usuario noRol= serviciosUsuario.consultarUsuario("no.rol@mail.escuelaing.edu.co");
+    		serviciosUsuario.asignarRolUsuario("nuevoRol", noRol);
+    		Usuario siRol= serviciosUsuario.consultarUsuario("no.rol@mail.escuelaing.edu.co");
     		Assert.assertEquals("nuevoRol",siRol.getRol());
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();    		
@@ -80,8 +80,8 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void lanzaExcepcionAsignacionDeRolNula() {
     	try {
-    		Usuario pepito= serviciosBancoProyectos.consultarUsuario("pepito.perez@mail.escuelaing.edu.co");
-    		serviciosBancoProyectos.asignarRolUsuario(null, pepito);
+    		Usuario pepito= serviciosUsuario.consultarUsuario("pepito.perez@mail.escuelaing.edu.co");
+    		serviciosUsuario.asignarRolUsuario(null, pepito);
     		fail(); 
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("El rol es nulo",e.getMessage());
@@ -91,7 +91,7 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void lanzaExcepcionAsignacionDeRolDeUsuarionNoExistente() {
     	try {
-    		serviciosBancoProyectos.asignarRolUsuario("rol", serviciosBancoProyectos.consultarUsuario("NN@mail.com"));
+    		serviciosUsuario.asignarRolUsuario("rol", serviciosUsuario.consultarUsuario("NN@mail.com"));
     		fail(); 
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("El usuario no existe",e.getMessage());
@@ -101,7 +101,7 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void deberiaInsertarUsuario() {
     	try {
-    		serviciosBancoProyectos.registrarUsuario(new Usuario(000, "nuevo@mail.com", "nuevo", "nuevo", "1234", "Publico", null));
+    		serviciosUsuario.registrarUsuario(new Usuario(000, "nuevo@mail.com", "nuevo", "nuevo", "1234", "Publico", null));
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();
     	}
@@ -110,7 +110,7 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void lanzaExcepcionDeRolAlInsertarUsuario() {
     	try {
-    		serviciosBancoProyectos.registrarUsuario(new Usuario(000, "nuevo@mail.com", "nuevo", "nuevo", "1234", "otro", ""));
+    		serviciosUsuario.registrarUsuario(new Usuario(000, "nuevo@mail.com", "nuevo", "nuevo", "1234", "otro", ""));
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("Rol invalido",e.getMessage());
     	}
@@ -125,8 +125,8 @@ public class ServiciosBancoProyectosTest {
     		palabrasVacio.add("prueba");
     		Iniciativa iniciativaDePrueba= new Iniciativa("iniciativaDePrueba","prueba","prueba",
     				new SimpleDateFormat("yyyy/MM/dd").parse("2020/04/13"), palabrasPrueba
-    				,serviciosBancoProyectos.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co"));
-    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
+    				,serviciosUsuario.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co"));
+    		serviciosIniciativa.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		System.out.println(e.getMessage());
     		fail();
@@ -145,7 +145,7 @@ public class ServiciosBancoProyectosTest {
     		palabrasPrueba.add(new PalabraClave("prueba"));
     		Iniciativa iniciativaDePrueba= new Iniciativa(000,"prueba",null,"prueba",
     				new SimpleDateFormat("yyyy/MM/dd").parse("2020/04/13"), palabrasPrueba);
-    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
+    		serviciosIniciativa.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("La iniciativa no tiene toda la informacion necesaria", e.getMessage());
     	}catch (PersistenceException e) {
@@ -162,7 +162,7 @@ public class ServiciosBancoProyectosTest {
     		List<String> palabrasVacio= new ArrayList<String>();
     		palabrasPrueba.add(new PalabraClave("prueba"));
     		Iniciativa iniciativaDePrueba= new Iniciativa(000,"prueba","prueba","prueba", null, palabrasPrueba);
-    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
+    		serviciosIniciativa.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("La iniciativa no tiene toda la informacion necesaria", e.getMessage());
     	}catch (PersistenceException e) {
@@ -178,7 +178,7 @@ public class ServiciosBancoProyectosTest {
     		palabrasPrueba.add(new PalabraClave("prueba"));
     		Iniciativa iniciativaDePrueba= new Iniciativa(000,"prueba","prueba","prueba",
     				new SimpleDateFormat("yyyy/MM/dd").parse("2020/04/13"), palabrasPrueba);
-    		serviciosBancoProyectos.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
+    		serviciosIniciativa.insertarIniciativa(iniciativaDePrueba,palabrasVacio);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("La iniciativa no tiene toda la informacion necesaria", e.getMessage());
     	}catch (PersistenceException e) {
@@ -191,10 +191,10 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void deberiaConsultarIniciativaPorId() {
     	try {    		
-    		System.out.println(serviciosBancoProyectos.consultarIniciativas());
-    		int iniciativaDePruebaid= serviciosBancoProyectos.consultarIniciativas().get(0).getId();
-    		Iniciativa iniciativaDePrueba= serviciosBancoProyectos.consultarIniciativasPorId(iniciativaDePruebaid);
-    		Assert.assertEquals(serviciosBancoProyectos.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co"), iniciativaDePrueba.getUsuario());
+    		System.out.println(serviciosIniciativa.consultarIniciativas());
+    		int iniciativaDePruebaid= serviciosIniciativa.consultarIniciativas().get(0).getId();
+    		Iniciativa iniciativaDePrueba= serviciosIniciativa.consultarIniciativasPorId(iniciativaDePruebaid);
+    		Assert.assertEquals(serviciosUsuario.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co"), iniciativaDePrueba.getUsuario());
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();
     	}
@@ -207,9 +207,9 @@ public class ServiciosBancoProyectosTest {
     		palabrasTest.add("test");
     		palabrasTest.add("intento");
     		palabrasTest.add("ayudeme profe");
-    		int iniciativaDePruebaid= serviciosBancoProyectos.consultarIniciativas().get(0).getId();
-    		Iniciativa iniciativaDePrueba= serviciosBancoProyectos.consultarIniciativasPorId(iniciativaDePruebaid);
-    		serviciosBancoProyectos.agregarPalabrasClaveAIniciativa(iniciativaDePrueba, palabrasTest);
+    		int iniciativaDePruebaid= serviciosIniciativa.consultarIniciativas().get(0).getId();
+    		Iniciativa iniciativaDePrueba= serviciosIniciativa.consultarIniciativasPorId(iniciativaDePruebaid);
+    		serviciosIniciativa.agregarPalabrasClaveAIniciativa(iniciativaDePrueba, palabrasTest);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();
     	}
@@ -234,7 +234,7 @@ public class ServiciosBancoProyectosTest {
     		palabrasTest.add("test");
     		palabrasTest.add("intento");
     		palabrasTest.add("ayudeme profe");
-    		serviciosBancoProyectos.agregarPalabrasClaveAIniciativa(null, palabrasTest);
+    		serviciosIniciativa.agregarPalabrasClaveAIniciativa(null, palabrasTest);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("La iniciativa no existe", e.getMessage());
     		}
@@ -243,13 +243,13 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void deberiaConsultarIniciativaPorPalabrasClave() {
     	try {    		
-    		int iniciativaDePruebaid= serviciosBancoProyectos.consultarIniciativas().get(0).getId();
-    		Iniciativa iniciativaDePrueba= serviciosBancoProyectos.consultarIniciativasPorId(iniciativaDePruebaid);
+    		int iniciativaDePruebaid= serviciosIniciativa.consultarIniciativas().get(0).getId();
+    		Iniciativa iniciativaDePrueba= serviciosIniciativa.consultarIniciativasPorId(iniciativaDePruebaid);
     		List<String> palabrasBusqueda= new ArrayList<String>();
     		palabrasBusqueda.add("prueba");
-    		List<Iniciativa> iniciativaDeBusqueda= serviciosBancoProyectos.consultarIniciativasPorPalabrasClaves(palabrasBusqueda);
+    		List<Iniciativa> iniciativaDeBusqueda= serviciosIniciativa.consultarIniciativasPorPalabrasClaves(palabrasBusqueda);
     		Assert.assertEquals(1,iniciativaDeBusqueda.size());
-    		Assert.assertEquals(serviciosBancoProyectos.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co"), iniciativaDeBusqueda.get(0).getUsuario());
+    		Assert.assertEquals(serviciosUsuario.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co"), iniciativaDeBusqueda.get(0).getUsuario());
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();
     	}
@@ -258,11 +258,11 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void deberiaPermitirCambiarElestadoDeLaIniciativa() {
     	try {
-    		int iniciativaDePruebaid= serviciosBancoProyectos.consultarIniciativas().get(0).getId();
-    		Iniciativa iniciativaDePrueba= serviciosBancoProyectos.consultarIniciativasPorId(iniciativaDePruebaid);
-    		serviciosBancoProyectos.cambiarEstadoAiniciativa("nuevo", iniciativaDePrueba);
-    		int iniciativaDePruebaid2= serviciosBancoProyectos.consultarIniciativas().get(0).getId();
-    		Iniciativa iniciativaDePrueba2= serviciosBancoProyectos.consultarIniciativasPorId(iniciativaDePruebaid2);
+    		int iniciativaDePruebaid= serviciosIniciativa.consultarIniciativas().get(0).getId();
+    		Iniciativa iniciativaDePrueba= serviciosIniciativa.consultarIniciativasPorId(iniciativaDePruebaid);
+    		serviciosIniciativa.cambiarEstadoAiniciativa("nuevo", iniciativaDePrueba);
+    		int iniciativaDePruebaid2= serviciosIniciativa.consultarIniciativas().get(0).getId();
+    		Iniciativa iniciativaDePrueba2= serviciosIniciativa.consultarIniciativasPorId(iniciativaDePruebaid2);
     		Assert.assertEquals("nuevo", iniciativaDePrueba2.getEstado());
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();
@@ -272,9 +272,9 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void deberiaLanzarExcepcionAlCambiarElestadoDeLaIniciativaANulo() {
     	try {
-    		int iniciativaDePruebaid= serviciosBancoProyectos.consultarIniciativas().get(0).getId();
-    		Iniciativa iniciativaDePrueba= serviciosBancoProyectos.consultarIniciativasPorId(iniciativaDePruebaid);
-    		serviciosBancoProyectos.cambiarEstadoAiniciativa(null, iniciativaDePrueba);
+    		int iniciativaDePruebaid= serviciosIniciativa.consultarIniciativas().get(0).getId();
+    		Iniciativa iniciativaDePrueba= serviciosIniciativa.consultarIniciativasPorId(iniciativaDePruebaid);
+    		serviciosIniciativa.cambiarEstadoAiniciativa(null, iniciativaDePrueba);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		Assert.assertEquals("el estado es nulo", e.getMessage());
     	}
