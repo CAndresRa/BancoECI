@@ -4,9 +4,10 @@ import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosUsuario;
-
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "adminBean")
@@ -17,6 +18,7 @@ public class AdministracionBean extends BasePageBean {
     private String rol;
     private Usuario usuario;
     private String area;
+    private String message;
 
     /**
      * Metodo que permite modificar rol de un usuario
@@ -25,7 +27,12 @@ public class AdministracionBean extends BasePageBean {
      * @throws ExcepcionServiciosBancoProyectos
      */
     public void actualizarRol(String rol, String email) throws ExcepcionServiciosBancoProyectos {
+        try {
             serviciosUsuario.asignarRolUsuario(rol, serviciosUsuario.consultarUsuario(email));
+            this.message = "El rol se actualizo correctamente";
+        } catch (Exception e){
+            this.message = "El rol no se pudo actualizar";
+        }
     }
 
     /**
@@ -35,8 +42,8 @@ public class AdministracionBean extends BasePageBean {
      * @throws ExcepcionServiciosBancoProyectos
      */
     public Usuario buscarUsuario(String mail) throws ExcepcionServiciosBancoProyectos {
-        this.usuario  = serviciosUsuario.consultarUsuario(mail);
-        return usuario;
+            this.usuario = serviciosUsuario.consultarUsuario(mail);
+            return usuario;
     }
 
     /**
@@ -50,9 +57,19 @@ public class AdministracionBean extends BasePageBean {
      * @throws ExcepcionServiciosBancoProyectos
      */
     public void registrarUsuario(String documento, String email, String nombre, String apellido, String password, String rol) throws ExcepcionServiciosBancoProyectos {
-    	Long doc = Long.parseLong(documento);
-        serviciosUsuario.registrarUsuario(new Usuario(doc, email, nombre, apellido, password, rol, area));
+        try {
+            Long doc = Long.parseLong(documento);
+            serviciosUsuario.registrarUsuario(new Usuario(doc, email, nombre, apellido, password, rol, area));
+            this.message = "El usuario se registro correctamente";
+        } catch (Exception e){
+            this.message = "Hubo un error registrando al usuario, intentelo nuevamente";
+        }
     }
+
+    public void info() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, "PrimeFaces Rocks."));
+    }
+
 
     public Usuario getUsuario(){
         return usuario;

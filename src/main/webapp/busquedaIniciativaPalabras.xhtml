@@ -23,8 +23,6 @@
     <br/>
     <h1>Busqueda de Iniciativas por Palabras Clave</h1>
     <h:form id="iniciativasPublicas" prependId="false" >
-
-
         <h:outputLabel value="Palabras Clave: " style="font-weight:bold"/>
         <p:inputText id="busquedaPorPalabra" placeholder="Separadas por Comas" required="true"  binding="#{palabra}"/>
         <p:commandButton id="buscar" value="Buscar" actionListener="#{iniciativaBean.consultarIniciativasPorPalabras(palabra.value)}" action="filtroPorPalabra.xhtml?faces-redirect = true"/>

@@ -21,7 +21,6 @@
     <h:form id="busquedaUsuario" prependId="false" >
         <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
         <br/>
-        <br/>
         <h1>Asignación de Roles</h1>
         <h:outputLabel value="Busqueda: " style="font-weight:bold"/>
         <p:inputText id="busqueda" placeholder="Correo Electronico" required="true" type="String" binding="#{mail}"/>
@@ -30,6 +29,9 @@
     <br/>
     <h1>Registrar Usuario</h1>
     <h:form id="registrarUsuario" style="margin-left: 30%" >
+        <p:messages>
+            <p:autoUpdate />
+        </p:messages>
         <h:panelGrid id="validacion" columns="2" cellpadding="6" style="background-color: gainsboro; border-radius: 15px">
             <p:outputLabel for="@next" value="Ingrese el documento del usuario" style="font-family: Quicksand; font-weight: bold"/>
             <p:inputText  id= "documento" required="true" type="String" binding="#{documento}" style="border-radius: 15px"> </p:inputText>
@@ -51,10 +53,11 @@
                 <f:selectItem itemLabel="Ventas" itemValue="Ventas" />
                 <f:selectItem itemLabel="Proyectos" itemValue="Proyectos" />
             </p:selectOneMenu>
-            <p:commandButton id="registrar" value="Registrar"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value, rol.value)}" style="margin-top: 4px;width: 50%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
         </h:panelGrid>
+        <p:commandButton id="registrar" value="Registrar"  action="#{adminBean.info}"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value, rol.value)}" style="margin-top: 4px;width: 50%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
     </h:form>
     <br/>
+
 
 
 

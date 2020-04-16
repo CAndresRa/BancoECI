@@ -51,7 +51,7 @@
         <p:inputText id="busqueda" placeholder="Confirme la idea seleccionada" required="true" type="String" binding="#{id}" style="border-radius: 15px; float:left; margin-left: 5px;"/> <!-- label -->
         <br/>
         <br/>
-        <p:commandButton id="actualizarEstado" value="Actualizar Estado" actionListener="#{iniciativaBean.cambiarEstadoAiniciativa(iniciativaBean.estado,iniciativaBean.consultarIniciativasPorId(id.value))}" style="margin-top: 4px;width: 20%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
+        <p:commandButton id="actualizarEstado" value="Actualizar Estado"  action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.cambiarEstadoAiniciativa(iniciativaBean.estado,iniciativaBean.consultarIniciativasPorId(id.value))}" style="margin-top: 4px;width: 20%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
         <br/>
         <br/>
         <p:commandButton id="Regresar" value="regresar" action="pmo.xhtml?faces-redirect = true" style="margin-top: 4px;width: 10%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>

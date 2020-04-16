@@ -1,15 +1,13 @@
 package edu.eci.cvds.view;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.HttpSession;
-
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosUsuario;
-
-
 import java.io.IOException;
 
 @SuppressWarnings("deprecation")
@@ -29,7 +27,6 @@ public class LoginBean extends BasePageBean {
      * @throws ExcepcionServiciosBancoProyectos
      */
     public void iniciarSesion(String username, String password) throws IOException, ExcepcionServiciosBancoProyectos {
-
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if (serviciosUsuario.consultarUsuario(username) != null && serviciosUsuario.consultarUsuario(username).getPassword().equals(password)) {
             HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);

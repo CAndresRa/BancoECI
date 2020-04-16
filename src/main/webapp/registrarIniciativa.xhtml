@@ -22,6 +22,9 @@
     <br/>
     <h1>Registro de Iniciativas</h1>
     <h:form id="registroIniciativa" prependId="false">
+        <p:messages>
+            <p:autoUpdate />
+        </p:messages>
         <h:panelGrid columns="2" cellpadding="11">
             <p:outputLabel for="@next" value="Nombre de la Iniciativa" style="font-family: Quicksand; font-weight: bold; font-size: large"/>
             <p:inputText  id= "nombreIniciativa" required="true" type="String" binding="#{nombreIni}" style="border-radius: 15px; margin-left:20%; width: 150% "> </p:inputText>
@@ -50,7 +53,7 @@
             <br />
             <h:outputText id="display" />
             <br/>
-            <p:commandButton id="registrar" value="Registrar Iniciativa" actionListener="#{iniciativaBean.agregarIniciativa(nombreIni.value, descripcionIni.value, palabras.value ,email.value)}" style="margin-top: 4px;width: 120%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
+            <p:commandButton id="registrar" value="Registrar Iniciativa"  action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.agregarIniciativa(nombreIni.value, descripcionIni.value, palabras.value ,email.value)}" style="margin-top: 4px;width: 120%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
         </h:panelGrid>
     </h:form>
     <br/>

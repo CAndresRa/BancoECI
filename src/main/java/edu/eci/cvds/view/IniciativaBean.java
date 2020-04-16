@@ -10,7 +10,9 @@ import edu.eci.cvds.samples.services.ServiciosIniciativa;
 import edu.eci.cvds.samples.services.ServiciosUsuario;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -21,17 +23,25 @@ import java.util.List;
 public class IniciativaBean extends BasePageBean {
     @Inject
     private ServiciosIniciativa serviciosIniciativa;
+    @Inject
     private ServiciosUsuario serviciosUsuario;
     private String estado;
     private Iniciativa iniciativa;
     private List<Iniciativa> iniciativasPorPalabra;
-    private Date date;
+    private String message;
 
     public void agregarIniciativa(String nombre, String descripcion, String palabras, String email) throws ExcepcionServiciosBancoProyectos, PersistenceException {
-        List<String> palabrasListas = Arrays.asList(palabras.split(","));
-        Usuario usuario = serviciosUsuario.consultarUsuario(email);
-        this.iniciativa = new Iniciativa(nombre, descripcion, estado,new Date((new java.util.Date()).getTime()),usuario);
-        serviciosIniciativa.insertarIniciativa(iniciativa, palabrasListas);
+        try {
+            List<String> palabrasListas = Arrays.asList(palabras.split(","));
+            Usuario usuario = serviciosUsuario.consultarUsuario(email);
+            this.iniciativa = new Iniciativa(nombre, descripcion, estado, new Date((new java.util.Date()).getTime()), usuario);
+            serviciosIniciativa.insertarIniciativa(iniciativa, palabrasListas);
+            this.message = "La iniciativa se registro correctamente";
+        }
+        catch (Exception e) {
+            this.message = "Hubo un error registrando iniciativa, intente nuevamente";
+        }
+
     }
 
     public List<Iniciativa> consultarIniciativasBasico() throws ExcepcionServiciosBancoProyectos {
@@ -64,9 +74,15 @@ public class IniciativaBean extends BasePageBean {
     public void cambiarEstadoAiniciativa(String estado, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
         try{
             serviciosIniciativa.cambiarEstadoAiniciativa(estado,iniciativa);
+            this.message = "El estado se actualizo satisfactoriamente, consulte nuevamente para confirmar los cambios";
         } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos) {
+            this.message = "El estado no se actualizo correctamente, intentelo nuevamente";
             throw new ExcepcionServiciosBancoProyectos("Error cambiando el estado de la iniciativa");
         }
+    }
+
+    public void info() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, "PrimeFaces Rocks."));
     }
 
     public List<Iniciativa> getIniciativasPorPalabra() {
@@ -88,6 +104,7 @@ public class IniciativaBean extends BasePageBean {
     public String getEstado() {
         return estado;
     }
+
     public void setEstado(String estado) {
         this.estado = estado;
     }
