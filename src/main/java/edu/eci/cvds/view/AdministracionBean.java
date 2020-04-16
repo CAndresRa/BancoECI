@@ -53,10 +53,9 @@ public class AdministracionBean extends BasePageBean {
      * @param nombre nombre del usuario
      * @param apellido apellido del usuario
      * @param password contraseña del usuario
-     * @param rol rol del usuario
      * @throws ExcepcionServiciosBancoProyectos
      */
-    public void registrarUsuario(String documento, String email, String nombre, String apellido, String password, String rol) throws ExcepcionServiciosBancoProyectos {
+    public void registrarUsuario(String documento, String email, String nombre, String apellido, String password) throws ExcepcionServiciosBancoProyectos {
         try {
             Long doc = Long.parseLong(documento);
             serviciosUsuario.registrarUsuario(new Usuario(doc, email, nombre, apellido, password, rol, area));
@@ -69,7 +68,6 @@ public class AdministracionBean extends BasePageBean {
     public void info() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, "PrimeFaces Rocks."));
     }
-
 
     public Usuario getUsuario(){
         return usuario;

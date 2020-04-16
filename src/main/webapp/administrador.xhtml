@@ -44,7 +44,14 @@
             <p:outputLabel for="@next" value="Ingrese la contraseña" style="font-family: Quicksand; font-weight: bold" />
             <p:inputText  id= "contraseña" required="true" type="String" binding="#{contraseña}" style="border-radius: 15px"> </p:inputText>
             <p:outputLabel for="@next" value="Ingrese el rol del usuario" style="font-family: Quicksand; font-weight: bold" />
-            <p:inputText  id= "rol" required="true" type="String" binding="#{rol}" style="border-radius: 15px"> </p:inputText>
+            <p:selectOneMenu id="rol" value="#{adminBean.rol}" style="width:80%">
+                <f:selectItem itemLabel="" itemValue="" />
+                <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+                <f:selectItem itemLabel="Proponente" itemValue="Proponente" />
+                <f:selectItem itemLabel="PMO" itemValue="PMO" />
+                <f:selectItem itemLabel="Publico" itemValue="Publico" />
+            </p:selectOneMenu>
+
             <p:outputLabel for="@next" value="Área de usuario"  style="font-family: Quicksand; font-weight: bold" />
             <p:selectOneMenu id="area" value="#{adminBean.area}" style="width:80%">
                 <f:selectItem itemLabel="" itemValue="" />
@@ -54,7 +61,7 @@
                 <f:selectItem itemLabel="Proyectos" itemValue="Proyectos" />
             </p:selectOneMenu>
         </h:panelGrid>
-        <p:commandButton id="registrar" value="Registrar"  action="#{adminBean.info}"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value, rol.value)}" style="margin-top: 4px;width: 50%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
+        <p:commandButton id="registrar" value="Registrar"  action="#{adminBean.info}"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value)}" style="margin-top: 4px;width: 50%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
     </h:form>
     <br/>
 
