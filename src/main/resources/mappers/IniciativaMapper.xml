@@ -5,6 +5,36 @@
 
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper">
 
+    <select parameterType="map" resultType="int" id="consultarNumeroDeIniciativasPorArea">
+	    SELECT
+	        count(i.id)
+            FROM iniciativa i , usuario u
+            where i.usuario = u.documento
+            and u.area = #{area};
+    </select>
+
+    <select parameterType="map" id="consultarIniciativasPorArea" resultMap="IniciativaResult">
+        SELECT
+            i.id,
+            i.nombre,
+            i.descripcion,
+            i.estado,
+            i.fecha_registro,
+            u.documento as usuario_documento,
+            u.email as usuario_email,
+            u.nombre as usuario_nombre,
+            u.apellido as usuario_apellido,
+            u.password as usuario_password,
+            u.area as usuario_area,
+            u.rol as usuario_rol,
+            p.id as palabraclave_id,
+            p.palabra as palabraclave_palabra
+        FROM iniciativa i , usuario u , palabraclave p
+        WHERE i.usuario = u.documento
+        AND p.iniciativa = i.nombre
+        AND u.area = #{area};
+    </select>
+
     <select parameterType="map" id="consultarIniciativas" resultMap="IniciativaResult">
         SELECT
             i.id,
@@ -69,6 +99,7 @@
         AND p.iniciativa = i.nombre
         AND p.palabra = #{palabra};
     </select>
+
 
     <update parameterType="map" id="cambiarEstadoAiniciativa">
         UPDATE iniciativa

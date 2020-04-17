@@ -25,10 +25,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-/**
- *
- * @author hcadavid
- */
+
 public class MyBatisExample {
 
     /**

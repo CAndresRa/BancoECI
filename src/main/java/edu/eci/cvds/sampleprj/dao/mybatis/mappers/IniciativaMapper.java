@@ -8,6 +8,21 @@ import java.util.List;
 public interface IniciativaMapper {
 
     /**
+     * Metodo que permite consultar las iniciativas que pertenecen a cierta area
+     * @param area Area a la que pertenece el usuario que registro la iniciativa
+     * @return Lista de iniciativas
+     */
+
+    public List<Iniciativa> consultarIniciativasPorArea(@Param("area") String area);
+
+    /**
+     * Metodo que permite consultar el numero de iniciativas que pertenecen a cierta area
+     * @param area Area a la que pertenece el usuario que registro la iniciativa
+     * @return Numero de iniciativas
+     */
+
+    public int consultarNumeroDeIniciativasPorArea(@Param("area") String area);
+    /**
      * Metodo que permite registrar una iniciativa
      * @param i Iniciativa a insertar del usuario a consultar
      */
