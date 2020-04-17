@@ -11,10 +11,7 @@ public interface ServiciosIniciativa {
      * @param palabras palabras clave que deben contener las iniciativas
      * @return Lista de iniciativas
      */
-
     public List<Iniciativa> consultarIniciativasPorPalabrasClaves(List<String> palabras) throws ExcepcionServiciosBancoProyectos;
-
-
 
     /**
      * Permite insertar una iniciativa
@@ -25,7 +22,6 @@ public interface ServiciosIniciativa {
      */
 
     public void  insertarIniciativa(Iniciativa iniciativa , List<String> palabras) throws ExcepcionServiciosBancoProyectos, PersistenceException;
-
     /**
      * Permite agregar palabras clave a una iniciativa
      * @param iniciativa Iniciativa a la cual se le van a asignar las palabras clave
@@ -33,7 +29,6 @@ public interface ServiciosIniciativa {
      * @throws ExcepcionServiciosBancoProyectos
      * @throws PersistenceException
      */
-
     public void agregarPalabrasClaveAIniciativa(Iniciativa iniciativa , List<String> palabras) throws ExcepcionServiciosBancoProyectos;
 
     /**
@@ -41,7 +36,6 @@ public interface ServiciosIniciativa {
      * @return Lista con las iniciativas del sistema
      * @throws ExcepcionServiciosBancoProyectos
      */
-
     public abstract List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBancoProyectos;
 
     /**
@@ -50,7 +44,6 @@ public interface ServiciosIniciativa {
      * @return Iniciativa que coincida con el id ingresado como parametro
      * @throws ExcepcionServiciosBancoProyectos
      */
-
     public abstract Iniciativa consultarIniciativasPorId(int id) throws ExcepcionServiciosBancoProyectos;
 
     /**
@@ -59,6 +52,21 @@ public interface ServiciosIniciativa {
      * @param  iniciativa a la cual se le va asignar el nuevo estado
      * @throws ExcepcionServiciosBancoProyectos
      */
-
     public abstract void cambiarEstadoAiniciativa(String estado, Iniciativa iniciativa) throws  ExcepcionServiciosBancoProyectos;
+
+    /**
+     * Permite conocer el numero de iniciativas que tiene un area
+     * @param area Finanzas, Proyectos, Ventas, Innovacion
+     * @return Numero de iniciativas del area
+     * @throws ExcepcionServiciosBancoProyectos
+     */
+    public abstract int consultarNumeroDeIniciativasPorArea(String area) throws ExcepcionServiciosBancoProyectos;
+
+    /**
+     * Permite conocer las iniciativas de un area
+     * @param area finanzas, ventas, proyectos, innovacion
+     * @return iniciativas del area
+     * @throws ExcepcionServiciosBancoProyectos
+     */
+    public abstract List<Iniciativa> consultarIniciativasPorArea(String area) throws ExcepcionServiciosBancoProyectos;
 }

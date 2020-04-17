@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package edu.eci.cvds.samples.services.client;
-
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -56,7 +56,8 @@ public class MyBatisExample {
     public static void main(String args[]) throws SQLException, ParseException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
-        /*IniciativaMapper i=sqlss.getMapper(IniciativaMapper.class);*/
+        IniciativaMapper i=sqlss.getMapper(IniciativaMapper.class);
+        System.out.println(i.consultarIniciativasPorArea("Finanzas"));
         sqlss.commit();
         sqlss.close();
     }

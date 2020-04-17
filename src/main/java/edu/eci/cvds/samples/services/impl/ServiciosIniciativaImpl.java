@@ -105,4 +105,22 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
         }
     }
 
+    @Override
+    public int consultarNumeroDeIniciativasPorArea(String area) throws ExcepcionServiciosBancoProyectos {
+        try{
+            return iniciativaDAO.consultarNumeroDeIniciativasPorArea(area);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public List<Iniciativa> consultarIniciativasPorArea(String area) throws ExcepcionServiciosBancoProyectos {
+        try{
+            return  iniciativaDAO.consultarIniciativasPorArea(area);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+        }
+    }
+
 }

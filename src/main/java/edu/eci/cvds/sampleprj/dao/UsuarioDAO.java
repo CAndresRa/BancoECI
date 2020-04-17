@@ -34,7 +34,6 @@ public interface UsuarioDAO {
      * @param u Usuario al que se le asignara el nuevo rol
      * @throws PersistenceException
      */
-
     public void registrarUsuario(Usuario u) throws PersistenceException;
 
 }

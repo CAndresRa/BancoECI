@@ -76,4 +76,22 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
             throw new javax.persistence.PersistenceException(e.getMessage(),e);
         }
     }
+
+    @Override
+    public int consultarNumeroDeIniciativasPorArea(String area) throws PersistenceException {
+        try{
+            return iniciativaMapper.consultarNumeroDeIniciativasPorArea(area);
+        } catch (javax.persistence.PersistenceException e) {
+            throw new javax.persistence.PersistenceException(e.getMessage(),e);
+        }
+    }
+
+    @Override
+    public List<Iniciativa> consultarIniciativasPorArea(String area) throws PersistenceException {
+        try{
+            return iniciativaMapper.consultarIniciativasPorArea(area);
+        } catch (javax.persistence.PersistenceException e){
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+    }
 }
