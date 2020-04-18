@@ -13,7 +13,7 @@
     <br/>
     <h1>Información de la iniciativa</h1>
     <h:form id="FormaInfoUser">
-        <p:dataTable var="user" value="#{iniciativaBean.iniciativa}" >
+        <p:dataTable id="tbl" var="user" value="#{iniciativaBean.iniciativa}" >
             <p:column headerText="Id Iniciativa" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
                 <h:outputText value="#{iniciativaBean.iniciativa.id}" />
             </p:column>
@@ -27,7 +27,6 @@
                 <h:outputText value="#{iniciativaBean.iniciativa.descripcion}" />
             </p:column>
         </p:dataTable>
-
 
         <p:messages>
             <p:autoUpdate />

@@ -18,6 +18,7 @@
 </h:head>
 
 <h:body>
+
     <p:commandButton id="Regresar" value="regresar" action="busquedaIniciativaPalabras.xhtml?faces-redirect = true" style="margin-top: 4px;width: 10%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
     <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
     <br/>
@@ -29,7 +30,15 @@
         <h1>Lista de iniciativas</h1>
         <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.iniciativasPorPalabra}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                     paginator="true" rows="10" style="margin-bottom: 30%; width: 100%; font-family: Quicksand; background-color:blue !important" >
+                     paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 80%; margin-left: 10%; border-radius: 15px;">
+            <f:facet name="{Exporters}">
+                <div style="float:right; margin-right: 2%">
+                    <h:commandLink>
+                        <p:graphicImage url="img/excel.png" width="22"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="Iniciativas" encoding="UTF-8"/>
+                    </h:commandLink>
+                </div>
+            </f:facet>
             <p:column style="background-color: mintcream">
                 <f:facet name="header">
                     <h:outputText value="Email" />
@@ -77,6 +86,8 @@
             </p:column>
         </p:dataTable>
     </h:form>
+
+
 
 </h:body>
 </html>
