@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" type="text/css" href="css/busquedaIniciativaPalabras.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+    <title>#{msg['application.title']}</title>
+</h:head>
+
+<h:body>
+    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <br/>
+    <h:form id="iniciativasPublic" prependId="false">
+        <h1>Lista de iniciativas</h1>
+        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.iniciativasPorPalabra}"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                     paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
+            <f:facet name="{Exporters}">
+            <div style="float:right; margin-right: 2%">
+                <h:commandLink>
+                    <p:graphicImage url="img/excel.png" width="22"/>
+                    <p:dataExporter type="xls" target="tbl" fileName="Iniciativas" encoding="UTF-8"/>
+                </h:commandLink>
+            </div>
+        </f:facet>
+            <p:column style="background-color: mintcream">
+                <f:facet name="header">
+                    <h:outputText value="Email de usuario" />
+                </f:facet>
+                <h:outputText value="#{iniciative.usuario.email}"  />
+            </p:column>
+            <p:column style="background-color: yellowgreen">
+                <f:facet name="header">
+                    <h:outputText value="Fecha" />
+                </f:facet>
+                <h:outputText value="#{iniciative.fecha_registro}"  />
+            </p:column>
+            <p:column style="background-color: mintcream">
+                <f:facet name="header">
+                    <h:outputText value="Id" />
+                </f:facet>
+                <h:outputText value="#{iniciative.id}"  />
+            </p:column>
+
+            <p:column style="background-color: yellowgreen">
+                <f:facet name="header">
+                    <h:outputText value="Nombre"/>
+                </f:facet>
+                <h:outputText value="#{iniciative.nombre}" />
+            </p:column>
+
+            <p:column style="background-color: mintcream">
+                <f:facet name="header">
+                    <h:outputText value="Descripcion" />
+                </f:facet>
+                <h:outputText value="#{iniciative.descripcion}" />
+            </p:column>
+
+            <p:column style="background-color: yellowgreen">
+                <f:facet name="header">
+                    <h:outputText value="Estado" />
+                </f:facet>
+                <h:outputText value="#{iniciative.estado}" />
+            </p:column>
+            <p:column style="background-color: mintcream">
+                <f:facet name="header">
+                    <h:outputText value="Palabras Clave" />
+                </f:facet>
+                <h:outputText value="#{iniciative.palabras_clave}"  />
+            </p:column>
+
+            <p:column style="background-color: yellowgreen">
+                <f:facet name="header">
+                    <h:outputText value="Area" />
+                </f:facet>
+                <h:outputText value="#{iniciative.usuario.area}" />
+            </p:column>
+        </p:dataTable>
+        <p:commandButton id="descargarEst" value="Descargar Estadística" style="margin-top: 4px;width: 14%  ;font-family: Quicksand;background-color: mintcream;border-radius: 15px; float: left; margin-left: 5%"/>
+    </h:form>
+    <p:commandButton id="Regresar" value="Regresar" action="busquedaIniciativaPalabras.xhtml?faces-redirect = true" style="margin-top: 4px;width: 10%;font-family: Quicksand;background-color: mintcream;border-radius: 15px; float: left;margin-left: 0.5%"/>
+
+
+
+
+</h:body>
+</html>
