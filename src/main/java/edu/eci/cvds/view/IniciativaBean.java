@@ -8,18 +8,18 @@ import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosIniciativa;
 import edu.eci.cvds.samples.services.ServiciosUsuario;
-
-import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "iniciativaBean")
-@SessionScoped
+@ViewScoped
 public class IniciativaBean extends BasePageBean {
     @Inject
     private ServiciosIniciativa serviciosIniciativa;

@@ -28,17 +28,10 @@
         <br/>
         <br/>
         <h1>Lista de iniciativas</h1>
-        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.iniciativasPorPalabra}"
+        <p:dataTable id="tbla" var="iniciative" value="#{iniciativaBean.iniciativasPorPalabra}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 80%; margin-left: 10%; border-radius: 15px;">
-            <f:facet name="{Exporters}">
-                <div style="float:right; margin-right: 2%">
-                    <h:commandLink>
-                        <p:graphicImage url="img/excel.png" width="22"/>
-                        <p:dataExporter type="xls" target="tbl" fileName="Iniciativas" encoding="UTF-8"/>
-                    </h:commandLink>
-                </div>
-            </f:facet>
+
             <p:column style="background-color: mintcream">
                 <f:facet name="header">
                     <h:outputText value="Email" />
@@ -86,6 +79,7 @@
             </p:column>
         </p:dataTable>
     </h:form>
+
 
 
 
