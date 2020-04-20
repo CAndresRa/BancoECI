@@ -90,7 +90,7 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         model.set("Ventas", serviciosIniciativa.consultarNumeroDeIniciativasPorArea("Ventas"));
         model.set("Proyectos", serviciosIniciativa.consultarNumeroDeIniciativasPorArea("Proyectos"));
         model.set("Innovacion", serviciosIniciativa.consultarNumeroDeIniciativasPorArea("Innovacion"));
-        model.setTitle("Numero de iniciativas por area");
+        model.setTitle("");
         model.setShowDataLabels(true);
         model.setDataLabelFormatString("%dK");
         model.setLegendPosition("e");

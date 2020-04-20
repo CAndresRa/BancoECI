@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <link rel="stylesheet" type="text/css" href="css/busquedaIniciativaPalabras.css" />
+    <link rel="stylesheet" type="text/css" href="css/iniciativaAtributos.css" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
     <f:facet name="first">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -87,6 +87,26 @@
         </p:dataTable>
 
     </h:form>
+
+    <p:chart type="pie" id="pie"
+             responsive="true"
+             model="#{iniciativaBean.generarEstadistica()}"
+             widgetVar="chart"/>
+    <p:commandButton id="exportar" value="Exportar" onclick="return exportChart()" type="Submit"/>
+    <script type="application/javascript">
+        function exportChart() {
+            var image = PF('chart').exportAsImage();
+            var imageSrc = $(image).attr('src');
+            var url = imageSrc.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
+            var link = document.createElement('a');
+            link.download = "chart.png";
+            link.href = url;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            return false;
+        }
+    </script>
 
 
 </h:body>
