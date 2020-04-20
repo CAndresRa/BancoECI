@@ -8,11 +8,13 @@ import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosIniciativa;
 import edu.eci.cvds.samples.services.ServiciosUsuario;
+import org.primefaces.model.chart.PieChartModel;
 //import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +22,7 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "iniciativaBean")
 @ViewScoped
-public class IniciativaBean extends BasePageBean {
+public class IniciativaBean extends BasePageBean implements Serializable {
     @Inject
     private ServiciosIniciativa serviciosIniciativa;
     @Inject
@@ -29,6 +31,7 @@ public class IniciativaBean extends BasePageBean {
     private Iniciativa iniciativa;
     private List<Iniciativa> iniciativasPorPalabra;
     private String message;
+    private PieChartModel model;
 
     public void agregarIniciativa(String nombre, String descripcion, String palabras, String email) throws ExcepcionServiciosBancoProyectos, PersistenceException {
         try {
@@ -81,6 +84,24 @@ public class IniciativaBean extends BasePageBean {
         }
     }
 
+    public PieChartModel generarEstadistica() throws ExcepcionServiciosBancoProyectos {
+        model = new PieChartModel();
+        model.set("Finanzas", serviciosIniciativa.consultarNumeroDeIniciativasPorArea("Finanzas"));
+        model.set("Ventas", serviciosIniciativa.consultarNumeroDeIniciativasPorArea("Ventas"));
+        model.set("Proyectos", serviciosIniciativa.consultarNumeroDeIniciativasPorArea("Proyectos"));
+        model.set("Innovacion", serviciosIniciativa.consultarNumeroDeIniciativasPorArea("Innovacion"));
+        model.setTitle("Numero de iniciativas por area");
+        model.setShowDataLabels(true);
+        model.setDataLabelFormatString("%dK");
+        model.setLegendPosition("e");
+        model.setShowDatatip(true);
+        model.setShowDataLabels(true);
+        model.setDataFormat("value");
+        model.setDataLabelFormatString("%d");
+        model.setSeriesColors("aaf,afa,faa,ffa");
+        return model;
+    }
+
     public void info() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, "PrimeFaces Rocks."));
     }
@@ -91,6 +112,10 @@ public class IniciativaBean extends BasePageBean {
 
     public void setIniciativasPorPalabra(List<Iniciativa> iniciativasPorPalabra) {
         this.iniciativasPorPalabra = iniciativasPorPalabra;
+    }
+
+    public PieChartModel getModel() {
+        return model;
     }
 
     public Iniciativa getIniciativa() {
