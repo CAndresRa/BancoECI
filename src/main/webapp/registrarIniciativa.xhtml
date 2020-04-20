@@ -55,6 +55,8 @@
             <br/>
             <p:commandButton id="registrar" value="Registrar Iniciativa"  action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.agregarIniciativa(nombreIni.value, descripcionIni.value, palabras.value ,email.value)}" style="margin-top: 4px;width: 120%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
         </h:panelGrid>
+        <br/>
+        <p:commandButton id="exportar" value="Consultar reporte de iniciativas" action="iniciativaAtributos.xhtml?faces-redirect = true"/>
     </h:form>
     <br/>
 </h:body>
