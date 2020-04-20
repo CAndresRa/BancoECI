@@ -38,6 +38,7 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
         }
     }
+    
     @Override
     public void insertarIniciativa(Iniciativa iniciativa , List<String> palabras) throws ExcepcionServiciosBancoProyectos, PersistenceException {
         try{
@@ -73,7 +74,6 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
         }
     }
-
 
     @Override
     public List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBancoProyectos {

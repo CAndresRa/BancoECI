@@ -23,8 +23,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class ServiciosBancoProyectosTest {
     @Inject
     private SqlSession sqlSession;
@@ -35,6 +33,26 @@ public class ServiciosBancoProyectosTest {
     public ServiciosBancoProyectosTest() {
         serviciosUsuario = ServiciosBancoProyectosFactory.getInstance().getServiciosUsuarioTesting();
 		serviciosIniciativa = ServiciosBancoProyectosFactory.getInstance().getServiciosIniciativaTesting();
+		//setUp();
+    }
+    
+    public void setUp() {
+    	try {
+    		List<PalabraClave> palabrasPrueba= new ArrayList<PalabraClave>();
+    		List<String> palabrasVacio= new ArrayList<String>();
+    		palabrasPrueba.add(new PalabraClave("Inicio"));
+    		palabrasVacio.add("Inicio");
+    		Iniciativa iniciativaDeInicio= new Iniciativa("iniciativaDeInicio","Inicio","Inicio",
+    				new SimpleDateFormat("yyyy/MM/dd").parse("2020/04/13"), palabrasPrueba
+    				,serviciosUsuario.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co"));
+    		serviciosIniciativa.insertarIniciativa(iniciativaDeInicio,palabrasVacio);
+    	}catch(ExcepcionServiciosBancoProyectos e) {
+    		
+    	}catch (PersistenceException e) {
+    		
+		} catch (ParseException e) {
+			
+		}
     }
 
     @Test
@@ -214,19 +232,7 @@ public class ServiciosBancoProyectosTest {
     		fail();
     	}
     }
-    
-    /*@Test
-    public void deberiaLanzarExepecionAlAgregarPalabrasClaveNulasAIniciativa() {
-    	try {
-    		System.out.println(serviciosBancoProyectos.consultarIniciativas());
-    		int iniciativaDePruebaid= serviciosBancoProyectos.consultarIniciativas().get(0).getId();
-    		Iniciativa iniciativaDePrueba= serviciosBancoProyectos.consultarIniciativasPorId(iniciativaDePruebaid);
-    		serviciosBancoProyectos.agregarPalabrasClaveAIniciativa(iniciativaDePrueba, null);
-    	}catch(ExcepcionServiciosBancoProyectos e) {
-    		Assert.assertEquals("No hay palabras Clave", e.getMessage());
-    	}
-    }*/
-    
+   
     @Test
     public void deberiaLanzarExepecionAlAgregarPalabrasClaveAIniciativaNula() {
     	try {
@@ -279,5 +285,23 @@ public class ServiciosBancoProyectosTest {
     		Assert.assertEquals("el estado es nulo", e.getMessage());
     	}
     }
+  
+    @Test
+    public void deberiaConsultarIniciativasPorArea() {
+    	try {
+    		List<Iniciativa> lista= serviciosIniciativa.consultarIniciativasPorArea("Pruebas");
+    	}catch(ExcepcionServiciosBancoProyectos e) {
+    		fail();
+    	}
+    }
     
+    @Test
+    public void deberiaConsultarNumeroIniciativasPorArea() {
+    	try {
+    		List<Iniciativa> lista= serviciosIniciativa.consultarIniciativasPorArea("Pruebas");
+    		Assert.assertEquals(1, lista.size());
+    	}catch(ExcepcionServiciosBancoProyectos e) {
+    		fail();
+    	}
+    }
 }

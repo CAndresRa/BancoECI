@@ -36,7 +36,6 @@ public class ServiciosUsuarioImpl implements ServiciosUsuario {
         }
     }
 
-
     @Override
     public List<Usuario> consultarUsuarios() throws ExcepcionServiciosBancoProyectos {
         try {
