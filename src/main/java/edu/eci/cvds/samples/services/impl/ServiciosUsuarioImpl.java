@@ -59,7 +59,10 @@ public class ServiciosUsuarioImpl implements ServiciosUsuario {
     public Usuario consultarUsuario(String email) throws ExcepcionServiciosBancoProyectos {
         try {
             Usuario usuario = usuarioDAO.consultarUsuario(email);
-            return usuarioDAO.consultarUsuario(email);
+            if (usuario == null) {
+            	throw new ExcepcionServiciosBancoProyectos("El usuario no existe");
+            }
+            return usuario;
         } catch (PersistenceException e){
             throw new ExcepcionServiciosBancoProyectos("El usuario no existe");
         }
