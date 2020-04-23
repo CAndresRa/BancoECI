@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" type="text/css" href="css/administrador.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
+    <title> Información Iniciativas </title>
+</h:head>
+<h:body>
+    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <br/>
+    <br/>
+    <h1>Registrar Usuario</h1>
+    <h:form id="registrarUsuario" style="margin-left: 30%" >
+    <p:messages>
+        <p:autoUpdate />
+    </p:messages>
+    <h:panelGrid id="validacion" columns="2" cellpadding="6" style="background-color: gainsboro; border-radius: 15px">
+        <p:outputLabel for="@next" value="Ingrese el documento del usuario" style="font-family: Quicksand; font-weight: bold"/>
+        <p:inputText  id= "documento" required="true" type="String" binding="#{documento}" style="border-radius: 15px"> </p:inputText>
+        <p:outputLabel for="@next"  value="Ingrese el correo electronico" style="font-family: Quicksand; font-weight: bold" />
+        <p:inputText  id= "correo" required="true" type="String" binding="#{email}" style="border-radius: 15px"> </p:inputText>
+        <p:outputLabel for="@next" value="Ingrese el nombre del usuario" style="font-family: Quicksand; font-weight: bold" />
+        <p:inputText  id= "nombre" required="true" type="String" binding="#{nombre}" style="border-radius: 15px"> </p:inputText>
+        <p:outputLabel for="@next" value="Ingrese el apellido del usuario" style="font-family: Quicksand;font-weight: bold" />
+        <p:inputText  id= "apellido" required="true" type="String" binding="#{apellido}" style="border-radius: 15px" > </p:inputText>
+        <p:outputLabel for="@next" value="Ingrese la contraseña" style="font-family: Quicksand; font-weight: bold" />
+        <p:inputText  id= "contraseña" required="true" type="String" binding="#{contraseña}" style="border-radius: 15px"> </p:inputText>
+        <p:outputLabel for="@next" value="Ingrese el rol del usuario" style="font-family: Quicksand; font-weight: bold" />
+        <p:selectOneMenu id="rol" value="#{adminBean.rol}" style="width:80%">
+            <f:selectItem itemLabel="" itemValue="" />
+            <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+            <f:selectItem itemLabel="Proponente" itemValue="Proponente" />
+            <f:selectItem itemLabel="PMO" itemValue="PMO" />
+            <f:selectItem itemLabel="Publico" itemValue="Publico" />
+        </p:selectOneMenu>
+
+        <p:outputLabel for="@next" value="Área de usuario"  style="font-family: Quicksand; font-weight: bold" />
+        <p:selectOneMenu id="area" value="#{adminBean.area}" style="width:80%">
+            <f:selectItem itemLabel="" itemValue="" />
+            <f:selectItem itemLabel="Finanzas" itemValue="Finanzas" />
+            <f:selectItem itemLabel="Innovación" itemValue="Innovacion" />
+            <f:selectItem itemLabel="Ventas" itemValue="Ventas" />
+            <f:selectItem itemLabel="Proyectos" itemValue="Proyectos" />
+        </p:selectOneMenu>
+    </h:panelGrid>
+    <p:commandButton id="registrar" value="Registrar"  action="#{adminBean.info}"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value)}" style="margin-top: 4px;width: 50%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
+    <br/>
+    <br/>
+
+</h:form>
+
+
+</h:body>
+</html>

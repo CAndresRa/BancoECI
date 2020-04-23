@@ -18,56 +18,75 @@
 </h:head>
 
 <h:body>
+    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <br/>
+    <h1>Asociar Iniciativas</h1>
+    <br/>
     <h:form id="busquedaUsuario" prependId="false" >
-        <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+        <p:dataTable id="tbl" var="usuarios" value="#{adminBean.consultarUsuariosBasico()}" rowKey="#{usuarios.getEmail()}" selection="#{adminBean.usuario}"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                     paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
+            <f:facet name="{Exporters}">
+                <div style="float:right; margin-right: 2%">
+                    <h:commandLink>
+                        <p:graphicImage url="img/excel.png" width="22"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="Usuarios" encoding="UTF-8"/>
+                    </h:commandLink>
+                </div>
+            </f:facet>
+            <p:column selectionMode="single" style="width:16px;text-align:center"/>
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getEmail()}">
+                <f:facet name="header">
+                    <h:outputText value="Email de usuario" />
+                </f:facet>
+                <h:outputText value="#{usuarios.getEmail()}"/>
+            </p:column>
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getDocumento()}">
+                <f:facet name="header">
+                    <h:outputText value="Documento" />
+                </f:facet>
+                <h:outputText value="#{usuarios.getDocumento()}"/>
+            </p:column>
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getNombre()}">
+                <f:facet name="header">
+                    <h:outputText value="Nombre" />
+                </f:facet>
+                <h:outputText value="#{usuarios.getNombre()}"/>
+            </p:column>
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getApellido()}">
+                <f:facet name="header">
+                    <h:outputText value="Apellido" />
+                </f:facet>
+                <h:outputText value="#{usuarios.getApellido()}"/>
+            </p:column>
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getRol()}">
+                <f:facet name="header">
+                    <h:outputText value="Rol" />
+                </f:facet>
+                <h:outputText value="#{usuarios.getRol()}"/>
+            </p:column>
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getArea()}">
+                <f:facet name="header">
+                    <h:outputText value="Area" />
+                </f:facet>
+                <h:outputText value="#{usuarios.getArea()}"/>
+            </p:column>
+            <f:facet name="footer">
+                <p:commandButton process="tbl" value="Actualizar rol" actionListener="#{adminBean.buscarUsuario()}" action="actualizarRol.xhtml?faces-redirect = true" style="border-radius: 15px; background-color: mintcream"/>
+            </f:facet>
+        </p:dataTable>
+        <p:commandButton id="exportar" value="Consultar reporte de iniciativas" action="iniciativaAtributos.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
         <br/>
-        <h1>Asignación de Roles</h1>
-        <h:outputLabel value="Busqueda: " style="font-weight:bold"/>
-        <p:inputText id="busqueda" placeholder="Correo Electronico" required="true" type="String" binding="#{mail}"/>
-        <p:commandButton id="buscar" value="Buscar" actionListener="#{adminBean.buscarUsuario(mail.value)}" action="actualizarRol.xhtml?faces-redirect = true"/>
-    </h:form>
-    <br/>
-    <h1>Registrar Usuario</h1>
-    <h:form id="registrarUsuario" style="margin-left: 30%" >
-        <p:messages>
-            <p:autoUpdate />
-        </p:messages>
-        <h:panelGrid id="validacion" columns="2" cellpadding="6" style="background-color: gainsboro; border-radius: 15px">
-            <p:outputLabel for="@next" value="Ingrese el documento del usuario" style="font-family: Quicksand; font-weight: bold"/>
-            <p:inputText  id= "documento" required="true" type="String" binding="#{documento}" style="border-radius: 15px"> </p:inputText>
-            <p:outputLabel for="@next"  value="Ingrese el correo electronico" style="font-family: Quicksand; font-weight: bold" />
-            <p:inputText  id= "correo" required="true" type="String" binding="#{email}" style="border-radius: 15px"> </p:inputText>
-            <p:outputLabel for="@next" value="Ingrese el nombre del usuario" style="font-family: Quicksand; font-weight: bold" />
-            <p:inputText  id= "nombre" required="true" type="String" binding="#{nombre}" style="border-radius: 15px"> </p:inputText>
-            <p:outputLabel for="@next" value="Ingrese el apellido del usuario" style="font-family: Quicksand;font-weight: bold" />
-            <p:inputText  id= "apellido" required="true" type="String" binding="#{apellido}" style="border-radius: 15px" > </p:inputText>
-            <p:outputLabel for="@next" value="Ingrese la contraseña" style="font-family: Quicksand; font-weight: bold" />
-            <p:inputText  id= "contraseña" required="true" type="String" binding="#{contraseña}" style="border-radius: 15px"> </p:inputText>
-            <p:outputLabel for="@next" value="Ingrese el rol del usuario" style="font-family: Quicksand; font-weight: bold" />
-            <p:selectOneMenu id="rol" value="#{adminBean.rol}" style="width:80%">
-                <f:selectItem itemLabel="" itemValue="" />
-                <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
-                <f:selectItem itemLabel="Proponente" itemValue="Proponente" />
-                <f:selectItem itemLabel="PMO" itemValue="PMO" />
-                <f:selectItem itemLabel="Publico" itemValue="Publico" />
-            </p:selectOneMenu>
+        <br/>
+        <p:commandButton id="registro" value="Registrar Usuario" action="registrarUsuario.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
+        <br/>
+        <br/>
+        <p:commandButton id="asociarIniciativa" value="Asociar Iniciativas" action="registrarUsuario.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
+        <br/>
+        <br/>
+        <br/>
 
-            <p:outputLabel for="@next" value="Área de usuario"  style="font-family: Quicksand; font-weight: bold" />
-            <p:selectOneMenu id="area" value="#{adminBean.area}" style="width:80%">
-                <f:selectItem itemLabel="" itemValue="" />
-                <f:selectItem itemLabel="Finanzas" itemValue="Finanzas" />
-                <f:selectItem itemLabel="Innovación" itemValue="Innovacion" />
-                <f:selectItem itemLabel="Ventas" itemValue="Ventas" />
-                <f:selectItem itemLabel="Proyectos" itemValue="Proyectos" />
-            </p:selectOneMenu>
-        </h:panelGrid>
-        <p:commandButton id="registrar" value="Registrar"  action="#{adminBean.info}"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value)}" style="margin-top: 4px;width: 50%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
-        <br/>
-        <br/>
-        <p:commandButton id="exportar" value="Consultar reporte de iniciativas" action="iniciativaAtributos.xhtml?faces-redirect = true"/>
     </h:form>
-    <br/>
-
 
 
 

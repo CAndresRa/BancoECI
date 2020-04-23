@@ -87,3 +87,11 @@ th, td{
 
 
 }
+
+#exportar{
+    width: 5%;
+    font-family: Quicksand;
+    background-color: mintcream;
+    border-radius: 15px;
+    margin: 1px 1px;
+}

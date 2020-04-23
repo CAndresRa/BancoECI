@@ -8,6 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import java.util.List;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "adminBean")
@@ -19,6 +20,7 @@ public class AdministracionBean extends BasePageBean {
     private Usuario usuario;
     private String area;
     private String message;
+    private List<Usuario> usuariosRegistrados;
 
     /**
      * Metodo que permite modificar rol de un usuario
@@ -65,8 +67,33 @@ public class AdministracionBean extends BasePageBean {
         }
     }
 
+    /**
+     * @return Lista de usuarios registrados
+     * @throws ExcepcionServiciosBancoProyectos
+     */
+    public List<Usuario> consultarUsuariosBasico() throws ExcepcionServiciosBancoProyectos{
+        try{
+            return serviciosUsuario.consultarUsuarios();
+        } catch (ExcepcionServiciosBancoProyectos e){
+            throw new ExcepcionServiciosBancoProyectos("Error al consultar usuarios");
+        }
+    }
+
+    /**
+     * @return Busqueda usuario teniedo email
+     * @throws ExcepcionServiciosBancoProyectos
+     */
+    public Usuario buscarUsuario() throws ExcepcionServiciosBancoProyectos {
+        this.usuario = serviciosUsuario.consultarUsuario(usuario.getEmail());
+        return usuario;
+    }
+
     public void info() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, "PrimeFaces Rocks."));
+    }
+
+    public void setUsuario(Usuario usuario){
+        this.usuario = usuario;
     }
 
     public Usuario getUsuario(){
@@ -88,5 +115,6 @@ public class AdministracionBean extends BasePageBean {
     public void setArea(String area) {
         this.area = area;
     }
+
 }
 
