@@ -9,6 +9,13 @@ import java.util.List;
 public interface IniciativaMapper {
 
     /**
+     * Agrega una iniciativa relacionada a una iniciativa
+     * @param idIniciativa iniciativa principal
+     * @param idIniciativaRelacionada iniciativa relacionada a la principal
+     */
+    public void agregarIniciativaRelacionadaAIniciativa(@Param("idIniciativa") int idIniciativa , @Param("idIniciativaRelacionada") int idIniciativaRelacionada );
+
+    /**
      * Metodo que permite consultar las iniciativas que pertenecen a cierta area
      * @param area Area a la que pertenece el usuario que registro la iniciativa
      * @return Lista de iniciativas

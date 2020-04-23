@@ -41,6 +41,12 @@ CREATE TABLE palabraClave(
    primary key (id)
 );
 
+CREATE TABLE proyectoRelacionado(
+   `iniciativa` INTEGER REFERENCES iniciativa(id)  DEFERRABLE,
+   `iniciativaRelacionada` INTEGER REFERENCES iniciativa(id)  DEFERRABLE,
+   primary key (iniciativa,iniciativaRelacionada)
+);
+
 
 insert into usuario (documento,email,nombre,apellido,password,rol,area ) values (2154021,'ernesto.camacho@mail.escuelaing.edu.co','Ernesto','Camacho','1234','Administrador','Pruebas');
 insert into usuario (documento,email,nombre,apellido,password,rol,area) values (2000001,'pepito.perez@mail.escuelaing.edu.co','pepito','perez','1234','publico','Pruebas' );

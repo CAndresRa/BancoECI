@@ -12,16 +12,28 @@ public class Iniciativa {
     private Usuario usuario;
     private Date fecha_registro;
     private List<PalabraClave> palabras_clave;
+    private List<Iniciativa> iniciativasRelacionadas;
 
     public Iniciativa() {
     }
 
-    public Iniciativa(int id, String nombre , String descripcion, String estado , Date fecha_registro , List<PalabraClave> palabras_clave) {
+    public Iniciativa(int id, String nombre , String descripcion, String estado , Date fecha_registro , List<PalabraClave> palabras_clave ) {
         this.id = id;
         this.descripcion = descripcion;
         this.nombre = nombre;
         this.estado = estado;
         this.fecha_registro = fecha_registro;
+        this.palabras_clave = palabras_clave;
+    }
+
+    public Iniciativa(int id, String nombre , String descripcion, String estado , Date fecha_registro , List<PalabraClave> palabras_clave , List<Iniciativa> iniciativasRelacionadas) {
+        this.id = id;
+        this.descripcion = descripcion;
+        this.nombre = nombre;
+        this.estado = estado;
+        this.fecha_registro = fecha_registro;
+        this.palabras_clave = palabras_clave;
+        this.iniciativasRelacionadas = iniciativasRelacionadas;
     }
 
     public Iniciativa( String nombre , String descripcion, String estado , Date fecha_registro , List<PalabraClave> palabras_clave , Usuario usuario) {
@@ -39,6 +51,14 @@ public class Iniciativa {
         this.estado = estado;
         this.fecha_registro = fecha_registro;
         this.usuario = usuario;
+    }
+
+    public List<Iniciativa> getIniciativasRelacionadas() {
+        return iniciativasRelacionadas;
+    }
+
+    public void setIniciativasRelacionadas(List<Iniciativa> iniciativasRelacionadas) {
+        this.iniciativasRelacionadas = iniciativasRelacionadas;
     }
 
     public Usuario getUsuario() {
@@ -107,6 +127,7 @@ public class Iniciativa {
                 ", usuario=" + usuario +
                 ", fecha_registro=" + fecha_registro +
                 ", palabras_clave=" + palabras_clave +
+                ", iniciativasRelacionadas=" + iniciativasRelacionadas +
                 '}';
     }
 }

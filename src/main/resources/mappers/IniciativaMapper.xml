@@ -29,10 +29,10 @@
             u.rol as usuario_rol,
             p.id as palabraclave_id,
             p.palabra as palabraclave_palabra
-        FROM iniciativa i , usuario u , palabraclave p
-        WHERE i.usuario = u.documento
-        AND p.iniciativa = i.nombre
-        AND u.area = #{area};
+        FROM iniciativa i
+        left join usuario u on i.usuario = u.documento
+        left join palabraclave p on p.iniciativa = i.nombre
+        WHERE u.area = #{area};
     </select>
 
     <select parameterType="map" id="consultarIniciativas" resultMap="IniciativaResult">
@@ -51,9 +51,9 @@
             u.rol as usuario_rol,
             p.id as palabraclave_id,
             p.palabra as palabraclave_palabra
-        FROM iniciativa i , usuario u , palabraclave p
-        WHERE i.usuario = u.documento
-        AND p.iniciativa = i.nombre;
+       FROM iniciativa i
+       left join usuario u on i.usuario = u.documento
+       left join palabraclave p on p.iniciativa = i.nombre;
     </select>
 
     <select parameterType="map" id="consultarIniciativasPorId" resultMap="IniciativaResult">
@@ -71,11 +71,13 @@
             u.area as usuario_area,
             u.rol as usuario_rol,
             p.id as palabraclave_id,
-            p.palabra as palabraclave_palabra
-        FROM iniciativa i , usuario u , palabraclave p
-        WHERE i.usuario = u.documento
-        AND p.iniciativa = i.nombre
-        AND i.id = #{id};
+            p.palabra as palabraclave_palabra,
+            pr.iniciativaRelacionada as iniciativarelacionada_id
+        FROM iniciativa i
+        left join usuario u on i.usuario = u.documento
+        left join palabraclave p on p.iniciativa = i.nombre
+        left join proyectoRelacionado pr on i.id = pr.iniciativa
+        WHERE i.id = #{id};
     </select>
 
     <select parameterType="map" id="consultarIniciativasPorPalabraClave" resultMap="IniciativaResult">
@@ -94,10 +96,10 @@
             u.rol as usuario_rol,
             p.id as palabraclave_id,
             p.palabra as palabraclave_palabra
-        FROM iniciativa i , usuario u , palabraclave p
-        WHERE i.usuario = u.documento
-        AND p.iniciativa = i.nombre
-        AND p.palabra = #{palabra};
+        FROM iniciativa i
+        left join usuario u on i.usuario = u.documento
+        left join palabraclave p on p.iniciativa = i.nombre
+        WHERE p.palabra = #{palabra};
     </select>
 
 
@@ -115,6 +117,10 @@
         INSERT INTO palabraclave (iniciativa , palabra) VALUES( #{iniciativa.nombre}, #{palabra} );
     </insert>
 
+    <insert id="agregarIniciativaRelacionadaAIniciativa" parameterType="map">
+        INSERT INTO proyectoRelacionado (iniciativa , iniciativaRelacionada) VALUES( #{idIniciativa}, #{idIniciativaRelacionada} );
+    </insert>
+
     <resultMap type='Iniciativa' id='IniciativaResult'>
         <id property='id' column='id'/>
         <result property='nombre' column='nombre'/>
@@ -123,6 +129,7 @@
         <result property='fecha_registro' column='fecha_registro'/>
         <association property='usuario' javaType="Usuario"  resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult" columnPrefix='usuario_'></association>
         <collection property='palabras_clave' ofType='PalabraClave'  resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.PalabraClaveMapper.PalabraClaveResult" columnPrefix='palabraclave_'></collection>
+        <collection property='iniciativasRelacionadas' ofType='Iniciativa'  resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper.IniciativaResult" columnPrefix='iniciativarelacionada_'></collection>
     </resultMap>
 
 
