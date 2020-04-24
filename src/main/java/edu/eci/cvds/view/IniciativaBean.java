@@ -104,11 +104,15 @@ public class IniciativaBean extends BasePageBean implements Serializable {
     }
 
     public void agregarIniciativaRelacionadaAIniciativa() throws ExcepcionServiciosBancoProyectos {
+        int longitudAsosiciaciones = iniciativasRelacionadasList.size();
         try {
-            if (iniciativasRelacionadasList.size() > 1) {
-                Iniciativa iniciativaPrincipal = iniciativasRelacionadasList.get(0);
-                for (int i = 1; i < iniciativasRelacionadasList.size(); i++) {
-                    serviciosIniciativa.agregarIniciativaRelacionadaAIniciativa(iniciativaPrincipal.getId(), iniciativasRelacionadasList.get(i).getId());
+            if (longitudAsosiciaciones > 1) {
+                for (int i = 0; i < longitudAsosiciaciones; i++) {
+                    for(int j = 0; j < longitudAsosiciaciones; j++){
+                        if(i != j){
+                            serviciosIniciativa.agregarIniciativaRelacionadaAIniciativa(iniciativasRelacionadasList.get(i).getId(),iniciativasRelacionadasList.get(j).getId());
+                        }
+                    }
                 }
                 this.message = "Las iniciativas se asociaron correctamente";
             }
