@@ -49,6 +49,4 @@ CREATE TABLE proyectoRelacionado(
 
 
 insert into usuario (documento,email,nombre,apellido,password,rol,area ) values (2154021,'ernesto.camacho@mail.escuelaing.edu.co','Ernesto','Camacho','1234','Administrador','Pruebas');
-insert into usuario (documento,email,nombre,apellido,password,rol,area) values (2000001,'pepito.perez@mail.escuelaing.edu.co','pepito','perez','1234','publico','Pruebas' );
-insert into usuario (documento,email,nombre,apellido,password,rol,area ) values (2000002,'diana.hernandez@mail.escuelaing.edu.co','diana','hernandez','1234','publico','Pruebas' );
-insert into usuario (documento,email,nombre,apellido,password,rol,area ) values (2000003,'no.rol@mail.escuelaing.edu.co','no','rol','1234',null,null);
+insert into usuario (documento,email,nombre,apellido,password,rol,area ) values (2000003,'no.rol@mail.escuelaing.edu.co','no','rol','1234',null,'otro');

@@ -35,7 +35,7 @@ public class ServiciosBancoProyectosTest {
 		serviciosIniciativa = ServiciosBancoProyectosFactory.getInstance().getServiciosIniciativaTesting();
 		//setUp();
     }
-    
+
     public void setUp() {
     	try {
     		List<PalabraClave> palabrasPrueba= new ArrayList<PalabraClave>();
@@ -54,7 +54,7 @@ public class ServiciosBancoProyectosTest {
 			
 		}
     }
-
+    
     @Test
     public void deberiaConsultarUsuario() {
     	try {
@@ -68,12 +68,12 @@ public class ServiciosBancoProyectosTest {
     public void lanzaExcepcionUsuarioNoExiste() throws ExcepcionServiciosBancoProyectos {
     	serviciosUsuario.consultarUsuario("NN@mail.com");  	
     }
-
+    
     @Test
     public void deberiaConsultarUsuarios() {
     	try {
     		List<Usuario> lista= serviciosUsuario.consultarUsuarios();
-    		Assert.assertEquals(3,lista.size());
+    		Assert.assertEquals(1,lista.size());
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();    		
     	}  	
@@ -183,7 +183,7 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void deberiaConsultarIniciativaPorId() {
     	try {    		
-    		System.out.println(serviciosIniciativa.consultarIniciativas());
+    		//System.out.println(serviciosIniciativa.consultarIniciativas());
     		int iniciativaDePruebaid= serviciosIniciativa.consultarIniciativas().get(0).getId();
     		Iniciativa iniciativaDePrueba= serviciosIniciativa.consultarIniciativasPorId(iniciativaDePruebaid);
     		Assert.assertEquals(serviciosUsuario.consultarUsuario("ernesto.camacho@mail.escuelaing.edu.co"), iniciativaDePrueba.getUsuario());
@@ -264,10 +264,32 @@ public class ServiciosBancoProyectosTest {
     @Test
     public void deberiaConsultarNumeroIniciativasPorArea() {
     	try {
-    		List<Iniciativa> lista= serviciosIniciativa.consultarIniciativasPorArea("Pruebas");
-    		Assert.assertEquals(1, lista.size());
+    		int numero= serviciosIniciativa.consultarNumeroDeIniciativasPorArea("Pruebas");
+    		Assert.assertEquals(1, numero);
     	}catch(ExcepcionServiciosBancoProyectos e) {
     		fail();
     	}
+    }
+    
+    @Test
+    public void deberiaAgregarIniciativaRelacionadaAIniciativa() {
+    	try {
+    		List<PalabraClave> palabrasPrueba= new ArrayList<PalabraClave>();
+    		List<String> palabrasVacio= new ArrayList<String>();
+    		palabrasPrueba.add(new PalabraClave("PruebaRelacion"));
+    		palabrasVacio.add("PruebaRelacion");
+    		Iniciativa iniciativaDePruebaRelacion= new Iniciativa("iniciativaDePruebaRelacion","PruebaRelacion","PruebaRelacion",
+    				new SimpleDateFormat("yyyy/MM/dd").parse("2020/04/13"), palabrasPrueba
+    				,serviciosUsuario.consultarUsuario("no.rol@mail.escuelaing.edu.co"));
+    		serviciosIniciativa.insertarIniciativa(iniciativaDePruebaRelacion, palabrasVacio);
+    		/*#######################################################################################*/
+    		serviciosIniciativa.agregarIniciativaRelacionadaAIniciativa(1, 2);
+    	}catch(ExcepcionServiciosBancoProyectos e) {
+    		fail();
+    	} catch (ParseException e) {
+    		fail();
+		} catch (PersistenceException e) {
+			fail();
+		}
     }
 }
