@@ -49,9 +49,8 @@
     <p:commandButton id="registrar" value="Registrar"  action="#{adminBean.info}"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value)}" style="margin-top: 4px;width: 50%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
     <br/>
     <br/>
-
 </h:form>
-
+    <p:commandButton value="Regresar" action="registrarUsuario.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px;"/>
 
 </h:body>
 </html>

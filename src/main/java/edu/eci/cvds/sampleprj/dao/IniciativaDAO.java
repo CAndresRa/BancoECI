@@ -68,4 +68,6 @@ public interface IniciativaDAO {
      * @throws PersistenceException
      */
     public List<Iniciativa> consultarIniciativasPorArea(String area) throws  PersistenceException;
+
+    public void agregarIniciativaRelacionadaAIniciativa(int idIni, int idIniRelacionada) throws PersistenceException;
 }

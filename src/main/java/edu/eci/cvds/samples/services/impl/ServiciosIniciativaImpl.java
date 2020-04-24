@@ -123,4 +123,12 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
         }
     }
 
+    @Override
+    public void agregarIniciativaRelacionadaAIniciativa(int idIni, int idIniRelacionada) throws ExcepcionServiciosBancoProyectos {
+        try{
+            iniciativaDAO.agregarIniciativaRelacionadaAIniciativa(idIni, idIniRelacionada);
+        } catch (PersistenceException e){
+            throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+        }
+    }
 }

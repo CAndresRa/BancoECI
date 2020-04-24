@@ -33,6 +33,25 @@ public class IniciativaBean extends BasePageBean implements Serializable {
     private String message;
     private PieChartModel model;
 
+    public String[] getIniciativasRelacionadas() {
+        return iniciativasRelacionadas;
+    }
+
+    public void setIniciativasRelacionadas(String[] iniciativasRelacionadas) {
+        this.iniciativasRelacionadas = iniciativasRelacionadas;
+    }
+
+    public List<Iniciativa> getIniciativasRelacionadasList() {
+        return iniciativasRelacionadasList;
+    }
+
+    public void setIniciativasRelacionadasList(List<Iniciativa> iniciativasRelacionadasList) {
+        this.iniciativasRelacionadasList = iniciativasRelacionadasList;
+    }
+
+    private String[] iniciativasRelacionadas;
+    private List<Iniciativa> iniciativasRelacionadasList;
+
     public void agregarIniciativa(String nombre, String descripcion, String palabras, String email) throws ExcepcionServiciosBancoProyectos, PersistenceException {
         try {
             List<String> palabrasListas = Arrays.asList(palabras.split(","));
@@ -82,6 +101,25 @@ public class IniciativaBean extends BasePageBean implements Serializable {
             this.message = "El estado no se actualizo correctamente, intentelo nuevamente";
             throw new ExcepcionServiciosBancoProyectos("Error cambiando el estado de la iniciativa");
         }
+    }
+
+    public void agregarIniciativaRelacionadaAIniciativa() throws ExcepcionServiciosBancoProyectos {
+        try {
+            if (iniciativasRelacionadasList.size() > 1) {
+                Iniciativa iniciativaPrincipal = iniciativasRelacionadasList.get(0);
+                for (int i = 1; i < iniciativasRelacionadasList.size(); i++) {
+                    serviciosIniciativa.agregarIniciativaRelacionadaAIniciativa(iniciativaPrincipal.getId(), iniciativasRelacionadasList.get(i).getId());
+                }
+                this.message = "Las iniciativas se asociaron correctamente";
+            }
+            else{
+                this.message = "Seleccione 2 o mas iniciativas";
+            }
+        } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos){
+            this.message = "Hubo un error asociando iniciativas, intentelo nuevamente";
+        }
+
+
     }
 
     public PieChartModel generarEstadistica() throws ExcepcionServiciosBancoProyectos {

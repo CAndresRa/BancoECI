@@ -69,4 +69,14 @@ public interface ServiciosIniciativa {
      * @throws ExcepcionServiciosBancoProyectos
      */
     public abstract List<Iniciativa> consultarIniciativasPorArea(String area) throws ExcepcionServiciosBancoProyectos;
+
+    /**
+     * Permite relacionar una iniciativa a otra
+     * @param idIni id de iniciativa A
+     * @param idIniRelacionada id de iniciativa B
+     * @throws ExcepcionServiciosBancoProyectos
+     */
+    public abstract void agregarIniciativaRelacionadaAIniciativa(int idIni, int idIniRelacionada) throws  ExcepcionServiciosBancoProyectos;
+
+
 }

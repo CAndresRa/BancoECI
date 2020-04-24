@@ -94,4 +94,13 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
             throw new javax.persistence.PersistenceException(e.getMessage(), e);
         }
     }
+
+    @Override
+    public void agregarIniciativaRelacionadaAIniciativa(int idIni, int idIniRelacionada) throws PersistenceException {
+        try{
+            iniciativaMapper.agregarIniciativaRelacionadaAIniciativa(idIni, idIniRelacionada);
+        } catch (javax.persistence.PersistenceException e ){
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+    }
 }
