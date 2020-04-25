@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" type="text/css" href="css/iniciativaAtributos.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+
+    <title>#{msg['application.title']}</title>
+
+</h:head>
+
+<h:body>
+    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <br/>
+    <h1>Comenta y expresa tu afinidad con la iniciativa</h1>
+    <h:form id="aportesIniciativa" style="margin-left: 20%; opacity: 0.9; -moz-opacity: 0.9; filter: alpha(opacity=10);-khtml-opacity: 0.8;background-color: mintcream;border-radius: 15px;margin-top: 3%; width:60%">
+        <h:panelGrid columns="2" cellpadding="11">
+            <p:outputLabel for="@next" value="Comentario sobre la iniciativa:" style="font-family: Quicksand; font-weight: bold; font-size: large"/>
+            <p:inputTextarea id="comentarios" counter="display"  rows="7" maxlength="300" counterTemplate="Le quedan {0} caracteres" autoResize="true" style="width: 210%"/>
+            <br />
+            <h:outputText id="display" style="color: grey" />
+            <p:outputLabel for="@next" value="Afinidad con iniciativa:" style="font-family: Quicksand; font-weight: bold; font-size: large;margin-left: -10%;"/>
+            <p:rating stars="10" cancel="false" onRate="alert('You rated ' + value)" style="background-color: grey; opacity: 95%; border-radius: 10px"/>
+            <p:outputLabel for="@next" value="¿Te gusta esta iniciativa?" style="font-family: Quicksand; font-weight: bold; font-size: large;margin-left: -10%;"/>
+            <p:selectOneRadio id="console" value="" unselectable="true">
+                <f:selectItem itemLabel="Si" itemValue="True" />
+                <f:selectItem itemLabel="No" itemValue="False" />
+            </p:selectOneRadio>
+            <p:commandButton id="validar" value="Aporta a Iniciativa" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
+            <p:commandButton id="regresar" value="Regresar" action="informacionIniciativa.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
+        </h:panelGrid>
+
+    </h:form>
+</h:body>
+</html>

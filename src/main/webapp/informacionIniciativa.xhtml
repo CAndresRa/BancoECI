@@ -26,7 +26,8 @@
 
     <h:form id="iniciativasPublic" prependId="false">
 
-        <h1>Lista de iniciativas</h1>
+        <h1>Información de Iniciativas</h1>
+        <h2>Selecciona una Iniciativa para agregar comentarios y afinidad</h2>
         <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.consultarIniciativasBasico()}" rowKey="#{iniciative.getId()}" selection="#{iniciativaBean.iniciativa}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
@@ -86,36 +87,17 @@
                 <h:outputText value="#{iniciative.usuario.area}" />
             </p:column>
 
-            <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.area}" sortBy="#{iniciative.usuario.area}"  >
+            <p:column style="background-color: mintcream    " filterBy="#{iniciative.usuario.area}" sortBy="#{iniciative.usuario.area}"  >
                 <f:facet name="header">
                     <h:outputText value="Iniciativas Relacionadas" />
                 </f:facet>
                 <h:outputText value="#{iniciativaBean.consultarIniciativasPorId(iniciative.id).getIniciativasRelacionadas()}" />
             </p:column>
+            <f:facet name="footer">
+                <p:commandButton process="tbl" value="Comentar Iniciativa" action="comentariosIniciativa.xhtml?faces-redirect = true" style="border-radius: 15px; background-color: mintcream"/>
+            </f:facet>
         </p:dataTable>
 
     </h:form>
-    <h1>Estadisticas por Area</h1>
-    <p:chart type="pie" id="pie"
-             responsive="true"
-             model="#{iniciativaBean.generarEstadistica()}"
-             widgetVar="chart"/>
-    <p:commandButton id="exportar" value="Exportar" onclick="return exportChart()" type="Submit"/>
-    <script type="application/javascript">
-        function exportChart() {
-            var image = PF('chart').exportAsImage();
-            var imageSrc = $(image).attr('src');
-            var url = imageSrc.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
-            var link = document.createElement('a');
-            link.download = "chart.png";
-            link.href = url;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            return false;
-        }
-    </script>
-
-
 </h:body>
 </html>
