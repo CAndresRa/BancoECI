@@ -32,24 +32,6 @@ public class IniciativaBean extends BasePageBean implements Serializable {
     private List<Iniciativa> iniciativasPorPalabra;
     private String message;
     private PieChartModel model;
-
-    public String[] getIniciativasRelacionadas() {
-        return iniciativasRelacionadas;
-    }
-
-    public void setIniciativasRelacionadas(String[] iniciativasRelacionadas) {
-        this.iniciativasRelacionadas = iniciativasRelacionadas;
-    }
-
-    public List<Iniciativa> getIniciativasRelacionadasList() {
-        return iniciativasRelacionadasList;
-    }
-
-    public void setIniciativasRelacionadasList(List<Iniciativa> iniciativasRelacionadasList) {
-        this.iniciativasRelacionadasList = iniciativasRelacionadasList;
-    }
-
-    private String[] iniciativasRelacionadas;
     private List<Iniciativa> iniciativasRelacionadasList;
 
     public void agregarIniciativa(String nombre, String descripcion, String palabras, String email) throws ExcepcionServiciosBancoProyectos, PersistenceException {
@@ -154,6 +136,14 @@ public class IniciativaBean extends BasePageBean implements Serializable {
 
     public void setIniciativasPorPalabra(List<Iniciativa> iniciativasPorPalabra) {
         this.iniciativasPorPalabra = iniciativasPorPalabra;
+    }
+
+    public List<Iniciativa> getIniciativasRelacionadasList() {
+        return iniciativasRelacionadasList;
+    }
+
+    public void setIniciativasRelacionadasList(List<Iniciativa> iniciativasRelacionadasList) {
+        this.iniciativasRelacionadasList = iniciativasRelacionadasList;
     }
 
     public PieChartModel getModel() {

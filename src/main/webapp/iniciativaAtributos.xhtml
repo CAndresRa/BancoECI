@@ -27,7 +27,7 @@
     <h:form id="iniciativasPublic" prependId="false">
 
         <h1>Lista de iniciativas</h1>
-        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.consultarIniciativasBasico()}"
+        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.consultarIniciativasBasico()}" rowKey="#{iniciative.getId()}" selection="#{iniciativaBean.iniciativa}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
             <f:facet name="{Exporters}">
@@ -38,6 +38,7 @@
                     </h:commandLink>
                 </div>
             </f:facet>
+            <p:column selectionMode="single" style="width:16px;text-align:center"/>
             <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.email}" sortBy="#{iniciative.usuario.email}">
                 <f:facet name="header">
                     <h:outputText value="Email de usuario" />
@@ -83,6 +84,13 @@
                     <h:outputText value="Area" />
                 </f:facet>
                 <h:outputText value="#{iniciative.usuario.area}" />
+            </p:column>
+
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.area}" sortBy="#{iniciative.usuario.area}"  >
+                <f:facet name="header">
+                    <h:outputText value="Iniciativas Relacionadas" />
+                </f:facet>
+                <h:outputText value="#{iniciativaBean.consultarIniciativasPorId(iniciative.id).getIniciativasRelacionadas()}" />
             </p:column>
         </p:dataTable>
 

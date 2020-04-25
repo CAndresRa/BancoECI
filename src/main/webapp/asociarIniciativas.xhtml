@@ -31,7 +31,7 @@
         </p:messages>
         <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.consultarIniciativasBasico()}" rowKey="#{iniciative.id}" selection="#{iniciativaBean.iniciativasRelacionadasList}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                     paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
+                     paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 2%; border-radius: 15px;">
             <f:facet name="{Exporters}">
                 <div style="float:right; margin-right: 2%">
                     <h:commandLink>

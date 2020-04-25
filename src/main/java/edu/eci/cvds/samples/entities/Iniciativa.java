@@ -17,7 +17,7 @@ public class Iniciativa {
     public Iniciativa() {
     }
 
-    public Iniciativa(int id, String nombre , String descripcion, String estado , Date fecha_registro , List<PalabraClave> palabras_clave ) {
+    public Iniciativa(int id, String nombre, String descripcion, String estado, Date fecha_registro, List<PalabraClave> palabras_clave) {
         this.id = id;
         this.descripcion = descripcion;
         this.nombre = nombre;
@@ -26,7 +26,7 @@ public class Iniciativa {
         this.palabras_clave = palabras_clave;
     }
 
-    public Iniciativa(int id, String nombre , String descripcion, String estado , Date fecha_registro , List<PalabraClave> palabras_clave , List<Iniciativa> iniciativasRelacionadas) {
+    public Iniciativa(int id, String nombre, String descripcion, String estado, Date fecha_registro, List<PalabraClave> palabras_clave, List<Iniciativa> iniciativasRelacionadas) {
         this.id = id;
         this.descripcion = descripcion;
         this.nombre = nombre;
@@ -36,16 +36,16 @@ public class Iniciativa {
         this.iniciativasRelacionadas = iniciativasRelacionadas;
     }
 
-    public Iniciativa( String nombre , String descripcion, String estado , Date fecha_registro , List<PalabraClave> palabras_clave , Usuario usuario) {
+    public Iniciativa(String nombre, String descripcion, String estado, Date fecha_registro, List<PalabraClave> palabras_clave, Usuario usuario) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;
-        this.fecha_registro= fecha_registro;
-        this.palabras_clave=palabras_clave;
+        this.fecha_registro = fecha_registro;
+        this.palabras_clave = palabras_clave;
         this.usuario = usuario;
     }
 
-    public Iniciativa( String nombre , String descripcion, String estado , Date fecha_registro , Usuario usuario  ) {
+    public Iniciativa(String nombre, String descripcion, String estado, Date fecha_registro, Usuario usuario) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;
@@ -117,17 +117,23 @@ public class Iniciativa {
         this.palabras_clave = palabras_clave;
     }
 
+    /**
+     * @Override public String toString() {
+     * return "Iniciativa{" +
+     * "id=" + id +
+     * ", nombre='" + nombre + '\'' +
+     * ", descripcion='" + descripcion + '\'' +
+     * ", estado='" + estado + '\'' +
+     * ", usuario=" + usuario +
+     * ", fecha_registro=" + fecha_registro +
+     * ", palabras_clave=" + palabras_clave +
+     * ", iniciativasRelacionadas=" + iniciativasRelacionadas +
+     * '}';
+     * }
+     */
     @Override
     public String toString() {
-        return "Iniciativa{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", estado='" + estado + '\'' +
-                ", usuario=" + usuario +
-                ", fecha_registro=" + fecha_registro +
-                ", palabras_clave=" + palabras_clave +
-                ", iniciativasRelacionadas=" + iniciativasRelacionadas +
-                '}';
+        return
+                "id=" + id;
     }
 }

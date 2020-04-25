@@ -22,7 +22,7 @@
     <br/>
     <h1>Asociar Iniciativas</h1>
     <br/>
-    <h:form id="busquedaUsuario" prependId="false" >
+    <h:form id="busquedaUsuario" prependId="false">
         <p:dataTable id="tbl" var="usuarios" value="#{adminBean.consultarUsuariosBasico()}" rowKey="#{usuarios.getEmail()}" selection="#{adminBean.usuario}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
@@ -75,16 +75,9 @@
                 <p:commandButton process="tbl" value="Actualizar rol" actionListener="#{adminBean.buscarUsuario()}" action="actualizarRol.xhtml?faces-redirect = true" style="border-radius: 15px; background-color: mintcream"/>
             </f:facet>
         </p:dataTable>
-        <p:commandButton id="exportar" value="Consultar reporte de iniciativas" action="iniciativaAtributos.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
-        <br/>
-        <br/>
+        <p:commandButton id="exportar" value="Consultar reporte de iniciativas" action="iniciativaAtributos.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; width: 20%; font-family: Quicksand"/>
         <p:commandButton id="registro" value="Registrar Usuario" action="registrarUsuario.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
-        <br/>
-        <br/>
         <p:commandButton id="asociarIniciativa" value="Asociar Iniciativas" action="asociarIniciativas.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
-        <br/>
-        <br/>
-        <br/>
 
     </h:form>
 
