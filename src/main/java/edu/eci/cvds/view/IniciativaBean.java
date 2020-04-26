@@ -33,6 +33,7 @@ public class IniciativaBean extends BasePageBean implements Serializable {
     private String message;
     private PieChartModel model;
     private List<Iniciativa> iniciativasRelacionadasList;
+    private List<Iniciativa> iniciativasBusquedaBasica;
 
     public void agregarIniciativa(String nombre, String descripcion, String palabras, String email) throws ExcepcionServiciosBancoProyectos, PersistenceException {
         try {
@@ -50,7 +51,10 @@ public class IniciativaBean extends BasePageBean implements Serializable {
 
     public List<Iniciativa> consultarIniciativasBasico() throws ExcepcionServiciosBancoProyectos {
         try {
-            return serviciosIniciativa.consultarIniciativas();
+            if(iniciativasBusquedaBasica == null){
+                iniciativasBusquedaBasica = serviciosIniciativa.consultarIniciativas();
+            }
+            return iniciativasBusquedaBasica;
         } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos) {
             throw new ExcepcionServiciosBancoProyectos("Error al consultar iniciativa");
         }
@@ -62,6 +66,15 @@ public class IniciativaBean extends BasePageBean implements Serializable {
             return iniciativa;
         }catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos){
             throw new ExcepcionServiciosBancoProyectos("Error al consultar iniciativa por id");
+        }
+    }
+
+    public Iniciativa consultarIniciativaSolita() throws ExcepcionServiciosBancoProyectos {
+        try{
+            this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(iniciativa.getId());
+            return iniciativa;
+        }catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos){
+            throw new ExcepcionServiciosBancoProyectos("Error al consultar iniciativa");
         }
     }
 

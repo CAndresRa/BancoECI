@@ -30,9 +30,9 @@
         <br/>
         <br/>
         <h1>Lista de iniciativas</h1>
-        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.consultarIniciativasBasico()}"
+        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.consultarIniciativasBasico()}" rowKey="#{iniciative.getId()}" selection="#{iniciativaBean.iniciativa}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                     paginator="true" rows="10" style="margin-bottom: 30%; width: 80%;margin-left: 10%; font-family: Quicksand; background-color:blue !important" >
+                     paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
             <f:facet name="{Exporters}">
                 <div style="float:right; margin-right: 2%">
                     <h:commandLink>
@@ -41,53 +41,72 @@
                     </h:commandLink>
                 </div>
             </f:facet>
-            <p:column style="background-color: mintcream">
+            <p:column selectionMode="single" style="width:16px;text-align:center"/>
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.email}" sortBy="#{iniciative.usuario.email}">
                 <f:facet name="header">
-                    <h:outputText value="Email" />
+                    <h:outputText value="Email de usuario"/>
                 </f:facet>
-                <h:outputText value="#{iniciative.getUsuario().getEmail()}"  />
+                <h:outputText value="#{iniciative.usuario.email}"/>
             </p:column>
-            <p:column style="background-color: mintcream">
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.fecha_registro}" sortBy="#{iniciative.fecha_registro}">
                 <f:facet name="header">
-                    <h:outputText value="Fecha" />
+                    <h:outputText value="Fecha"/>
                 </f:facet>
                 <h:outputText value="#{iniciative.fecha_registro}"  />
             </p:column>
-            <p:column style="background-color: mintcream">
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.id}" sortBy="#{iniciative.id}">
                 <f:facet name="header">
                     <h:outputText value="Id" />
                 </f:facet>
-                <h:outputText value="#{iniciative.id}"  />
+                <h:outputText value="#{iniciative.id}"/>
             </p:column>
 
-            <p:column style="background-color: mintcream">
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.nombre}" sortBy="#{iniciative.nombre}">
                 <f:facet name="header">
                     <h:outputText value="Nombre"/>
                 </f:facet>
                 <h:outputText value="#{iniciative.nombre}" />
             </p:column>
 
-            <p:column style="background-color: mintcream">
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.descripcion}" sortBy="#{iniciative.descripcion}">
                 <f:facet name="header">
-                    <h:outputText value="Descripcion" />
+                    <h:outputText value="Descripcion"/>
                 </f:facet>
                 <h:outputText value="#{iniciative.descripcion}" />
             </p:column>
 
-            <p:column style="background-color: mintcream">
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.estado}" sortBy="#{iniciative.estado}">
                 <f:facet name="header">
-                    <h:outputText value="Estado" />
+                    <h:outputText value="Estado"/>
                 </f:facet>
                 <h:outputText value="#{iniciative.estado}" />
             </p:column>
-            <p:column style="background-color: mintcream">
+
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.area}" sortBy="#{iniciative.usuario.area}"  >
+                <f:facet name="header">
+                    <h:outputText value="Area"/>
+                </f:facet>
+                <h:outputText value="#{iniciative.usuario.area}" />
+            </p:column>
+
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.area}" sortBy="#{iniciative.usuario.area}"  >
+                <f:facet name="header">
+                    <h:outputText value="Iniciativas Relacionadas" />
+                </f:facet>
+                <h:outputText value="#{iniciativaBean.consultarIniciativasPorId(iniciative.id).getIniciativasRelacionadas()}" />
+            </p:column>
+
+             <p:column style="background-color: mintcream">
                 <f:facet name="header">
                     <h:outputText value="Palabras Clave" />
                 </f:facet>
                 <h:outputText value="#{iniciative.getPalabras_clave()}"  />
             </p:column>
+            <f:facet name="footer">
+                <p:commandButton process="tbl" value="Comentar Iniciativa" action="comentariosIniciativa.xhtml?faces-redirect = true" style="border-radius: 15px; background-color: mintcream"/>
+            </f:facet>
         </p:dataTable>
-        <p:commandButton id="exportar" value="Consultar reporte de iniciativas" action="iniciativaAtributos.xhtml?faces-redirect = true"/>
+
     </h:form>
 </h:body>
 </html>

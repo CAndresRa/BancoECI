@@ -14,11 +14,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
         <meta name="apple-mobile-web-app-capable" content="yes" />
     </f:facet>
-
     <title>#{msg['application.title']}</title>
-
 </h:head>
-
 <h:body>
     <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
     <br/>
@@ -32,14 +29,13 @@
             <p:outputLabel for="@next" value="Afinidad con iniciativa:" style="font-family: Quicksand; font-weight: bold; font-size: large;margin-left: -10%;"/>
             <p:rating stars="10" cancel="false" onRate="alert('You rated ' + value)" style="background-color: grey; opacity: 95%; border-radius: 10px"/>
             <p:outputLabel for="@next" value="¿Te gusta esta iniciativa?" style="font-family: Quicksand; font-weight: bold; font-size: large;margin-left: -10%;"/>
-            <p:selectOneRadio id="console" value="" unselectable="true">
+            <p:selectOneRadio id="console" value="hola" unselectable="true">
                 <f:selectItem itemLabel="Si" itemValue="True" />
                 <f:selectItem itemLabel="No" itemValue="False" />
             </p:selectOneRadio>
             <p:commandButton id="validar" value="Aporta a Iniciativa" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
-            <p:commandButton id="regresar" value="Regresar" action="informacionIniciativa.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
+            <p:commandButton value="Regresar" action="busquedaIniciativaPalabras.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px;"/>
         </h:panelGrid>
-
     </h:form>
 </h:body>
 </html>

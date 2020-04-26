@@ -23,6 +23,27 @@
     <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
     <br/>
 
+    <h1>Estadisticas por Area</h1>
+    <p:chart type="pie" id="pie"
+             responsive="true"
+             model="#{iniciativaBean.generarEstadistica()}"
+             widgetVar="chart"/>
+    <p:commandButton id="exportar" value="Exportar" onclick="return exportChart()" type="Submit"/>
+    <script type="application/javascript">
+        function exportChart() {
+            var image = PF('chart').exportAsImage();
+            var imageSrc = $(image).attr('src');
+            var url = imageSrc.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
+            var link = document.createElement('a');
+            link.download = "chart.png";
+            link.href = url;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            return false;
+        }
+    </script>
+
 
     <h:form id="iniciativasPublic" prependId="false">
 
@@ -95,26 +116,6 @@
         </p:dataTable>
 
     </h:form>
-    <h1>Estadisticas por Area</h1>
-    <p:chart type="pie" id="pie"
-             responsive="true"
-             model="#{iniciativaBean.generarEstadistica()}"
-             widgetVar="chart"/>
-    <p:commandButton id="exportar" value="Exportar" onclick="return exportChart()" type="Submit"/>
-    <script type="application/javascript">
-        function exportChart() {
-            var image = PF('chart').exportAsImage();
-            var imageSrc = $(image).attr('src');
-            var url = imageSrc.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
-            var link = document.createElement('a');
-            link.download = "chart.png";
-            link.href = url;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            return false;
-        }
-    </script>
 
 
 </h:body>

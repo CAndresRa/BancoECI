@@ -73,7 +73,10 @@ public class AdministracionBean extends BasePageBean {
      */
     public List<Usuario> consultarUsuariosBasico() throws ExcepcionServiciosBancoProyectos{
         try{
-            return serviciosUsuario.consultarUsuarios();
+            if (usuariosRegistrados == null) {
+                usuariosRegistrados = serviciosUsuario.consultarUsuarios();
+            }
+            return usuariosRegistrados;
         } catch (ExcepcionServiciosBancoProyectos e){
             throw new ExcepcionServiciosBancoProyectos("Error al consultar usuarios");
         }

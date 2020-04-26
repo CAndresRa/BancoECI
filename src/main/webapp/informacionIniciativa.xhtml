@@ -93,9 +93,7 @@
                 </f:facet>
                 <h:outputText value="#{iniciativaBean.consultarIniciativasPorId(iniciative.id).getIniciativasRelacionadas()}" />
             </p:column>
-            <f:facet name="footer">
-                <p:commandButton process="tbl" value="Comentar Iniciativa" action="comentariosIniciativa.xhtml?faces-redirect = true" style="border-radius: 15px; background-color: mintcream"/>
-            </f:facet>
+
         </p:dataTable>
 
     </h:form>

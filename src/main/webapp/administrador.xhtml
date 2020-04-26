@@ -35,41 +35,41 @@
                 </div>
             </f:facet>
             <p:column selectionMode="single" style="width:16px;text-align:center"/>
-            <p:column style="background-color: mintcream" filterBy="#{usuarios.getEmail()}">
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getEmail()}" sortBy="#{usuarios.getEmail()}">
                 <f:facet name="header">
                     <h:outputText value="Email de usuario" />
                 </f:facet>
                 <h:outputText value="#{usuarios.getEmail()}"/>
             </p:column>
-            <p:column style="background-color: mintcream" filterBy="#{usuarios.getDocumento()}">
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getDocumento()}" sortBy="#{usuarios.getDocumento()}">
                 <f:facet name="header">
                     <h:outputText value="Documento" />
                 </f:facet>
                 <h:outputText value="#{usuarios.getDocumento()}"/>
             </p:column>
-            <p:column style="background-color: mintcream" filterBy="#{usuarios.getNombre()}">
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getNombre()}" sortBy="#{usuarios.getNombre()}">
                 <f:facet name="header">
                     <h:outputText value="Nombre" />
                 </f:facet>
                 <h:outputText value="#{usuarios.getNombre()}"/>
             </p:column>
-            <p:column style="background-color: mintcream" filterBy="#{usuarios.getApellido()}">
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getApellido()}" sortBy="#{usuarios.getApellido()}">
                 <f:facet name="header">
                     <h:outputText value="Apellido" />
                 </f:facet>
                 <h:outputText value="#{usuarios.getApellido()}"/>
             </p:column>
-            <p:column style="background-color: mintcream" filterBy="#{usuarios.getRol()}">
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getRol()}" sortBy="#{usuarios.getRol()}">
                 <f:facet name="header">
                     <h:outputText value="Rol" />
                 </f:facet>
                 <h:outputText value="#{usuarios.getRol()}"/>
             </p:column>
-            <p:column style="background-color: mintcream" filterBy="#{usuarios.getArea()}">
+            <p:column style="background-color: mintcream" filterBy="#{usuarios.getArea()}" sortBy="#{usuarios.getArea()}">
                 <f:facet name="header">
                     <h:outputText value="Area" />
                 </f:facet>
-                <h:outputText value="#{usuarios.getArea()}"/>
+                <h:outputText value="#{usuarios.getArea()}" />
             </p:column>
             <f:facet name="footer">
                 <p:commandButton process="tbl" value="Actualizar rol" actionListener="#{adminBean.buscarUsuario()}" action="actualizarRol.xhtml?faces-redirect = true" style="border-radius: 15px; background-color: mintcream"/>
