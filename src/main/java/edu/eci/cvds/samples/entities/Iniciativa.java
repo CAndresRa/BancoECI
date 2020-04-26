@@ -117,10 +117,23 @@ public class Iniciativa {
         this.palabras_clave = palabras_clave;
     }
 
+    /**
+     * @Override public String toString() {
+     * return "Iniciativa{" +
+     * "id=" + id +
+     * ", nombre='" + nombre + '\'' +
+     * ", descripcion='" + descripcion + '\'' +
+     * ", estado='" + estado + '\'' +
+     * ", usuario=" + usuario +
+     * ", fecha_registro=" + fecha_registro +
+     * ", palabras_clave=" + palabras_clave +
+     * ", iniciativasRelacionadas=" + iniciativasRelacionadas +
+     * '}';
+     * }
+     */
     @Override
     public String toString() {
-        return "Iniciativa{" +
-                "usuario=" + usuario.getDocumento() +
-                '}';
+        return
+                "id=" + id;
     }
 }
