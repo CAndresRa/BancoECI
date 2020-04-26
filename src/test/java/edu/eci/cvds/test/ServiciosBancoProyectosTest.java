@@ -54,7 +54,7 @@ public class ServiciosBancoProyectosTest {
 			
 		}
     }
-    
+
     @Test
     public void deberiaConsultarUsuario() {
     	try {

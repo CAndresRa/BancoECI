@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ComentarioMapper">
+
+    <resultMap type='Comentario' id='ComentarioResult'>
+        <result property='contenido' column='contenido'/>
+        <result property='fecha_comentario' column='fecha_comentario'/>
+        <association property='usuario' javaType="Usuario"  resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult" columnPrefix='usuario_'></association>
+    </resultMap>
+
+    <select parameterType="map" id="consultarComentariosPorIniciativa" resultMap="ComentarioResult">
+        SELECT
+        c.fecha_comentario,
+        c.contenido,
+        u.documento as usuario_documento,
+        u.email as usuario_email,
+        u.nombre as usuario_nombre,
+        u.apellido as usuario_apellido,
+        u.password as usuario_password,
+        u.area as usuario_area,
+        u.rol as usuario_rol
+       FROM comentario c
+       left join iniciativa i on i.id = c.iniciativa
+       left join usuario u on c.usuario = u.documento
+       WHERE i.id = #{idIniciativa}
+    </select>
+
+</mapper>

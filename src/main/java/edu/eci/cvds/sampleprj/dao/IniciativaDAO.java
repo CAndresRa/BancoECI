@@ -2,11 +2,28 @@ package edu.eci.cvds.sampleprj.dao;
 
 import edu.eci.cvds.samples.entities.Iniciativa;
 
-import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Date;
 import java.util.List;
 
 
 public interface IniciativaDAO {
+
+    /**
+     * Metodo que permite registrar un comentario a una iniciativa
+     * @param fecha_comentario fecha en la que se realizo el comentario
+     * @param contenido contenido del comentario
+     * @param documentoUsuario documento del usuario que realiza el comentario
+     * @param idIniciativa id de la iniciativa sobre la cual se realiza el comentario
+     */
+    public void agregarComentarioAIniciativa(Date fecha_comentario , String contenido , long documentoUsuario , int idIniciativa)  throws PersistenceException ;
+
+
+    /**
+     * Metodo que permite consultar las iniciativas ordenadas por una columna
+     * @param columna Columna por la cual se quieren ordenar las iniciativas
+     * @return Lista de iniciativas
+     */
+    public List<Iniciativa> consultarIniciativasOrdenadasPorColumna(String columna) throws PersistenceException;
 
     /**
      * Metodo que permite consultar iniciativas que contengan una palabra clave

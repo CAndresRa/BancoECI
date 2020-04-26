@@ -1,14 +1,17 @@
 package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.sampleprj.dao.ComentarioDAO;
 import edu.eci.cvds.sampleprj.dao.IniciativaDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.UsuarioDAO;
+import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosIniciativa;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ServiciosIniciativaImpl implements ServiciosIniciativa {
@@ -17,6 +20,37 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
 
     @Inject
     private IniciativaDAO iniciativaDAO;
+
+    @Inject
+    private ComentarioDAO comentarioDAO;
+
+    @Override
+    public List<Comentario> consultarComentariosPorIniciativa(int idIniciativa) throws ExcepcionServiciosBancoProyectos {
+        try {
+            if (iniciativaDAO.consultarIniciativasPorId(idIniciativa) == null) {
+                throw new ExcepcionServiciosBancoProyectos("la iniciativa es nula");
+            }
+            return comentarioDAO.consultarComentariosPorIniciativa(idIniciativa);
+        } catch (PersistenceException e) {
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+    }
+    @Override
+    public void agregarComentarioAIniciativa(Date fecha_comentario, String contenido, long documentoUsuario, int idIniciativa) throws ExcepcionServiciosBancoProyectos{
+        try {
+            iniciativaDAO.agregarComentarioAIniciativa(fecha_comentario,contenido,documentoUsuario,idIniciativa);
+        } catch (PersistenceException e) {
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+    }
+    @Override
+    public List<Iniciativa> consultarIniciativasOrdenadasPorColumna(String columna) throws ExcepcionServiciosBancoProyectos {
+        try {
+            return iniciativaDAO.consultarIniciativasOrdenadasPorColumna(columna);
+        } catch (PersistenceException e) {
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+    }
 
     @Override
     public List<Iniciativa> consultarIniciativasPorPalabrasClaves(List<String> palabras) throws ExcepcionServiciosBancoProyectos {

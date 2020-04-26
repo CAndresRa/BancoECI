@@ -6,12 +6,40 @@ import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper;
 import edu.eci.cvds.samples.entities.Iniciativa;
 
+import java.util.Date;
 import java.util.List;
 
 public class MyBatisIniciativaDAO implements IniciativaDAO {
 
     @Inject
     private IniciativaMapper iniciativaMapper;
+
+    @Override
+    public void agregarComentarioAIniciativa(Date fecha_comentario, String contenido, long documentoUsuario, int idIniciativa) {
+        try {
+            if(fecha_comentario == null){
+                throw new javax.persistence.PersistenceException("La fecha es nula");
+            }
+            if(contenido == null){
+                throw new javax.persistence.PersistenceException("El contenido es nulo");
+            }
+            if(iniciativaMapper.consultarIniciativasPorId(idIniciativa) == null){
+                throw new javax.persistence.PersistenceException("La iniciativa es nula");
+            }
+            iniciativaMapper.agregarComentarioAIniciativa(fecha_comentario,contenido,documentoUsuario,idIniciativa);
+        } catch (javax.persistence.PersistenceException e) {
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public List<Iniciativa> consultarIniciativasOrdenadasPorColumna(String columna) throws javax.persistence.PersistenceException {
+        try {
+            return iniciativaMapper.consultarIniciativasOrdenadasPorColumna(columna);
+        } catch (javax.persistence.PersistenceException e) {
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+    }
 
     @Override
     public void insertarIniciativa(Iniciativa i) throws javax.persistence.PersistenceException{

@@ -1,8 +1,10 @@
 package edu.eci.cvds.samples.services;
 
 import com.google.inject.Injector;
+import edu.eci.cvds.sampleprj.dao.ComentarioDAO;
 import edu.eci.cvds.sampleprj.dao.IniciativaDAO;
 import edu.eci.cvds.sampleprj.dao.UsuarioDAO;
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisComentarioDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisIniciativaDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisUsuarioDAO;
 
@@ -31,6 +33,7 @@ public class ServiciosBancoProyectosFactory {
                 setClassPathResource(pathResource);
                 bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
                 bind(IniciativaDAO.class).to(MyBatisIniciativaDAO.class);
+                bind(ComentarioDAO.class).to(MyBatisComentarioDAO.class);
                 bind(ServiciosUsuario.class).to(ServiciosUsuarioImpl.class);
                 bind(ServiciosIniciativa.class).to(ServiciosIniciativaImpl.class);
                 bind(BasePageBean.class).to(AdministracionBean.class);

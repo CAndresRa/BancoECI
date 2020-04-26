@@ -1,11 +1,37 @@
 package edu.eci.cvds.samples.services;
 
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
+import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ServiciosIniciativa {
+
+    /**
+     * Metodo que permite consular los comentarios por iniciativa
+     * @param idIniciativa id de la iniciativa de la cual se quieren conocer los comentarios
+     * @return Lista de comentarios
+     */
+    public List<Comentario> consultarComentariosPorIniciativa(int idIniciativa) throws ExcepcionServiciosBancoProyectos ;
+
+    /**
+     * Metodo que permite registrar un comentario a una iniciativa
+     * @param fecha_comentario fecha en la que se realizo el comentario
+     * @param contenido contenido del comentario
+     * @param documentoUsuario documento del usuario que realiza el comentario
+     * @param idIniciativa id de la iniciativa sobre la cual se realiza el comentario
+     */
+    public void agregarComentarioAIniciativa(Date fecha_comentario ,String contenido , long documentoUsuario , int idIniciativa) throws ExcepcionServiciosBancoProyectos ;
+
+    /**
+     * Metodo que permite consultar las iniciativas ordenadas por una columna
+     * @param columna Columna por la cual se quieren ordenar las iniciativas
+     * @return Lista de iniciativas
+     */
+    public List<Iniciativa> consultarIniciativasOrdenadasPorColumna(String columna)throws ExcepcionServiciosBancoProyectos;
+
     /**
      * Metodo que permite consultar iniciativas que contengan una de ciertas palabras clave
      * @param palabras palabras clave que deben contener las iniciativas

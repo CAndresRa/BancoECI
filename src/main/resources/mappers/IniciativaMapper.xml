@@ -32,7 +32,30 @@
         FROM iniciativa i
         left join usuario u on i.usuario = u.documento
         left join palabraclave p on p.iniciativa = i.nombre
+
         WHERE u.area = #{area};
+    </select>
+
+    <select parameterType="map" id="consultarIniciativasOrdenadasPorColumna" resultMap="IniciativaResult">
+        SELECT
+            i.id ,
+            i.nombre ,
+            i.descripcion ,
+            i.estado ,
+            i.fecha_registro ,
+            u.documento as usuario_documento,
+            u.email as usuario_email,
+            u.nombre as usuario_nombre,
+            u.apellido as usuario_apellido,
+            u.password as usuario_password,
+            u.area as usuario_area,
+            u.rol as usuario_rol,
+            p.id as palabraclave_id,
+            p.palabra as palabraclave_palabra
+       FROM iniciativa i
+       left join usuario u on i.usuario = u.documento
+       left join palabraclave p on p.iniciativa = i.nombre
+       order by #{columna};
     </select>
 
     <select parameterType="map" id="consultarIniciativas" resultMap="IniciativaResult">
@@ -119,6 +142,10 @@
 
     <insert id="agregarIniciativaRelacionadaAIniciativa" parameterType="map">
         INSERT INTO proyectoRelacionado (iniciativa , iniciativaRelacionada) VALUES( #{idIniciativa}, #{idIniciativaRelacionada} );
+    </insert>
+
+    <insert id="agregarComentarioAIniciativa" parameterType="map">
+        INSERT INTO comentario  (fecha_comentario , contenido ,  usuario , iniciativa) VALUES( #{fecha_comentario}, #{contenido} , #{usuario}, #{iniciativa} );
     </insert>
 
     <resultMap type='Iniciativa' id='IniciativaResult'>

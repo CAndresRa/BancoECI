@@ -8,6 +8,7 @@
         <typeAlias type='edu.eci.cvds.samples.entities.Usuario' alias='Usuario'/>
         <typeAlias type='edu.eci.cvds.samples.entities.Iniciativa' alias='Iniciativa'/>
         <typeAlias type='edu.eci.cvds.samples.entities.PalabraClave' alias='PalabraClave'/>
+        <typeAlias type='edu.eci.cvds.samples.entities.Comentario' alias='Comentario'/>
     </typeAliases>
 
     <environments default="test">
@@ -26,6 +27,7 @@
         <mapper resource="mappers/UsuarioMapper.xml"></mapper>
         <mapper resource="mappers/IniciativaMapper.xml"></mapper>
         <mapper resource="mappers/PalabraClaveMapper.xml"></mapper>
+        <mapper resource="mappers/ComentarioMapper.xml"></mapper>
     </mappers>
 
 </configuration>

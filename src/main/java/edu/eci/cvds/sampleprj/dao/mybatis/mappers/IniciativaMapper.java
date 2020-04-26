@@ -1,12 +1,28 @@
 package edu.eci.cvds.sampleprj.dao.mybatis.mappers;
 
-import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IniciativaMapper {
+
+    /**
+     * Metodo que permite registrar un comentario a una iniciativa
+     * @param fecha_comentario fecha en la que se realizo el comentario
+     * @param contenido contenido del comentario
+     * @param documentoUsuario documento del usuario que realiza el comentario
+     * @param idIniciativa id de la iniciativa sobre la cual se realiza el comentario
+     */
+    public void agregarComentarioAIniciativa(@Param("fecha_comentario") Date fecha_comentario , @Param("contenido") String contenido , @Param("usuario") long documentoUsuario , @Param("iniciativa") int idIniciativa) ;
+
+    /**
+     * Metodo que permite consultar las iniciativas ordenadas por una columna
+     * @param columna Columna por la cual se quieren ordenar las iniciativas
+     * @return Lista de iniciativas
+     */
+    public List<Iniciativa> consultarIniciativasOrdenadasPorColumna(@Param("columna") String columna) ;
 
     /**
      * Agrega una iniciativa relacionada a una iniciativa
