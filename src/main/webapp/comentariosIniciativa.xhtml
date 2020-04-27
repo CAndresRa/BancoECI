@@ -20,24 +20,11 @@
     <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
     <br/>
     <h1>Comenta y expresa tu afinidad con la iniciativa</h1>
-    <h:form id="aportesIniciativa" style="margin-left: 20%; opacity: 0.9; -moz-opacity: 0.9; filter: alpha(opacity=10);-khtml-opacity: 0.8;background-color: mintcream;border-radius: 15px;margin-top: 3%; width:60%">
-        <p:dataTable var="user" value="#{iniciativaBean.iniciativa}" >
-            <p:column headerText="Id" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
-            </p:column>
-            <p:column headerText="Nombre" style=" background-color: mintcream;font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.nombre}" />
-            </p:column>
-            <p:column headerText="Contacto" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.usuario.email}" />
-            </p:column>
-            <p:column headerText="Descripcion" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.descripcion}" />
-            </p:column>
-        </p:dataTable>
+    <h:form id="aportesIniciativa" style="margin-left: 10%; opacity: 0.9; -moz-opacity: 0.9; filter: alpha(opacity=10);-khtml-opacity: 0.8;background-color: mintcream;border-radius: 15px;margin-top: 3%; width:80%">
         <p:messages>
             <p:autoUpdate />
         </p:messages>
+
         <h:panelGrid columns="2" cellpadding="15">
             <p:outputLabel for="@next" value="Comentario sobre la iniciativa:" style="font-family: Quicksand; font-weight: bold; font-size: large"/>
             <p:inputTextarea id="comentarios" type="String" binding="#{comentario}" counter="display"  rows="7" maxlength="300" counterTemplate="Le quedan {0} caracteres" autoResize="true" style="width: 210%"/>

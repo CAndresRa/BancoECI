@@ -3,6 +3,7 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
+import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
@@ -34,6 +35,7 @@ public class IniciativaBean extends BasePageBean implements Serializable {
     private PieChartModel model;
     private List<Iniciativa> iniciativasRelacionadasList;
     private List<Iniciativa> iniciativasBusquedaBasica;
+
 
     public void agregarIniciativa(String nombre, String descripcion, String palabras, String email) throws ExcepcionServiciosBancoProyectos, PersistenceException {
         try {

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" type="text/css" href="css/iniciativaAtributos.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+    <title>#{msg['application.title']}</title>
+</h:head>
+<h:body>
+    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <br/>
+    <h1>Iniciativa</h1>
+    <h:form id="aportesIniciativa" style="margin-left: 10%; opacity: 0.9; -moz-opacity: 0.9; filter: alpha(opacity=10);-khtml-opacity: 0.8;background-color: mintcream;border-radius: 15px;margin-top: 3%; width:80%">
+        <p:dataTable var="user" value="#{iniciativaBean.iniciativa}" >
+            <p:column headerText="Id" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+            </p:column>
+            <p:column headerText="Nombre" style=" background-color: mintcream;font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.nombre}" />
+            </p:column>
+            <p:column headerText="Contacto" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.usuario.email}" />
+            </p:column>
+            <p:column headerText="Descripcion" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.descripcion}" />
+            </p:column>
+            <p:column headerText="Area" style="background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.area}" />
+            </p:column>
+            <p:column headerText="Estado" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.estado}" />
+            </p:column>
+            <p:column headerText="Iniciativas Relacionadas" style="background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.consultarIniciativasPorId(iniciative.id).getIniciativasRelacionadas()}" />
+            </p:column>
+        </p:dataTable>
+
+        <p:messages>
+            <p:autoUpdate />
+        </p:messages>
+
+    </h:form>
+    <br/>
+    <h1>Comentarios de Iniciativa</h1>
+    <h:form id="comentarios">
+        <p:dataTable var="comentarios" value="#{iniciativaBean.iniciativa}" style="width: 70%; margin-left: 15%" >
+            <p:column headerText="Nombre" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+            </p:column>
+            <p:column headerText="Fecha" style=" background-color: mintcream; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+            </p:column>
+            <p:column headerText="Contenido" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+
+    <h1>Iniciativas Relacionadas</h1>
+    <h:form id="iniciativasRelacionadas">
+        <p:dataTable var="iniRelacionadas" value="#{iniciativaBean.iniciativa}" style="width: 70%; margin-left: 15%" >
+            <p:column headerText="Id" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+            </p:column>
+            <p:column headerText="Nombre" style=" background-color: mintcream;font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.nombre}" />
+            </p:column>
+            <p:column headerText="Contacto" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.usuario.email}" />
+            </p:column>
+            <p:column headerText="Descripcion" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.descripcion}" />
+            </p:column>
+            <p:column headerText="Area" style="background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.area}" />
+            </p:column>
+            <p:column headerText="Estado" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.estado}" />
+            </p:column>
+            <p:column headerText="Iniciativas Relacionadas" style="background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.consultarIniciativasPorId(iniciative.id).getIniciativasRelacionadas()}" />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+    <br/>
+    <br/>
+</h:body>
+</html>
