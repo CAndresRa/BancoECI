@@ -21,9 +21,26 @@
     <br/>
     <h1>Comenta y expresa tu afinidad con la iniciativa</h1>
     <h:form id="aportesIniciativa" style="margin-left: 20%; opacity: 0.9; -moz-opacity: 0.9; filter: alpha(opacity=10);-khtml-opacity: 0.8;background-color: mintcream;border-radius: 15px;margin-top: 3%; width:60%">
-        <h:panelGrid columns="2" cellpadding="11">
+        <p:dataTable var="user" value="#{iniciativaBean.iniciativa}" >
+            <p:column headerText="Id" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+            </p:column>
+            <p:column headerText="Nombre" style=" background-color: mintcream;font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.nombre}" />
+            </p:column>
+            <p:column headerText="Contacto" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.usuario.email}" />
+            </p:column>
+            <p:column headerText="Descripcion" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{iniciativaBean.iniciativa.descripcion}" />
+            </p:column>
+        </p:dataTable>
+        <p:messages>
+            <p:autoUpdate />
+        </p:messages>
+        <h:panelGrid columns="2" cellpadding="15">
             <p:outputLabel for="@next" value="Comentario sobre la iniciativa:" style="font-family: Quicksand; font-weight: bold; font-size: large"/>
-            <p:inputTextarea id="comentarios" counter="display"  rows="7" maxlength="300" counterTemplate="Le quedan {0} caracteres" autoResize="true" style="width: 210%"/>
+            <p:inputTextarea id="comentarios" type="String" binding="#{comentario}" counter="display"  rows="7" maxlength="300" counterTemplate="Le quedan {0} caracteres" autoResize="true" style="width: 210%"/>
             <br />
             <h:outputText id="display" style="color: grey" />
             <p:outputLabel for="@next" value="Afinidad con iniciativa:" style="font-family: Quicksand; font-weight: bold; font-size: large;margin-left: -10%;"/>
@@ -33,9 +50,18 @@
                 <f:selectItem itemLabel="Si" itemValue="True" />
                 <f:selectItem itemLabel="No" itemValue="False" />
             </p:selectOneRadio>
-            <p:commandButton id="validar" value="Aporta a Iniciativa" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
+
+            <h:outputText  value="Id de iniciativa" style="float:left; font-size: 20px;margin-left: 1%" />
+            <p:inputText id="busqueda" placeholder="id de iniciativa" type="String" required="true" binding="#{idIni}" style="border-radius: 15px; float:left; margin-left: 5px;"/> <!-- label -->
+
+            <h:outputText value="Ingrese su documento" style="float:left; font-size: 20px;margin-left: 1%" />
+            <p:inputText id="bus" placeholder="Documento" required="true" type="String" binding="#{documento}" style="border-radius: 15px; float:left; margin-left: 5px;"/> <!-- label -->
+
+            <p:commandButton id="validar" value="Aporta a Iniciativa" action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.agregarComentarioAIniciativa(comentario.value, documento.value, idIni.value)}" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
             <p:commandButton value="Regresar" action="busquedaIniciativaPalabras.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px;"/>
         </h:panelGrid>
     </h:form>
+    <br/>
+    <br/>
 </h:body>
 </html>

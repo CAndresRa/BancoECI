@@ -117,8 +117,18 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos){
             this.message = "Hubo un error asociando iniciativas, intentelo nuevamente";
         }
+    }
 
-
+    public void agregarComentarioAIniciativa(String comentario, String documento, String idIni) throws ExcepcionServiciosBancoProyectos {
+        try {
+            Date fecha = new Date((new java.util.Date()).getTime());
+            Long doc = Long.parseLong(documento);
+            int idIniciativa = Integer.parseInt(idIni);
+            serviciosIniciativa.agregarComentarioAIniciativa(fecha, comentario, doc, idIniciativa);
+            this.message = "El comentario se agrego correctamente";
+        } catch (ExcepcionServiciosBancoProyectos e){
+            this.message = "Hubo un error agregando comentario";
+        }
     }
 
     public PieChartModel generarEstadistica() throws ExcepcionServiciosBancoProyectos {
