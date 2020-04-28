@@ -3,20 +3,17 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
-import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosIniciativa;
 import edu.eci.cvds.samples.services.ServiciosUsuario;
 import org.primefaces.model.chart.PieChartModel;
-//import javax.enterprise.context.SessionScoped;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.bean.ViewScoped;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
@@ -79,7 +76,10 @@ public class IniciativaBean extends BasePageBean implements Serializable {
 
     public Iniciativa consultarIniciativaSolita() throws ExcepcionServiciosBancoProyectos {
         try{
-            this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(iniciativa.getId());
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
+            this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
             return iniciativa;
         }catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos){
             throw new ExcepcionServiciosBancoProyectos("Error al consultar iniciativa");
@@ -140,6 +140,21 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos){
             this.message = "Hubo un error asociando iniciativas, intentelo nuevamente";
         }
+    }
+
+    public List<Iniciativa> consultarIniciativasRelacionadas() throws ExcepcionServiciosBancoProyectos {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
+        this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
+        this.iniciativasRelacionadasList = iniciativa.getIniciativasRelacionadas();
+        List<Iniciativa> resultante = new ArrayList<Iniciativa>() {
+        };
+        for(Iniciativa i : iniciativasRelacionadasList){
+            Iniciativa nuevaIni = serviciosIniciativa.consultarIniciativasPorId(i.getId());
+            resultante.add(nuevaIni);
+        }
+        return resultante;
     }
 
     public PieChartModel generarEstadistica() throws ExcepcionServiciosBancoProyectos {

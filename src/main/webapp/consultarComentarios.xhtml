@@ -21,9 +21,9 @@
     <br/>
     <h1>Iniciativa</h1>
     <h:form id="aportesIniciativa" style="margin-left: 10%; opacity: 0.9; -moz-opacity: 0.9; filter: alpha(opacity=10);-khtml-opacity: 0.8;background-color: mintcream;border-radius: 15px;margin-top: 3%; width:80%">
-        <p:dataTable var="user" value="#{iniciativaBean.iniciativa}" >
+        <p:dataTable var="iniciative" value="#{iniciativaBean.consultarIniciativaSolita()}" >
             <p:column headerText="Id" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+                <h:outputText value="#{iniciative.id}" />
             </p:column>
             <p:column headerText="Nombre" style=" background-color: mintcream;font-family: Quicksand; font-size: 18px">
                 <h:outputText value="#{iniciativaBean.iniciativa.nombre}" />
@@ -34,15 +34,15 @@
             <p:column headerText="Descripcion" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
                 <h:outputText value="#{iniciativaBean.iniciativa.descripcion}" />
             </p:column>
+
             <p:column headerText="Area" style="background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.area}" />
+                <h:outputText value="#{iniciativaBean.iniciativa.usuario.area}" />
             </p:column>
+
             <p:column headerText="Estado" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
                 <h:outputText value="#{iniciativaBean.iniciativa.estado}" />
             </p:column>
-            <p:column headerText="Iniciativas Relacionadas" style="background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.consultarIniciativasPorId(iniciative.id).getIniciativasRelacionadas()}" />
-            </p:column>
+
         </p:dataTable>
 
         <p:messages>
@@ -71,28 +71,26 @@
 
     <h1>Iniciativas Relacionadas</h1>
     <h:form id="iniciativasRelacionadas">
-        <p:dataTable var="iniRelacionadas" value="#{iniciativaBean.iniciativa}" style="width: 70%; margin-left: 15%" >
+        <p:dataTable var="iniRelacionadas" value="#{iniciativaBean.consultarIniciativasRelacionadas()}" style="width: 70%; margin-left: 15%" >
             <p:column headerText="Id" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+                <h:outputText value="#{iniRelacionadas.id}" />
             </p:column>
             <p:column headerText="Nombre" style=" background-color: mintcream;font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.nombre}" />
+                <h:outputText value="#{iniRelacionadas.nombre}" />
             </p:column>
             <p:column headerText="Contacto" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.usuario.email}" />
+                <h:outputText value="#{iniRelacionadas.usuario.email}" />
             </p:column>
             <p:column headerText="Descripcion" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.descripcion}" />
+                <h:outputText value="#{iniRelacionadas.descripcion}" />
             </p:column>
             <p:column headerText="Area" style="background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.area}" />
+                <h:outputText value="#{iniRelacionadas.usuario.area}" />
             </p:column>
             <p:column headerText="Estado" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.estado}" />
+                <h:outputText value="#{iniRelacionadas.estado}" />
             </p:column>
-            <p:column headerText="Iniciativas Relacionadas" style="background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.consultarIniciativasPorId(iniciative.id).getIniciativasRelacionadas()}" />
-            </p:column>
+
         </p:dataTable>
     </h:form>
     <br/>

@@ -8,6 +8,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
@@ -22,15 +24,24 @@ public class AdministracionBean extends BasePageBean {
     private String message;
     private List<Usuario> usuariosRegistrados;
 
+    public void redirectActualizarRol() throws IOException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        session.setAttribute("usuario", usuario.getEmail());
+        facesContext.getExternalContext().redirect("actualizarRol.xhtml");
+    }
+
     /**
      * Metodo que permite modificar rol de un usuario
      * @param rol Rol al que se desea actualizar
-     * @param email Correo electronico del usuario al que se desea actualizar
      * @throws ExcepcionServiciosBancoProyectos
      */
-    public void actualizarRol(String rol, String email) throws ExcepcionServiciosBancoProyectos {
+    public void actualizarRol(String rol) throws ExcepcionServiciosBancoProyectos {
         try {
-            serviciosUsuario.asignarRolUsuario(rol, serviciosUsuario.consultarUsuario(email));
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            String correo = (String) session.getAttribute("usuario");
+            serviciosUsuario.asignarRolUsuario(rol, serviciosUsuario.consultarUsuario(correo));
             this.message = "El rol se actualizo correctamente";
         } catch (Exception e){
             this.message = "El rol no se pudo actualizar";
@@ -44,8 +55,8 @@ public class AdministracionBean extends BasePageBean {
      * @throws ExcepcionServiciosBancoProyectos
      */
     public Usuario buscarUsuario(String mail) throws ExcepcionServiciosBancoProyectos {
-            this.usuario = serviciosUsuario.consultarUsuario(mail);
-            return usuario;
+        this.usuario = serviciosUsuario.consultarUsuario(mail);
+        return usuario;
     }
 
     /**
@@ -87,7 +98,10 @@ public class AdministracionBean extends BasePageBean {
      * @throws ExcepcionServiciosBancoProyectos
      */
     public Usuario buscarUsuario() throws ExcepcionServiciosBancoProyectos {
-        this.usuario = serviciosUsuario.consultarUsuario(usuario.getEmail());
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        String correo = (String) session.getAttribute("usuario");
+        this.usuario = serviciosUsuario.consultarUsuario(correo);
         return usuario;
     }
 
