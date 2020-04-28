@@ -27,14 +27,14 @@ public class ComentarioBean extends BasePageBean implements Serializable {
     private String message;
     private List<Comentario> comentarios;
 
-    public void agregarComentarioAIniciativa(String comentario) throws ExcepcionServiciosBancoProyectos {
+    public void agregarComentarioAIniciativa(String contenido , String correo_usuario , String nombre_usuario , String apellido_usuario) throws ExcepcionServiciosBancoProyectos {
         try {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-            long docu = serviciosUsuario.consultarUsuario(session.getAttribute("correo").toString()).getDocumento();
             Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
             Date fecha = new Date((new java.util.Date()).getTime());
-            serviciosIniciativa.agregarComentarioAIniciativa(fecha, comentario, docu, idIniciativa);
+            Comentario comentario = new Comentario (contenido,fecha,correo_usuario,nombre_usuario,apellido_usuario);
+            serviciosIniciativa.agregarComentarioAIniciativa(comentario,idIniciativa);
             this.message = "Comentario agregado exitosamente";
         } catch (ExcepcionServiciosBancoProyectos e){
             this.message = "Hubo un error agregando el comentario";

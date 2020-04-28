@@ -22,7 +22,9 @@ CREATE TABLE comentario(
    `id` serial ,
    `fecha_comentario` date not null,
    `contenido` VARCHAR (50) NOT NULL,
-   `usuario` INTEGER REFERENCES usuario(documento)  DEFERRABLE,
+   `correo_usuario` VARCHAR (50) NOT NULL,
+   `nombre_usuario` VARCHAR (50) NOT NULL,
+   `apellido_usuario` VARCHAR (50) NOT NULL,
    `iniciativa` INTEGER REFERENCES iniciativa(id) DEFERRABLE,
    primary key (id)
 );

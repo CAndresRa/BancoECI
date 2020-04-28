@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import edu.eci.cvds.sampleprj.dao.IniciativaDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper;
+import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
 
 import java.util.Date;
@@ -15,18 +16,15 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     private IniciativaMapper iniciativaMapper;
 
     @Override
-    public void agregarComentarioAIniciativa(Date fecha_comentario, String contenido, long documentoUsuario, int idIniciativa) {
+    public void agregarComentarioAIniciativa(Comentario comentario, int idIniciativa) {
         try {
-            if(fecha_comentario == null){
-                throw new javax.persistence.PersistenceException("La fecha es nula");
+            if(comentario == null){
+                throw new javax.persistence.PersistenceException("El comentario es nulo");
             }
-            if(contenido == null){
-                throw new javax.persistence.PersistenceException("El contenido es nulo");
+            if(comentario.getFecha_comentario() == null  ||  comentario.getContenido() == null || comentario.getCorreo_usuario() == null || comentario.getApellido_usuario() == null || comentario.getNombre_usuario() == null){
+                throw new javax.persistence.PersistenceException("Alguno de los contenidos del comentario es nulo");
             }
-            if(iniciativaMapper.consultarIniciativasPorId(idIniciativa) == null){
-                throw new javax.persistence.PersistenceException("La iniciativa es nula");
-            }
-            iniciativaMapper.agregarComentarioAIniciativa(fecha_comentario,contenido,documentoUsuario,idIniciativa);
+            iniciativaMapper.agregarComentarioAIniciativa(comentario,idIniciativa);
         } catch (javax.persistence.PersistenceException e) {
             throw new javax.persistence.PersistenceException(e.getMessage(), e);
         }

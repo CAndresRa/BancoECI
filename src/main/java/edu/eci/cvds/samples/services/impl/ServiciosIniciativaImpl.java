@@ -36,9 +36,9 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
         }
     }
     @Override
-    public void agregarComentarioAIniciativa(Date fecha_comentario, String contenido, long documentoUsuario, int idIniciativa) throws ExcepcionServiciosBancoProyectos{
+    public void agregarComentarioAIniciativa(Comentario comentario, int idIniciativa) throws ExcepcionServiciosBancoProyectos{
         try {
-            iniciativaDAO.agregarComentarioAIniciativa(fecha_comentario,contenido,documentoUsuario,idIniciativa);
+            iniciativaDAO.agregarComentarioAIniciativa(comentario,idIniciativa);
         } catch (PersistenceException e) {
             throw new javax.persistence.PersistenceException(e.getMessage(), e);
         }

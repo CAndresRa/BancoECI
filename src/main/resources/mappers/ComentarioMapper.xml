@@ -8,23 +8,20 @@
     <resultMap type='Comentario' id='ComentarioResult'>
         <result property='contenido' column='contenido'/>
         <result property='fecha_comentario' column='fecha_comentario'/>
-        <association property='usuario' javaType="Usuario"  resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult" columnPrefix='usuario_'></association>
+        <result property='correo_usuario' column='correo_usuario'/>
+        <result property='nombre_usuario' column='nombre_usuario'/>
+        <result property='apellido_usuario' column='apellido_usuario'/>
     </resultMap>
 
     <select parameterType="map" id="consultarComentariosPorIniciativa" resultMap="ComentarioResult">
         SELECT
         c.fecha_comentario,
         c.contenido,
-        u.documento as usuario_documento,
-        u.email as usuario_email,
-        u.nombre as usuario_nombre,
-        u.apellido as usuario_apellido,
-        u.password as usuario_password,
-        u.area as usuario_area,
-        u.rol as usuario_rol
+        c.correo_usuario,
+        c.nombre_usuario,
+        c.apellido_usuario
        FROM comentario c
        left join iniciativa i on i.id = c.iniciativa
-       left join usuario u on c.usuario = u.documento
        WHERE i.id = #{idIniciativa}
     </select>
 

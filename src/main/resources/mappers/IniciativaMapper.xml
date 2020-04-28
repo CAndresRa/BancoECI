@@ -145,7 +145,7 @@
     </insert>
 
     <insert id="agregarComentarioAIniciativa" parameterType="map">
-        INSERT INTO comentario  (fecha_comentario , contenido ,  usuario , iniciativa) VALUES( #{fecha_comentario}, #{contenido} , #{usuario}, #{iniciativa} );
+        INSERT INTO comentario  (fecha_comentario , contenido ,  correo_usuario , nombre_usuario , apellido_usuario , iniciativa) VALUES( #{comentario.fecha_comentario}, #{comentario.contenido} , #{comentario.correo_usuario}, #{comentario.nombre_usuario} , #{comentario.apellido_usuario} , #{iniciativa} );
     </insert>
 
     <resultMap type='Iniciativa' id='IniciativaResult'>

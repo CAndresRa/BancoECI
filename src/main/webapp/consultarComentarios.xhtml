@@ -61,10 +61,13 @@
                 <h:outputText value="#{comentario.fecha_comentario}" />
             </p:column>
             <p:column headerText="Correo del usuario" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{comentario.usuario.email}" />
+                <h:outputText value="#{comentario.correo_usuario}" />
             </p:column>
             <p:column headerText="Nombre del usuario" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{comentario.usuario.nombre}" />
+                <h:outputText value="#{comentario.nombre_usuario}" />
+            </p:column>
+            <p:column headerText="Apellido del usuario" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{comentario.apellido_usuario}" />
             </p:column>
         </p:dataTable>
     </h:form>

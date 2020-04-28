@@ -28,9 +28,18 @@
         <h:panelGrid columns="2" cellpadding="15">
             <p:outputLabel for="@next" value="Comentario sobre la iniciativa:" style="font-family: Quicksand; font-weight: bold; font-size: large"/>
             <p:inputTextarea id="comentarios" type="String" binding="#{comentario}"   rows="7" maxlength="300" counterTemplate="Le quedan {0} caracteres" autoResize="true" style="width: 210%"/>
-            <br />
 
-            <p:commandButton id="validar" value="Aporta a Iniciativa" action="#{iniciativaBean.info}" actionListener="#{comentarioBean.agregarComentarioAIniciativa(comentario.value)}" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
+            <p:outputLabel for="@next" value="Ingrese su correo" />
+            <p:inputText  id= "correo" type="String" binding="#{correousuario}" > </p:inputText>
+
+            <p:outputLabel for="@next" value="Ingrese su nombre" />
+            <p:inputText  id= "nombre" type="String" binding="#{nombreusuario}" > </p:inputText>
+
+            <p:outputLabel for="@next" value="Ingrese su apellido" />
+            <p:inputText  id= "apellido" type="String" binding="#{apellidousuario}" > </p:inputText>
+
+
+            <p:commandButton id="validar" value="Aporta a Iniciativa" action="#{iniciativaBean.info}" actionListener="#{comentarioBean.agregarComentarioAIniciativa(comentario.value,correousuario.value,nombreusuario.value,apellidousuario.value)}" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
             <p:commandButton value="Regresar" action="busquedaIniciativaPalabras.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px;"/>
         </h:panelGrid>
     </h:form>

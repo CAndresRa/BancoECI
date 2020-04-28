@@ -1,5 +1,6 @@
 package edu.eci.cvds.sampleprj.dao.mybatis.mappers;
 
+import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,12 +11,10 @@ public interface IniciativaMapper {
 
     /**
      * Metodo que permite registrar un comentario a una iniciativa
-     * @param fecha_comentario fecha en la que se realizo el comentario
-     * @param contenido contenido del comentario
-     * @param documentoUsuario documento del usuario que realiza el comentario
+     * @param comentario comentario a registrar a la iniciativa
      * @param idIniciativa id de la iniciativa sobre la cual se realiza el comentario
      */
-    public void agregarComentarioAIniciativa(@Param("fecha_comentario") Date fecha_comentario , @Param("contenido") String contenido , @Param("usuario") long documentoUsuario , @Param("iniciativa") int idIniciativa) ;
+    public void agregarComentarioAIniciativa(@Param("comentario") Comentario comentario  , @Param("iniciativa") int idIniciativa) ;
 
     /**
      * Metodo que permite consultar las iniciativas ordenadas por una columna

@@ -18,12 +18,10 @@ public interface ServiciosIniciativa {
 
     /**
      * Metodo que permite registrar un comentario a una iniciativa
-     * @param fecha_comentario fecha en la que se realizo el comentario
-     * @param contenido contenido del comentario
-     * @param documentoUsuario documento del usuario que realiza el comentario
+     * @param comentario comentario a registrar a la iniciativa
      * @param idIniciativa id de la iniciativa sobre la cual se realiza el comentario
      */
-    public void agregarComentarioAIniciativa(Date fecha_comentario ,String contenido , long documentoUsuario , int idIniciativa) throws ExcepcionServiciosBancoProyectos ;
+    public void agregarComentarioAIniciativa(Comentario comentario , int idIniciativa) throws ExcepcionServiciosBancoProyectos ;
 
     /**
      * Metodo que permite consultar las iniciativas ordenadas por una columna

@@ -3,25 +3,46 @@ package edu.eci.cvds.samples.entities;
 import java.util.Date;
 
 public class Comentario {
+
     private String contenido;
     private Date fecha_comentario;
-    private Usuario usuario;
+    private String correo_usuario;
+    private String nombre_usuario;
+    private String apellido_usuario;
 
     public Comentario(){
     }
 
-    public Comentario(String contenido , Date fecha_comentario , Usuario usuario){
+    public Comentario(String contenido , Date fecha_comentario , String correo_usuario , String nombre_usuario , String apellido_usuario){
         this.contenido = contenido;
         this.fecha_comentario = fecha_comentario;
-        this.usuario = usuario;
+        this.nombre_usuario = nombre_usuario;
+        this.apellido_usuario = apellido_usuario;
+        this.correo_usuario = correo_usuario;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getCorreo_usuario() {
+        return correo_usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setCorreo_usuario(String correo_usuario) {
+        this.correo_usuario = correo_usuario;
+    }
+
+    public String getNombre_usuario() {
+        return nombre_usuario;
+    }
+
+    public void setNombre_usuario(String nombre_usuario) {
+        this.nombre_usuario = nombre_usuario;
+    }
+
+    public String getApellido_usuario() {
+        return apellido_usuario;
+    }
+
+    public void setApellido_usuario(String apellido_usuario) {
+        this.apellido_usuario = apellido_usuario;
     }
 
     public String getContenido() {
@@ -45,7 +66,9 @@ public class Comentario {
         return "Comentario{" +
                 "contenido='" + contenido + '\'' +
                 ", fecha_comentario=" + fecha_comentario +
-                ", usuario=" + usuario +
+                ", correo_usuario='" + correo_usuario + '\'' +
+                ", nombre_usuario='" + nombre_usuario + '\'' +
+                ", apellido_usuario='" + apellido_usuario + '\'' +
                 '}';
     }
 }
