@@ -9,7 +9,7 @@
     <title> Información Iniciativas </title>
 </h:head>
 <h:body>
-    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
     <br/>
     <br/>
     <h1>Registrar Usuario</h1>
@@ -46,7 +46,7 @@
             <f:selectItem itemLabel="Proyectos" itemValue="Proyectos" />
         </p:selectOneMenu>
         <p:commandButton id="registrar" value="Registrar"  action="#{adminBean.info}"  actionListener="#{adminBean.registrarUsuario(documento.value, email.value, nombre.value, apellido.value, contraseña.value)}" style="margin-top: 4px;width: 50%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
-        <p:commandButton value="Regresar" action="administrador.xhtml?faces-redirect = true" style="margin-left: -40%;background-color: mintcream; border-radius: 15px;font-family: Quicksand"/>
+        <p:commandButton value="Regresar"  action="administrador.xhtml?faces-redirect = true" style="margin-left: -40%;background-color: mintcream; border-radius: 15px;font-family: Quicksand" process="@this"/>
     </h:panelGrid>
 
 </h:form>

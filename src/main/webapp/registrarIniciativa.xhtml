@@ -18,7 +18,7 @@
 </h:head>
 
 <h:body>
-    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}" style=" width: 5%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;margin: 1px 1px;   float: right;"/>
+    <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}" style=" width: 5%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;margin: 1px 1px;   float: right;"/>
     <br/>
     <h1>Registro de Iniciativas</h1>
     <h:form id="registroIniciativa" prependId="false">
@@ -54,7 +54,7 @@
             <h:outputText id="display" />
 
             <p:commandButton id="registrar" value="Registrar Iniciativa"  action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.agregarIniciativa(nombreIni.value, descripcionIni.value, palabras.value ,email.value)}" style="margin-top: 4px; margin-left: 5%;width: 120%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
-            <p:commandButton value="Consultar reporte de iniciativas" actionListener="#{adminBean.redirectReporteIniciativas()}" style="background-color: mintcream; border-radius: 15px;font-family:Quicksand; width:120%; margin-left: 50%  "/>
+            <p:commandButton process="@this" value="Consultar reporte de iniciativas" actionListener="#{adminBean.redirectReporteIniciativas()}" style="background-color: mintcream; border-radius: 15px;font-family:Quicksand; width:120%; margin-left: 50%  "/>
         </h:panelGrid>
         <br/>
 

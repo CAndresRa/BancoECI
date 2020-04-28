@@ -51,7 +51,7 @@
         <p:commandButton id="actualizarEstado" value="Actualizar Estado"  action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.cambiarEstadoAiniciativa(iniciativaBean.estado)}" style="margin-top: 4px;width: 20%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
         <br/>
         <br/>
-        <p:commandButton id="Regresar" value="regresar" action="pmo.xhtml?faces-redirect = true" style="margin-top: 4px;width: 10%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
+        <p:commandButton process="@this" id="Regresar" value="regresar" action="pmo.xhtml?faces-redirect = true" style="margin-top: 4px;width: 10%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
     </h:form>
 
     <style type="text/css">

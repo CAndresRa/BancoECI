@@ -17,7 +17,7 @@
     <title>#{msg['application.title']}</title>
 </h:head>
 <h:body>
-    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
     <br/>
     <h1>Iniciativa</h1>
     <h:form id="aportesIniciativa" style="margin-left: 10%; opacity: 0.9; -moz-opacity: 0.9; filter: alpha(opacity=10);-khtml-opacity: 0.8;background-color: mintcream;border-radius: 15px;margin-top: 3%; width:80%">

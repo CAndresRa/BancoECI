@@ -19,8 +19,8 @@
 
 <h:body>
 
-    <p:commandButton id="Regresar" value="regresar" action="busquedaIniciativaPalabras.xhtml?faces-redirect = true" style="margin-top: 4px;width: 10%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
-    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <p:commandButton process="@this" id="Regresar" value="regresar" action="busquedaIniciativaPalabras.xhtml?faces-redirect = true" style="margin-top: 4px;width: 10%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
+    <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
     <br/>
     <br/>
     <h1>Busqueda de Iniciativas por Palabras Clave</h1>
@@ -76,6 +76,12 @@
                     <h:outputText value="Palabras Clave" />
                 </f:facet>
                 <h:outputText value="#{iniciative.palabras_clave}"  />
+            </p:column>
+            <p:column style="background-color: mintcream">
+                <f:facet name="header">
+                    <h:outputText value="¿Te gusta esta iniciativa?" />
+                </f:facet>
+                <p:selectBooleanButton id="value" onLabel="No me gusta" offLabel="Me gusta" style="width:100% ; border-radius: 10px; background-color: mintcream; font-family: Quicksand; font-size: 15px" />
             </p:column>
         </p:dataTable>
     </h:form>
