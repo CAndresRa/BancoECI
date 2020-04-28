@@ -31,6 +31,24 @@ public class AdministracionBean extends BasePageBean {
         facesContext.getExternalContext().redirect("actualizarRol.xhtml");
     }
 
+    public void redirectReporteIniciativas() throws IOException{
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        facesContext.getExternalContext().redirect("iniciativaAtributos.xhtml");
+    }
+
+    public void redirectAsociarIniciativas() throws IOException{
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        facesContext.getExternalContext().redirect("asociarIniciativas.xhtml");
+    }
+
+    public void redirectRegistroDeUsuario() throws IOException{
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        facesContext.getExternalContext().redirect("registrarUsuario.xhtml");
+    }
+
     /**
      * Metodo que permite modificar rol de un usuario
      * @param rol Rol al que se desea actualizar

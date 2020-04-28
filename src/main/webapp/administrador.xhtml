@@ -75,9 +75,9 @@
                 <p:commandButton process="tbl" value="Actualizar rol" actionListener="#{adminBean.redirectActualizarRol()}" style="border-radius: 15px; background-color: mintcream"/>
             </f:facet>
         </p:dataTable>
-        <p:commandButton id="exportar" value="Consultar reporte de iniciativas" action="iniciativaAtributos.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; width: 20%; font-family: Quicksand"/>
-        <p:commandButton id="registro" value="Registrar Usuario" action="registrarUsuario.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
-        <p:commandButton id="asociarIniciativa" value="Asociar Iniciativas" action="asociarIniciativas.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
+        <p:commandButton id="exportar" value="Consultar reporte de iniciativas" actionListener="#{adminBean.redirectReporteIniciativas()}" style="background-color: mintcream; border-radius: 15px; width: 20%; font-family: Quicksand"/>
+        <p:commandButton id="registro" value="Registrar Usuario" actionListener="#{adminBean.redirectRegistroDeUsuario()}" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
+        <p:commandButton id="asociarIniciativa" value="Asociar Iniciativas" actionListener="#{adminBean.redirectAsociarIniciativas()}" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
 
     </h:form>
 

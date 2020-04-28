@@ -96,8 +96,12 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         }
     }
 
-    public void cambiarEstadoAiniciativa(String estado, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
+    public void cambiarEstadoAiniciativa(String estado) throws ExcepcionServiciosBancoProyectos {
         try{
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
+            this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
             serviciosIniciativa.cambiarEstadoAiniciativa(estado,iniciativa);
             this.message = "El estado se actualizo satisfactoriamente, consulte nuevamente para confirmar los cambios";
         } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos) {
@@ -118,6 +122,13 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
         facesContext.getExternalContext().redirect("consultarComentarios.xhtml");
+    }
+
+    public void redirectModificacionEstadoIniciativa() throws IOException{
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
+        facesContext.getExternalContext().redirect("cambioEstado.xhtml");
     }
 
 

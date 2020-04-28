@@ -54,7 +54,7 @@
             <h:outputText id="display" />
 
             <p:commandButton id="registrar" value="Registrar Iniciativa"  action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.agregarIniciativa(nombreIni.value, descripcionIni.value, palabras.value ,email.value)}" style="margin-top: 4px; margin-left: 5%;width: 120%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
-            <p:commandButton value="Consultar reporte de iniciativas" action="iniciativaAtributos.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px;font-family:Quicksand; width:120%; margin-left: 50%  "/>
+            <p:commandButton value="Consultar reporte de iniciativas" actionListener="#{adminBean.redirectReporteIniciativas()}" style="background-color: mintcream; border-radius: 15px;font-family:Quicksand; width:120%; margin-left: 50%  "/>
         </h:panelGrid>
         <br/>
 

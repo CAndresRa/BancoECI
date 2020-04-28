@@ -13,18 +13,18 @@
     <br/>
     <h1>Información de la iniciativa</h1>
     <h:form id="FormaInfoUser">
-        <p:dataTable id="tbl" var="user" value="#{iniciativaBean.iniciativa}" >
+        <p:dataTable id="tbl" var="ini" value="#{iniciativaBean.consultarIniciativaSolita()}" >
             <p:column headerText="Id Iniciativa" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+                <h:outputText value="#{ini.id}" />
             </p:column>
             <p:column headerText="Nombre" style=" background-color: mintcream;font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.nombre}" />
+                <h:outputText value="#{ini.nombre}" />
             </p:column>
             <p:column headerText="Estado" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.estado}" />
+                <h:outputText value="#{ini.estado}" />
             </p:column>
             <p:column headerText="Descripcion" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.descripcion}" />
+                <h:outputText value="#{ini.descripcion}" />
             </p:column>
         </p:dataTable>
 
@@ -46,11 +46,9 @@
             </p:selectOneMenu>
         </h:panelGrid>
 
-        <h:outputText value="Confirmacion de idea seleccionada" style="float:left; font-size: 20px;margin-left: 1%" />
-        <p:inputText id="busqueda" placeholder="Confirme la idea seleccionada" required="true" type="String" binding="#{id}" style="border-radius: 15px; float:left; margin-left: 5px;"/> <!-- label -->
         <br/>
         <br/>
-        <p:commandButton id="actualizarEstado" value="Actualizar Estado"  action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.cambiarEstadoAiniciativa(iniciativaBean.estado,iniciativaBean.consultarIniciativasPorId(id.value))}" style="margin-top: 4px;width: 20%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
+        <p:commandButton id="actualizarEstado" value="Actualizar Estado"  action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.cambiarEstadoAiniciativa(iniciativaBean.estado)}" style="margin-top: 4px;width: 20%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
         <br/>
         <br/>
         <p:commandButton id="Regresar" value="regresar" action="pmo.xhtml?faces-redirect = true" style="margin-top: 4px;width: 10%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
@@ -62,10 +60,6 @@
         }
     </style>
 
-    <div class="ui-g">
-        <div class="ui-g-12 ui-md-3">
-            <p:staticMessage severity="info" summary="INFO!" detail="Verifica los cambios regresando y volviendo a consultar" />
-        </div>
-    </div>
+
 </h:body>
 </html>
