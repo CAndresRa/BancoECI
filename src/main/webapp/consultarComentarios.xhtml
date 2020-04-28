@@ -53,15 +53,18 @@
     <br/>
     <h1>Comentarios de Iniciativa</h1>
     <h:form id="comentarios">
-        <p:dataTable var="comentarios" value="#{iniciativaBean.iniciativa}" style="width: 70%; margin-left: 15%" >
-            <p:column headerText="Nombre" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+        <p:dataTable var="comentario" value="#{comentarioBean.consultarComentariosDeIniciativa()}" style="width: 70%; margin-left: 15%" >
+            <p:column headerText="Comentario" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{comentario.contenido}" />
             </p:column>
             <p:column headerText="Fecha" style=" background-color: mintcream; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+                <h:outputText value="#{comentario.fecha_comentario}" />
             </p:column>
-            <p:column headerText="Contenido" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
-                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+            <p:column headerText="Correo del usuario" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{comentario.usuario.email}" />
+            </p:column>
+            <p:column headerText="Nombre del usuario" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{comentario.usuario.nombre}" />
             </p:column>
         </p:dataTable>
     </h:form>

@@ -11,32 +11,49 @@ import edu.eci.cvds.samples.services.ServiciosIniciativa;
 import edu.eci.cvds.samples.services.ServiciosUsuario;
 import org.primefaces.model.chart.PieChartModel;
 //import javax.enterprise.context.SessionScoped;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "iniciativaBean")
-@ViewScoped
+@RequestScoped
 public class IniciativaBean extends BasePageBean implements Serializable {
+
+
     @Inject
     private ServiciosIniciativa serviciosIniciativa;
     @Inject
     private ServiciosUsuario serviciosUsuario;
     private String estado;
     private Iniciativa iniciativa;
+    private Iniciativa selectedIniciativa;
     private List<Iniciativa> iniciativasPorPalabra;
     private String message;
     private PieChartModel model;
     private List<Iniciativa> iniciativasRelacionadasList;
     private List<Iniciativa> iniciativasBusquedaBasica;
 
-
+    @PostConstruct
+    public void init(){
+        super.init();
+        try{
+            iniciativasBusquedaBasica = new ArrayList<>();
+            iniciativasBusquedaBasica = serviciosIniciativa.consultarIniciativas();
+        } catch (ExcepcionServiciosBancoProyectos e) {
+            e.printStackTrace();
+        }
+    }
     public void agregarIniciativa(String nombre, String descripcion, String palabras, String email) throws ExcepcionServiciosBancoProyectos, PersistenceException {
         try {
             List<String> palabrasListas = Arrays.asList(palabras.split(","));
@@ -49,17 +66,6 @@ public class IniciativaBean extends BasePageBean implements Serializable {
             this.message = "Hubo un error registrando iniciativa, intente nuevamente";
         }
 
-    }
-
-    public List<Iniciativa> consultarIniciativasBasico() throws ExcepcionServiciosBancoProyectos {
-        try {
-            if(iniciativasBusquedaBasica == null){
-                iniciativasBusquedaBasica = serviciosIniciativa.consultarIniciativas();
-            }
-            return iniciativasBusquedaBasica;
-        } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos) {
-            throw new ExcepcionServiciosBancoProyectos("Error al consultar iniciativa");
-        }
     }
 
     public Iniciativa consultarIniciativasPorId(int id) throws ExcepcionServiciosBancoProyectos {
@@ -100,6 +106,21 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         }
     }
 
+    public void redirectAddComentario() throws IOException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
+        facesContext.getExternalContext().redirect("comentariosIniciativa.xhtml");
+    }
+
+    public void redirectConsultaComentario() throws IOException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
+        facesContext.getExternalContext().redirect("consultarComentarios.xhtml");
+    }
+
+
     public void agregarIniciativaRelacionadaAIniciativa() throws ExcepcionServiciosBancoProyectos {
         int longitudAsosiciaciones = iniciativasRelacionadasList.size();
         try {
@@ -118,18 +139,6 @@ public class IniciativaBean extends BasePageBean implements Serializable {
             }
         } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos){
             this.message = "Hubo un error asociando iniciativas, intentelo nuevamente";
-        }
-    }
-
-    public void agregarComentarioAIniciativa(String comentario, String documento, String idIni) throws ExcepcionServiciosBancoProyectos {
-        try {
-            Date fecha = new Date((new java.util.Date()).getTime());
-            Long doc = Long.parseLong(documento);
-            int idIniciativa = Integer.parseInt(idIni);
-            serviciosIniciativa.agregarComentarioAIniciativa(fecha, comentario, doc, idIniciativa);
-            this.message = "El comentario se agrego correctamente";
-        } catch (ExcepcionServiciosBancoProyectos e){
-            this.message = "Hubo un error agregando comentario";
         }
     }
 
@@ -163,8 +172,24 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         this.iniciativasPorPalabra = iniciativasPorPalabra;
     }
 
+    public Iniciativa getSelectedIniciativa() {
+        return selectedIniciativa;
+    }
+
+    public void setSelectedIniciativa(Iniciativa selectedIniciativa) {
+        this.selectedIniciativa = selectedIniciativa;
+    }
+
     public List<Iniciativa> getIniciativasRelacionadasList() {
         return iniciativasRelacionadasList;
+    }
+
+    public List<Iniciativa> getIniciativasBusquedaBasica() {
+        return iniciativasBusquedaBasica;
+    }
+
+    public void setIniciativasBusquedaBasica(List<Iniciativa> iniciativasBusquedaBasica) {
+        this.iniciativasBusquedaBasica = iniciativasBusquedaBasica;
     }
 
     public void setIniciativasRelacionadasList(List<Iniciativa> iniciativasRelacionadasList) {

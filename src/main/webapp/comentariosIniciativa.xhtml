@@ -27,24 +27,10 @@
 
         <h:panelGrid columns="2" cellpadding="15">
             <p:outputLabel for="@next" value="Comentario sobre la iniciativa:" style="font-family: Quicksand; font-weight: bold; font-size: large"/>
-            <p:inputTextarea id="comentarios" type="String" binding="#{comentario}" counter="display"  rows="7" maxlength="300" counterTemplate="Le quedan {0} caracteres" autoResize="true" style="width: 210%"/>
+            <p:inputTextarea id="comentarios" type="String" binding="#{comentario}"   rows="7" maxlength="300" counterTemplate="Le quedan {0} caracteres" autoResize="true" style="width: 210%"/>
             <br />
-            <h:outputText id="display" style="color: grey" />
-            <p:outputLabel for="@next" value="Afinidad con iniciativa:" style="font-family: Quicksand; font-weight: bold; font-size: large;margin-left: -10%;"/>
-            <p:rating stars="10" cancel="false" onRate="alert('You rated ' + value)" style="background-color: grey; opacity: 95%; border-radius: 10px"/>
-            <p:outputLabel for="@next" value="¿Te gusta esta iniciativa?" style="font-family: Quicksand; font-weight: bold; font-size: large;margin-left: -10%;"/>
-            <p:selectOneRadio id="console" value="hola" unselectable="true">
-                <f:selectItem itemLabel="Si" itemValue="True" />
-                <f:selectItem itemLabel="No" itemValue="False" />
-            </p:selectOneRadio>
 
-            <h:outputText  value="Id de iniciativa" style="float:left; font-size: 20px;margin-left: 1%" />
-            <p:inputText id="busqueda" placeholder="id de iniciativa" type="String" required="true" binding="#{idIni}" style="border-radius: 15px; float:left; margin-left: 5px;"/> <!-- label -->
-
-            <h:outputText value="Ingrese su documento" style="float:left; font-size: 20px;margin-left: 1%" />
-            <p:inputText id="bus" placeholder="Documento" required="true" type="String" binding="#{documento}" style="border-radius: 15px; float:left; margin-left: 5px;"/> <!-- label -->
-
-            <p:commandButton id="validar" value="Aporta a Iniciativa" action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.agregarComentarioAIniciativa(comentario.value, documento.value, idIni.value)}" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
+            <p:commandButton id="validar" value="Aporta a Iniciativa" action="#{iniciativaBean.info}" actionListener="#{comentarioBean.agregarComentarioAIniciativa(comentario.value)}" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
             <p:commandButton value="Regresar" action="busquedaIniciativaPalabras.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px;"/>
         </h:panelGrid>
     </h:form>

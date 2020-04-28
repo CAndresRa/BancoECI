@@ -30,7 +30,7 @@
         <br/>
         <br/>
         <h1>Lista de iniciativas</h1>
-        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.consultarIniciativasBasico()}" rowKey="#{iniciative.getId()}" selection="#{iniciativaBean.iniciativa}"
+        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.iniciativasBusquedaBasica}" rowKey="#{iniciative.id}" selection="#{iniciativaBean.selectedIniciativa}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
             <f:facet name="{Exporters}">
@@ -103,11 +103,10 @@
                 <h:outputText value="#{iniciative.getPalabras_clave()}"  />
             </p:column>
             <f:facet name="footer">
-                <p:commandButton process="tbl" value="Comentar Iniciativa" action="comentariosIniciativa.xhtml?faces-redirect = true" style="border-radius: 15px; background-color: mintcream"/>
-                <p:commandButton process="tbl" value="Consultar Comentarios" action="consultarComentarios.xhtml?faces-redirect = true" style="border-radius: 15px; background-color: mintcream"/>
+                <h:commandButton  value="Comentar iniciativa" actionListener="#{iniciativaBean.redirectAddComentario()}"/>
+                <h:commandButton  value="Consultar comentarios" actionListener="#{iniciativaBean.redirectConsultaComentario()}"/>
             </f:facet>
         </p:dataTable>
-
     </h:form>
 </h:body>
 </html>

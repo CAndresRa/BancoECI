@@ -1,5 +1,6 @@
 edu\eci\cvds\sampleprj\dao\PersistenceException.class
 edu\eci\cvds\samples\services\ExcepcionServiciosBancoProyectos.class
+edu\eci\cvds\view\ComentarioBean.class
 edu\eci\cvds\sampleprj\dao\mybatis\MyBatisIniciativaDAO.class
 edu\eci\cvds\samples\entities\Usuario.class
 edu\eci\cvds\guice\GuiceContextListener$1.class
