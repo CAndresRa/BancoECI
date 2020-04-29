@@ -36,14 +36,7 @@
 
 
 
-            <p:outputLabel for="@next" value="Estado Iniciativa"  style="font-family: Quicksand; font-weight: bold; font-size: large" />
-            <p:selectOneMenu id="estado" value="#{iniciativaBean.estado}" style="margin-left:20%; width: 100%;color: #2bb24c">
-                <f:selectItem itemLabel="" itemValue="" />
-                <f:selectItem itemLabel="En espera" itemValue="Espera" />
-                <f:selectItem itemLabel="En revisión" itemValue="Revision" />
-                <f:selectItem itemLabel="Proyecto" itemValue="Proyecto" />
-                <f:selectItem itemLabel="Solucionado" itemValue="Solucionado" />
-            </p:selectOneMenu>
+
             <p:outputLabel for="@next" value="Descripción" style="font-family: Quicksand; font-weight: bold; font-size: large" />
             <p:inputTextarea id="descripcion" counter="display"  rows="10" maxlength="300" counterTemplate="Le quedan {0} caracteres" binding="#{descripcionIni}" autoResize="true" style="width: 200%"/>
 

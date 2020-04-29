@@ -25,15 +25,15 @@
             <p:outputLabel value="Login failed!" styleClass="red"
                            rendered="${!empty param['error']}" />
 
-            <p:inputText id="username" placeholder="Nombre de usuario" required="true" type="String" binding="#{username}"/>
-            <p:password id="password" placeholder="Contraseña" required="true" type="String" binding="#{password}"/>
+            <p:inputText id="username" placeholder="Nombre de usuario" required="false" type="String" binding="#{username}"/>
+            <p:password id="password" placeholder="Contraseña" required="false" type="String" binding="#{password}"/>
             <br></br>
 
 
         </p:panelGrid>
 
         <p:commandButton id="boton_login" value="Iniciar Sesion" actionListener="#{loginBean.iniciarSesion(username.value,password.value)}"/>
-        <p:commandButton id="boton_validate" value="Consultar Iniciativas"/>
+        <p:commandButton id="boton_validate" value="Consultar Iniciativas" actionListener="#{loginBean.redirectBusquedaIniciativas()}"/>
 
     </h:form>
 </h:body>

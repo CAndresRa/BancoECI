@@ -55,7 +55,7 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         try {
             List<String> palabrasListas = Arrays.asList(palabras.split(","));
             Usuario usuario = serviciosUsuario.consultarUsuario(email);
-            this.iniciativa = new Iniciativa(nombre, descripcion, estado, new Date((new java.util.Date()).getTime()), usuario);
+            this.iniciativa = new Iniciativa(nombre, descripcion, "Espera", new Date((new java.util.Date()).getTime()), usuario);
             serviciosIniciativa.insertarIniciativa(iniciativa, palabrasListas);
             this.message = "La iniciativa se registro correctamente";
         }

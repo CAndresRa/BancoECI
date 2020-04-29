@@ -40,13 +40,16 @@ public class LoginBean extends BasePageBean {
             else if (serviciosUsuario.consultarUsuario(username).getRol().equals("PMO")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("pmo.xhtml");
             }
-            else if (serviciosUsuario.consultarUsuario(username).getRol().equals("Publico")){
-                FacesContext.getCurrentInstance().getExternalContext().redirect("busquedaIniciativaPalabras.xhtml");
-            }
         }
         else {
             FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
         }
+    }
+
+    public void redirectBusquedaIniciativas() throws IOException{
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        facesContext.getExternalContext().redirect("busquedaIniciativaPalabras.xhtml");
     }
 
     /**
