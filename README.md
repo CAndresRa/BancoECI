@@ -39,3 +39,9 @@ Para Actualizar el rol de un usuario primero lo seleccionamos, y posterior a eso
 Para hacer un Registro de usuarion damos Click en el boton "registrar Usuario"
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/vistaAdmin.PNG)
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/registrarUsuario.PNG)
+Para consultar el reporte de Iniciativas registradas, damos click en el botón "Consultar reporte de iniciativas", posteriormente observamos las iniciativas y un grafico donde nos muestra un reporte de iniciativas por area
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/vistaAdmin.PNG)
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/consultarReporteIniciativasAdmin.PNG)
+Para asociar iniciativas, damos click en el botón Asociar Iniciativas, nos llevara a una vista donde tendremos la posibilidad de seleccionar varias iniciativas y darle en el boton Asociar para relacionarlas o regresar a la vista anterior 
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/vistaAdmin.PNG)
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/asociarIniciativas.PNG)
