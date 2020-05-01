@@ -36,7 +36,7 @@ En esta vista estan los servicios que la aplicacion ofrece a los administradores
 Para Actualizar el rol de un usuario primero lo seleccionamos, y posterior a eso damos click en el boton de "actualizar Rol"
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/SeleccionUsuario.PNG)
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/actualizarRol.png)
-Para hacer un Registro de usuarion damos Click en el boton "registrar Usuario"
+Para hacer un Registro de usuario damos Click en el boton "registrar Usuario"
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/vistaAdmin.PNG)
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/registrarUsuario.PNG)
 Para consultar el reporte de Iniciativas registradas, damos click en el botón "Consultar reporte de iniciativas", posteriormente observamos las iniciativas y un grafico donde nos muestra un reporte de iniciativas por area
@@ -45,3 +45,41 @@ Para consultar el reporte de Iniciativas registradas, damos click en el botón "
 Para asociar iniciativas, damos click en el botón Asociar Iniciativas, nos llevara a una vista donde tendremos la posibilidad de seleccionar varias iniciativas y darle en el boton Asociar para relacionarlas o regresar a la vista anterior 
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/vistaAdmin.PNG)
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/asociarIniciativas.PNG)
+* Proponente, el cual cuenta con los siguientes servicios: 
+  - Registrar iniciativas.
+  - Consultar reporte de iniciativas. 
+  
+  La vista de proponente, nos dirige al registro de iniciativas 
+ ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/registrarIniciativas.PNG)
+ Podemos consultar las iniciativas propuestas dando click en el boton "Consultar reporte de iniciativas" 
+ ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/consultarReporteIniciativasPMO.PNG)
+ * PMO, el cual cuenta con los siguientes servicios:
+  - Consultar iniciativas 
+  - Cambiar estado de iniciativas 
+  
+  La vista PMO nos dirige a una pagina con la tabla de iniciativas propuestas, para cambiar el estado de una iniciativa, la seleccionamos y damos click en "Cambiar Estado". Tambien podemos consultar el reporte iniciativas, dando click en el boton "Consultar reporte de iniciativas"
+  ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/cambioEstadoIniciativa.PNG)
+  ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/cambioEstado.png)
+  
+  * Publico, el cual cuenta con los siguientes servicios: 
+    - Consultar iniciativas
+    - Comentar las iniciativas 
+    - Busqueda de iniciativas por palabras clave
+    
+    Para acceder a la vista publica, en el inicio de sesión damos click en el botón "Consultar Iniciativas" el cual nos dirige a una vista donde podremos filtrar las iniciativas buscando por palabras clave.
+      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/VistaLogin.PNG)
+      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/publicoConsultarIniciativasPalabras.PNG)
+      
+      En el campo de busqueda ingresamos las palabras claves separadas por coma 
+      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/busquedaPorPalabras.PNG)
+      
+      Damos click en "Buscar" y obtenemos el resultado. 
+      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/resultadoBusquedaPalabras.PNG)
+      
+      Tambien podemos seleccionar una iniciativa para comentarla o consultar los comentarios de una iniciativa. Seleccionamos la iniciativa, damos click en "Comentar iniciativa" 
+      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/publicoConsultarIniciativasPalabras.PNG)
+      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/comentariosIniciativa.PNG)
+     
+     Podemos consultar los comentarios de las iniciativas, dando click en "Consultar comentarios" 
+     ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/consultarComentarios.PNG)
+     
