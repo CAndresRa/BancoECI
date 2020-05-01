@@ -22,3 +22,9 @@
 El **Banco de Iniciativas de Proyectos** es una herramienta desarrollada con la comunidad de la Escuela Colombiana de ingenieria en mente, la cual tiene el objetivo de facilitar el registro y desarrollo de iniciativas de proyectos para la comunidad. La herramienta facilita la participación, de la comunidad de la escuela, para el proceso de retroalimentacion y desarrollo del proyecto; adicional a eso, el perosnal Academico puede integrar estudiantes de diferentes ambitos, para el desarrollo de Iniciativas.
 
 ## Manual de Usuario
+La Aplicacion maneja 3 tipos de usuario y una vista publica, los tipos de usuario son:
+* Administrador, el cual cuenta con los siguientes servicios:
+  - Modificar Roles de Otros Usuarios 
+  - Consulta de Iniciativas 
+  - Registrar Usuarios
+  - Asociar Iniciativas
