@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <link rel="stylesheet" type="text/css" href="css/busquedaIniciativaPalabras.css" />
+    <link rel="stylesheet" type="text/css" href="../css/iniciativaAtributos.css" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
     <f:facet name="first">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,23 +14,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
         <meta name="apple-mobile-web-app-capable" content="yes" />
     </f:facet>
+
     <title>#{msg['application.title']}</title>
+
 </h:head>
 
 <h:body>
     <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
     <br/>
-    <br/>
-    <h1>Busqueda de Iniciativas por Palabras Clave</h1>
-    <h:form id="iniciativasPublicas" prependId="false" >
-        <h:outputLabel value="Palabras Clave: " style="font-weight:bold"/>
-        <p:inputText id="busquedaPorPalabra" placeholder="Separadas por Comas" required="false"  binding="#{palabra}"/>
-        <p:commandButton id="buscar" value="Buscar" actionListener="#{iniciativaBean.consultarIniciativasPorPalabras(palabra.value)}" action="filtroPorPalabra.xhtml?faces-redirect = true"/>
 
-        <br/>
-        <br/>
-        <h1>Lista de iniciativas</h1>
-        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.iniciativasBusquedaBasica}" rowKey="#{iniciative.id}" selection="#{iniciativaBean.selectedIniciativa}"
+
+    <h:form id="iniciativasPublic" prependId="false">
+
+        <h1>Información de Iniciativas</h1>
+        <h2>Selecciona una Iniciativa para agregar comentarios y afinidad</h2>
+        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.consultarIniciativasBasico()}" rowKey="#{iniciative.getId()}" selection="#{iniciativaBean.iniciativa}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
             <f:facet name="{Exporters}">
@@ -44,13 +42,13 @@
             <p:column selectionMode="single" style="width:16px;text-align:center"/>
             <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.email}" sortBy="#{iniciative.usuario.email}">
                 <f:facet name="header">
-                    <h:outputText value="Email de usuario"/>
+                    <h:outputText value="Email de usuario" />
                 </f:facet>
-                <h:outputText value="#{iniciative.usuario.email}"/>
+                <h:outputText value="#{iniciative.usuario.email}"  />
             </p:column>
             <p:column style="background-color: mintcream" filterBy="#{iniciative.fecha_registro}" sortBy="#{iniciative.fecha_registro}">
                 <f:facet name="header">
-                    <h:outputText value="Fecha"/>
+                    <h:outputText value="Fecha" />
                 </f:facet>
                 <h:outputText value="#{iniciative.fecha_registro}"  />
             </p:column>
@@ -58,61 +56,46 @@
                 <f:facet name="header">
                     <h:outputText value="Id" />
                 </f:facet>
-                <h:outputText value="#{iniciative.id}"/>
+                <h:outputText value="#{iniciative.id}"  />
             </p:column>
 
             <p:column style="background-color: mintcream" filterBy="#{iniciative.nombre}" sortBy="#{iniciative.nombre}">
                 <f:facet name="header">
-                    <h:outputText value="Nombre"/>
+                    <h:outputText value="Nombre" />
                 </f:facet>
                 <h:outputText value="#{iniciative.nombre}" />
             </p:column>
 
             <p:column style="background-color: mintcream" filterBy="#{iniciative.descripcion}" sortBy="#{iniciative.descripcion}">
                 <f:facet name="header">
-                    <h:outputText value="Descripcion"/>
+                    <h:outputText value="Descripcion" />
                 </f:facet>
                 <h:outputText value="#{iniciative.descripcion}" />
             </p:column>
 
             <p:column style="background-color: mintcream" filterBy="#{iniciative.estado}" sortBy="#{iniciative.estado}">
                 <f:facet name="header">
-                    <h:outputText value="Estado"/>
+                    <h:outputText value="Estado" />
                 </f:facet>
                 <h:outputText value="#{iniciative.estado}" />
             </p:column>
 
             <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.area}" sortBy="#{iniciative.usuario.area}"  >
                 <f:facet name="header">
-                    <h:outputText value="Area"/>
+                    <h:outputText value="Area" />
                 </f:facet>
                 <h:outputText value="#{iniciative.usuario.area}" />
             </p:column>
 
-            <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.area}" sortBy="#{iniciative.usuario.area}"  >
+            <p:column style="background-color: mintcream    " filterBy="#{iniciative.usuario.area}" sortBy="#{iniciative.usuario.area}"  >
                 <f:facet name="header">
                     <h:outputText value="Iniciativas Relacionadas" />
                 </f:facet>
                 <h:outputText value="#{iniciativaBean.consultarIniciativasPorId(iniciative.id).getIniciativasRelacionadas()}" />
             </p:column>
 
-             <p:column style="background-color: mintcream">
-                <f:facet name="header">
-                    <h:outputText value="Palabras Clave" />
-                </f:facet>
-                <h:outputText value="#{iniciative.getPalabras_clave()}"  />
-            </p:column>
-            <p:column style="background-color: mintcream">
-                <f:facet name="header">
-                    <h:outputText value="¿Te gusta esta iniciativa?" />
-                </f:facet>
-                <p:selectBooleanButton id="value" onLabel="No me gusta" offLabel="Me gusta" style="width:100% ; border-radius: 10px; background-color: mintcream; font-family: Quicksand; font-size: 15px" />
-            </p:column>
-            <f:facet name="footer">
-                <h:commandButton  value="Comentar iniciativa" actionListener="#{iniciativaBean.redirectAddComentario()}" style="border-radius: 15px; background-color: mintcream; font-family: Quicksand"/>
-                <h:commandButton  value="Consultar comentarios" actionListener="#{iniciativaBean.redirectConsultaComentario()}" style="border-radius: 15px;background-color: mintcream;font-family: Quicksand"/>
-            </f:facet>
         </p:dataTable>
+
     </h:form>
 </h:body>
 </html>

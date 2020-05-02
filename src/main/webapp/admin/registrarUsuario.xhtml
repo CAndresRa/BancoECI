@@ -4,7 +4,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <link rel="stylesheet" type="text/css" href="css/administrador.css" />
+    <link rel="stylesheet" type="text/css" href="../css/administrador.css" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
     <title> Información Iniciativas </title>
 </h:head>
@@ -19,15 +19,15 @@
     </p:messages>
     <h:panelGrid id="validacion" columns="2" cellpadding="6" style="background-color: gainsboro; border-radius: 15px">
         <p:outputLabel for="@next" value="Ingrese el documento del usuario" style="font-family: Quicksand; font-weight: bold"/>
-        <p:inputText  id= "documento" required="true" type="String" binding="#{documento}" style="border-radius: 15px"> </p:inputText>
+        <p:inputText  id= "documento" required="false" type="String" binding="#{documento}" style="border-radius: 15px"> </p:inputText>
         <p:outputLabel for="@next"  value="Ingrese el correo electronico" style="font-family: Quicksand; font-weight: bold" />
-        <p:inputText  id= "correo" required="true" type="String" binding="#{email}" style="border-radius: 15px"> </p:inputText>
+        <p:inputText  id= "correo" required="false" type="String" binding="#{email}" style="border-radius: 15px"> </p:inputText>
         <p:outputLabel for="@next" value="Ingrese el nombre del usuario" style="font-family: Quicksand; font-weight: bold" />
-        <p:inputText  id= "nombre" required="true" type="String" binding="#{nombre}" style="border-radius: 15px"> </p:inputText>
+        <p:inputText  id= "nombre" required="false" type="String" binding="#{nombre}" style="border-radius: 15px"> </p:inputText>
         <p:outputLabel for="@next" value="Ingrese el apellido del usuario" style="font-family: Quicksand;font-weight: bold" />
-        <p:inputText  id= "apellido" required="true" type="String" binding="#{apellido}" style="border-radius: 15px" > </p:inputText>
+        <p:inputText  id= "apellido" required="false" type="String" binding="#{apellido}" style="border-radius: 15px" > </p:inputText>
         <p:outputLabel for="@next" value="Ingrese la contraseña" style="font-family: Quicksand; font-weight: bold" />
-        <p:inputText  id= "contraseña" required="true" type="String" binding="#{contraseña}" style="border-radius: 15px"> </p:inputText>
+        <p:inputText  id= "contraseña" required="false" type="String" binding="#{contraseña}" style="border-radius: 15px"> </p:inputText>
         <p:outputLabel for="@next" value="Ingrese el rol del usuario" style="font-family: Quicksand; font-weight: bold" />
         <p:selectOneMenu id="rol" value="#{adminBean.rol}" style="width:80%">
             <f:selectItem itemLabel="" itemValue="" />

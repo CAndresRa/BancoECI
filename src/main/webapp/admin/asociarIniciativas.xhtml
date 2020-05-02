@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <link rel="stylesheet" type="text/css" href="css/administrador.css" />
+    <link rel="stylesheet" type="text/css" href="../css/iniciativaAtributos.css" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
     <f:facet name="first">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,17 +14,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
         <meta name="apple-mobile-web-app-capable" content="yes" />
     </f:facet>
+
     <title>#{msg['application.title']}</title>
+
 </h:head>
 
 <h:body>
-    <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
     <br/>
-    <br/>
-    <h1>Cambiar estado de iniciativa</h1>
-    <h:form id="iniciativasPMO" prependId="false" >
 
-        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.iniciativasBusquedaBasica}" rowKey="#{iniciative.id}" selection="#{iniciativaBean.selectedIniciativa}"
+
+    <h:form id="asociarIniciativas" prependId="false">
+        <h1>Seleccione las Iniciativas que desea asociar</h1>
+        <p:messages>
+            <p:autoUpdate />
+        </p:messages>
+        <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.iniciativasBusquedaBasica}" rowKey="#{iniciative.id}" selection="#{iniciativaBean.iniciativasRelacionadasList}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                      paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
             <f:facet name="{Exporters}">
@@ -35,43 +40,48 @@
                     </h:commandLink>
                 </div>
             </f:facet>
-            <p:column selectionMode="single" style="width:16px;text-align:center"/>
-            <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.email}" sortBy="#{iniciative.usuario.email}">
+            <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.email}" >
                 <f:facet name="header">
                     <h:outputText value="Email de usuario" />
                 </f:facet>
                 <h:outputText value="#{iniciative.usuario.email}"  />
             </p:column>
-
-            <p:column style="background-color: mintcream" filterBy="#{iniciative.id}" sortBy="#{iniciative.id}">
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.fecha_registro}" >
+                <f:facet name="header">
+                    <h:outputText value="Fecha" />
+                </f:facet>
+                <h:outputText value="#{iniciative.fecha_registro}"  />
+            </p:column>
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.id}" >
                 <f:facet name="header">
                     <h:outputText value="Id" />
                 </f:facet>
                 <h:outputText value="#{iniciative.id}"  />
             </p:column>
 
-            <p:column style="background-color: mintcream" filterBy="#{iniciative.nombre}" sortBy="#{iniciative.nombre}">
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.nombre}" >
                 <f:facet name="header">
                     <h:outputText value="Nombre" />
                 </f:facet>
                 <h:outputText value="#{iniciative.nombre}" />
             </p:column>
 
-            <p:column style="background-color: mintcream" filterBy="#{iniciative.descripcion}" sortBy="#{iniciative.descripcion}">
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.descripcion}">
                 <f:facet name="header">
                     <h:outputText value="Descripcion" />
                 </f:facet>
                 <h:outputText value="#{iniciative.descripcion}" />
             </p:column>
 
-            <p:column style="background-color: mintcream" filterBy="#{iniciative.estado}" sortBy="#{iniciative.estado}">
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.estado}" >
                 <f:facet name="header">
                     <h:outputText value="Estado" />
                 </f:facet>
                 <h:outputText value="#{iniciative.estado}" />
             </p:column>
 
-            <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.area}" sortBy="#{iniciative.usuario.area}"  >
+            <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.area}" >
                 <f:facet name="header">
                     <h:outputText value="Area" />
                 </f:facet>
@@ -84,12 +94,10 @@
                 <p:selectBooleanButton id="value" onLabel="No me gusta" offLabel="Me gusta" style="width:100% ; border-radius: 10px; background-color: mintcream; font-family: Quicksand; font-size: 15px" />
             </p:column>
             <f:facet name="footer">
-                <p:commandButton process="tbl" value="Cambiar estado de iniciativa" actionListener="#{iniciativaBean.redirectModificacionEstadoIniciativa()}" style="border-radius: 15px; background-color: mintcream; font-family: Quicksand"/>
-                <p:commandButton id="exportar" value="Consultar reporte de iniciativas" actionListener="#{adminBean.redirectReporteIniciativas()}" style="border-radius: 15px; background-color: mintcream; font-family: Quicksand"/>
+                <p:commandButton process="tbl" value="Asociar Iniciativas" actionListener="#{iniciativaBean.agregarIniciativaRelacionadaAIniciativa}" action="#{iniciativaBean.info}" style="border-radius: 15px; background-color: mintcream"/>
             </f:facet>
         </p:dataTable>
-
-
+        <p:commandButton value="Regresar" action="administrador.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px;"/>
     </h:form>
 </h:body>
 </html>

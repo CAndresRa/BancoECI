@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <link rel="stylesheet" type="text/css" href="css/iniciativaAtributos.css" />
+    <link rel="stylesheet" type="text/css" href="../css/administrador.css" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
     <f:facet name="first">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,42 +14,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
         <meta name="apple-mobile-web-app-capable" content="yes" />
     </f:facet>
-
     <title>#{msg['application.title']}</title>
-
 </h:head>
 
 <h:body>
-    <p:commandButton id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
     <br/>
+    <br/>
+    <h1>Cambiar estado de iniciativa</h1>
+    <h:form id="iniciativasPMO" prependId="false" >
 
-    <h1>Estadisticas por Area</h1>
-
-    <p:chart type="pie" id="pie"
-             responsive="true"
-             model="#{iniciativaBean.generarEstadistica()}"
-             widgetVar="chart"/>
-    <p:commandButton id="exportar" value="Exportar" onclick="return exportChart()" type="Submit"/>
-    <script type="application/javascript">
-        function exportChart() {
-            var image = PF('chart').exportAsImage();
-            var imageSrc = $(image).attr('src');
-            var url = imageSrc.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
-            var link = document.createElement('a');
-            link.download = "chart.png";
-            link.href = url;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            return false;
-        }
-    </script>
-
-    <h:form id="iniciativasPublic" prependId="false" style="margin-top: -10%;">
-        <h1>Lista de iniciativas</h1>
         <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.iniciativasBusquedaBasica}" rowKey="#{iniciative.id}" selection="#{iniciativaBean.selectedIniciativa}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                     paginator="true" rows="10" style="font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
+                     paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
             <f:facet name="{Exporters}">
                 <div style="float:right; margin-right: 2%">
                     <h:commandLink>
@@ -65,12 +42,7 @@
                 </f:facet>
                 <h:outputText value="#{iniciative.usuario.email}"  />
             </p:column>
-            <p:column style="background-color: mintcream" filterBy="#{iniciative.fecha_registro}" sortBy="#{iniciative.fecha_registro}">
-                <f:facet name="header">
-                    <h:outputText value="Fecha" />
-                </f:facet>
-                <h:outputText value="#{iniciative.fecha_registro}"  />
-            </p:column>
+
             <p:column style="background-color: mintcream" filterBy="#{iniciative.id}" sortBy="#{iniciative.id}">
                 <f:facet name="header">
                     <h:outputText value="Id" />
@@ -105,14 +77,6 @@
                 </f:facet>
                 <h:outputText value="#{iniciative.usuario.area}" />
             </p:column>
-
-            <p:column style="background-color: mintcream" filterBy="#{iniciative.usuario.area}" sortBy="#{iniciative.usuario.area}"  >
-                <f:facet name="header">
-                    <h:outputText value="Iniciativas Relacionadas" />
-                </f:facet>
-                <h:outputText value="#{iniciativaBean.consultarIniciativasPorId(iniciative.id).getIniciativasRelacionadas()}" />
-            </p:column>
-
             <p:column style="background-color: mintcream">
                 <f:facet name="header">
                     <h:outputText value="¿Te gusta esta iniciativa?" />
@@ -120,13 +84,12 @@
                 <p:selectBooleanButton id="value" onLabel="No me gusta" offLabel="Me gusta" style="width:100% ; border-radius: 10px; background-color: mintcream; font-family: Quicksand; font-size: 15px" />
             </p:column>
             <f:facet name="footer">
-               <!-- <p:commandButton process="tbl" value="Agregar Comentario" action="comentariosIniciativa.xhtml?faces-redirect = true" style="border-radius: 15px; background-color: mintcream"/> -->
-                <p:commandButton process="tbl" value="Consultar Comentarios" actionListener="#{iniciativaBean.redirectConsultaComentario()}" style="border-radius: 15px; background-color: mintcream"/>
+                <p:commandButton process="tbl" value="Cambiar estado de iniciativa" actionListener="#{iniciativaBean.redirectModificacionEstadoIniciativa()}" style="border-radius: 15px; background-color: mintcream; font-family: Quicksand"/>
+                <p:commandButton id="exportar" value="Consultar reporte de iniciativas" actionListener="#{adminBean.redirectReporteIniciativas()}" style="border-radius: 15px; background-color: mintcream; font-family: Quicksand"/>
             </f:facet>
         </p:dataTable>
 
+
     </h:form>
-
-
 </h:body>
 </html>

@@ -34,7 +34,7 @@ public class AdministracionBean extends BasePageBean {
     public void redirectReporteIniciativas() throws IOException{
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-        facesContext.getExternalContext().redirect("iniciativaAtributos.xhtml");
+        facesContext.getExternalContext().redirect("../publico/iniciativaAtributos.xhtml");
     }
 
     public void redirectAsociarIniciativas() throws IOException{

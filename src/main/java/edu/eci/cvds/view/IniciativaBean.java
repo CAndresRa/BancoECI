@@ -114,14 +114,14 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
-        facesContext.getExternalContext().redirect("comentariosIniciativa.xhtml");
+        facesContext.getExternalContext().redirect("../publico/comentariosIniciativa.xhtml");
     }
 
     public void redirectConsultaComentario() throws IOException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
-        facesContext.getExternalContext().redirect("consultarComentarios.xhtml");
+        facesContext.getExternalContext().redirect("../publico/consultarComentarios.xhtml");
     }
 
     public void redirectModificacionEstadoIniciativa() throws IOException{
@@ -163,7 +163,9 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         };
         for(Iniciativa i : iniciativasRelacionadasList){
             Iniciativa nuevaIni = serviciosIniciativa.consultarIniciativasPorId(i.getId());
-            resultante.add(nuevaIni);
+            if(!resultante.contains(nuevaIni)) {
+                resultante.add(nuevaIni);
+            }
         }
         return resultante;
     }

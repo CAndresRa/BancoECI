@@ -11,6 +11,8 @@ import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisUsuarioDAO;
 
 import edu.eci.cvds.samples.services.impl.ServiciosIniciativaImpl;
 import edu.eci.cvds.samples.services.impl.ServiciosUsuarioImpl;
+import edu.eci.cvds.security.Logger;
+import edu.eci.cvds.security.ShiroLogger;
 import edu.eci.cvds.view.*;
 
 import org.mybatis.guice.XMLMyBatisModule;
@@ -32,6 +34,7 @@ public class ServiciosBancoProyectosFactory {
                 setEnvironmentId(env);
                 setClassPathResource(pathResource);
                 bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
+                bind(Logger.class).to(ShiroLogger.class);
                 bind(IniciativaDAO.class).to(MyBatisIniciativaDAO.class);
                 bind(ComentarioDAO.class).to(MyBatisComentarioDAO.class);
                 bind(ServiciosUsuario.class).to(ServiciosUsuarioImpl.class);

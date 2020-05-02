@@ -15,6 +15,8 @@ import edu.eci.cvds.samples.services.ServiciosIniciativa;
 import edu.eci.cvds.samples.services.ServiciosUsuario;
 import edu.eci.cvds.samples.services.impl.ServiciosIniciativaImpl;
 import edu.eci.cvds.samples.services.impl.ServiciosUsuarioImpl;
+import edu.eci.cvds.security.Logger;
+import edu.eci.cvds.security.ShiroLogger;
 import edu.eci.cvds.view.*;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
@@ -43,6 +45,7 @@ public class GuiceContextListener implements ServletContextListener {
                 bind(BasePageBean.class).to(LoginBean.class);
                 bind(ServiciosUsuario.class).to(ServiciosUsuarioImpl.class);
                 bind(ServiciosIniciativa.class).to(ServiciosIniciativaImpl.class);
+                bind(Logger.class).to(ShiroLogger.class);
 
             }
         });

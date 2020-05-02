@@ -19,20 +19,23 @@
 
 <h:body>
     <h:form id="login_user" prependId="false">
+        <p:messages>
+            <p:autoUpdate />
+        </p:messages>
         <p:panelGrid id="validacion" columns="1" styleClass="ui-fluid center ui-noborder" style="background-color: #000000">
             <h1>Banco de Proyectos</h1>
 
             <p:outputLabel value="Login failed!" styleClass="red"
                            rendered="${!empty param['error']}" />
 
-            <p:inputText id="username" placeholder="Nombre de usuario" required="false" type="String" binding="#{username}"/>
-            <p:password id="password" placeholder="Contraseña" required="false" type="String" binding="#{password}"/>
+            <p:inputText id="usuario" placeholder="Nombre de usuario" required="false" type="String" value="#{loginBean.username}"/>
+            <p:password id="contraseña" placeholder="Contraseña" required="false" type="String" value="#{loginBean.password}"/>
             <br></br>
 
 
         </p:panelGrid>
 
-        <p:commandButton id="boton_login" value="Iniciar Sesion" actionListener="#{loginBean.iniciarSesion(username.value,password.value)}"/>
+        <p:commandButton id="boton_login" value="Iniciar Sesion" actionListener="#{loginBean.login}" action="#{loginBean.info}"/>
         <p:commandButton id="boton_validate" value="Consultar Iniciativas" actionListener="#{loginBean.redirectBusquedaIniciativas()}"/>
 
     </h:form>
