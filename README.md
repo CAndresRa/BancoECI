@@ -14,7 +14,7 @@
 * Ernesto Camacho, Team.
 * Carlos Andrés Ramírez, Scrum Master.
 * Oscar David Ospina, Product Owner.
-* Julián Mauricio Briceño, Product Owner.
+* Julián Mauricio Velasco, Product Owner.
 
 # Descripción Del Producto
 
