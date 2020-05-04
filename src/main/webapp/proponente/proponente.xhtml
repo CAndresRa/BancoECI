@@ -45,6 +45,7 @@
         </p:dataTable>
         <p:commandButton id="registrar" value="Registrar Iniciativa" actionListener="#{iniciativaBean.redirectRegistroDeIniciativa()}" style="background-color: mintcream; border-radius: 15px; width: 20%;float: left; font-family: Quicksand"/>
         <p:commandButton id="modificar" value="Modificar Iniciativa" actionListener="#{iniciativaBean.redirectModificacionDeIniciativa()}" style="background-color: mintcream; border-radius: 15px; width: 20%;float: left; font-family: Quicksand"/>
+        <p:commandButton process="@this" value="Consultar reporte de iniciativas" actionListener="#{adminBean.redirectReporteIniciativas()}" style="background-color: mintcream; border-radius: 15px;font-family:Quicksand; width:30%;float: left"/>
     </h:form>
     <br/>
 </h:body>

@@ -21,7 +21,8 @@
     <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}" style=" width: 5%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;margin: 1px 1px;   float: right;"/>
     <br/>
     <br/>
-    <p:dataTable var="iniciative" value="#{iniciativaBean.consultarIniciativaSolita()}" >
+    <h1>Tu iniciativa</h1><br/><br/><br/><br/><br/>
+    <p:dataTable var="iniciative" value="#{iniciativaBean.consultarIniciativaSolita()}" style="float: left; width: 70%;margin-left: -5%" >
         <p:column headerText="Id" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
             <h:outputText value="#{iniciative.id}" />
         </p:column>
@@ -63,6 +64,7 @@
             <br />
             <h:outputText id="display" />
             <p:commandButton id="modificar" value="modificar" actionListener="#{iniciativaBean.modificarIniciativa(nombreIni.value,descripcionIni.value,palabras.value)}" style="margin-top: 4px; margin-left: 5%;width: 120%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
+            <p:commandButton process="@this" id="Regresar" value="regresar" action="proponente.xhtml?faces-redirect = true" style="margin-top: 4px;width: 45%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;"/>
 
 
         </h:panelGrid>

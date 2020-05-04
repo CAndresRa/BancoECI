@@ -31,7 +31,7 @@
         </p:messages>
         <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.iniciativasBusquedaBasica}" rowKey="#{iniciative.id}" selection="#{iniciativaBean.iniciativasRelacionadasList}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                     paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; margin-left: 5%; border-radius: 15px;">
+                     paginator="true" rows="10" style="margin-bottom: 1%; font-family: Quicksand;width: 90%; border-radius: 15px;">
             <f:facet name="{Exporters}">
                 <div style="float:right; margin-right: 2%">
                     <h:commandLink>
@@ -97,7 +97,7 @@
                 <p:commandButton process="tbl" value="Asociar Iniciativas" actionListener="#{iniciativaBean.agregarIniciativaRelacionadaAIniciativa}" action="#{iniciativaBean.info}" style="border-radius: 15px; background-color: mintcream"/>
             </f:facet>
         </p:dataTable>
-        <p:commandButton value="Regresar" action="administrador.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px;"/>
+        <p:commandButton value="Regresar" action="administrador.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px;margin-right: 10%"/>
     </h:form>
 </h:body>
 </html>

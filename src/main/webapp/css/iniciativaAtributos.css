@@ -18,10 +18,10 @@ body {
 }
 
 h1{
-    color: yellowgreen ;
+    color: black ;
 }
 
-#pie,pie2{
+#pie{
     opacity: 0.8;
     -moz-opacity: 0.8;
     filter: alpha(opacity=10);
@@ -31,6 +31,8 @@ h1{
     border-radius: 15px;
     background-color: yellowgreen;
 }
+
+
 
 #download{
     width: 5%;
