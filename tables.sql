@@ -52,3 +52,7 @@ CREATE TABLE proyectoRelacionado(
 
 insert into usuario (documento,email,nombre,apellido,password,rol,area ) values (2154021,'ernesto.camacho@mail.escuelaing.edu.co','Ernesto','Camacho','1234','Administrador','Pruebas');
 insert into usuario (documento,email,nombre,apellido,password,rol,area ) values (2000003,'no.rol@mail.escuelaing.edu.co','no','rol','1234',null,'otro');
+INSERT INTO iniciativa (id, nombre, descripcion, estado, fecha_registro, usuario) VALUES(1, 'Proyecto finanzas', 'Finanzas para la universidad', 'Espera', '2020-04-17', 2154021);
+INSERT INTO iniciativa (id, nombre, descripcion, estado, fecha_registro, usuario) VALUES(2, 'Prueba 1', 'Prueba 1', 'Espera', '2020-04-17', 2154021);
+INSERT INTO iniciativa (id, nombre, descripcion, estado, fecha_registro, usuario) VALUES(3, 'Prueba 2', 'Prueba 2', 'Espera', '2020-04-17', 2154021);
+INSERT INTO palabraclave (id, iniciativa, palabra) VALUES(16, 'Prueba 1', 'Prueba 1');

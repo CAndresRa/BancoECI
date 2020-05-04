@@ -36,6 +36,7 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
             throw new javax.persistence.PersistenceException(e.getMessage(), e);
         }
     }
+    
     @Override
     public void agregarComentarioAIniciativa(Comentario comentario, int idIniciativa) throws ExcepcionServiciosBancoProyectos{
         try {
@@ -44,6 +45,7 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
             throw new javax.persistence.PersistenceException(e.getMessage(), e);
         }
     }
+    
     @Override
     public List<Iniciativa> consultarIniciativasOrdenadasPorColumna(String columna) throws ExcepcionServiciosBancoProyectos {
         try {

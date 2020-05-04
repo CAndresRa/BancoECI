@@ -117,7 +117,7 @@ public class Iniciativa {
         this.palabras_clave = palabras_clave;
     }
 
-    /*
+    
     @Override public String toString() {
      return "Iniciativa{" +
      "id=" + id +
@@ -131,13 +131,11 @@ public class Iniciativa {
       '}';
       }
 
-     */
 
-
-
+/*
     @Override
     public String toString() {
         return
                 "id=" + id;
-    }
+    }*/
 }
