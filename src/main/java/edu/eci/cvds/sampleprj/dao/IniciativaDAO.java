@@ -2,6 +2,7 @@ package edu.eci.cvds.sampleprj.dao;
 
 import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -86,4 +87,39 @@ public interface IniciativaDAO {
     public List<Iniciativa> consultarIniciativasPorArea(String area) throws  PersistenceException;
 
     public void agregarIniciativaRelacionadaAIniciativa(int idIni, int idIniRelacionada) throws PersistenceException;
+
+    /**
+     * Listado de las iniciativas de un proponente
+     * @param email email del proponente
+     * @return lista de iniciativas del proponente
+     */
+    public List<Iniciativa> consultarIniciativasDelProponente(String email) throws PersistenceException;
+
+    /**
+     * Permite modificar una iniciativa del proponente
+     * @param nombre nuevo nombre de la inicitiva
+     * @param iniciativa iniciativa que se va a modificar
+     */
+    public void modificarIniciativa(String nombre, Iniciativa iniciativa);
+
+    /**
+     * Permite modificar una iniciativa del proponente
+     * @param  descripcion nueva descripcion de la inicitiva
+     * @param iniciativa iniciativa que se va a modificar
+     */
+    public void modificarDescripcion(String descripcion, Iniciativa iniciativa);
+
+    /**
+     * Elimina las palabras clave
+     * @param id id de la palabra que se desea eliminar
+     */
+    public void deletePalabraClave(int id);
+
+    /**
+     * Permite conocer el numero de iniciativas en el estado
+     * @param estado estado de la iniciativa
+     * @return numero de iniciativas con ese estado
+     */
+    public int consultarNumeroDeIniciativasPorEstado(String estado);
+
 }

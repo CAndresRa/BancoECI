@@ -102,5 +102,44 @@ public interface ServiciosIniciativa {
      */
     public abstract void agregarIniciativaRelacionadaAIniciativa(int idIni, int idIniRelacionada) throws  ExcepcionServiciosBancoProyectos;
 
+    /**
+     * Listado de las iniciativas de un proponente
+     * @param email email del proponente
+     * @return lista de iniciativas del proponente
+     */
+    public abstract List<Iniciativa> consultarIniciativasDelProponente(String email) throws ExcepcionServiciosBancoProyectos;
 
+    /**
+     * Permite modificar una iniciativa del proponente
+     * @param nombre nuevo nombre de la inicitiva
+     * @param iniciativa iniciativa que se va a modificar
+     */
+    public abstract void modificarIniciativa(String nombre, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos;
+
+    /**
+     * Permite modificar la descripcion de la iniciativa
+     * @param descripcion nueva descripcion de la iniciativa
+     * @throws ExcepcionServiciosBancoProyectos
+     */
+    public abstract void modificarDescripcion(String descripcion, Iniciativa iniciativa) throws  ExcepcionServiciosBancoProyectos;
+
+    /**
+     * Elimina las palabras clave
+     * @param id id de la palabra que se desea eliminar
+     */
+    public abstract void deletePalabraClave(int id) throws ExcepcionServiciosBancoProyectos;
+
+    /**
+     * Permite conocer el numero de iniciativas en el estado
+     * @param estado estado de la iniciativa
+     * @return numero de iniciativas con ese estado
+     */
+    public abstract int consultarNumeroDeIniciativasPorEstado(String estado) throws ExcepcionServiciosBancoProyectos;
+
+    /**
+     * Permite eliminar las palabras clave de una iniciativa
+     * @param iniciativa la iniciativa en donde se borraran las palabras clave
+     * @throws ExcepcionServiciosBancoProyectos
+     */
+    public abstract void eliminarPalabrasClaveDeUnaIniciativa(Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos;
 }

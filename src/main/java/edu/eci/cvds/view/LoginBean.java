@@ -52,12 +52,18 @@ public class LoginBean extends BasePageBean {
     public void redirectHome() throws IOException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if(logger.isAdmin()){
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            session.setAttribute("username", username);
             facesContext.getExternalContext().redirect("admin/administrador.xhtml");
         }
         if(logger.isProponente()){
-            facesContext.getExternalContext().redirect("proponente/registrarIniciativa.xhtml");
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            session.setAttribute("username", username);
+            facesContext.getExternalContext().redirect("proponente/proponente.xhtml");
         }
         if(logger.isPMO()){
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            session.setAttribute("username", username);
             facesContext.getExternalContext().redirect("PMO/pmo.xhtml");
         }
     }

@@ -25,27 +25,24 @@
 
     <h1>Estadisticas por Area</h1>
 
+    <br/>
     <p:chart type="pie" id="pie"
              responsive="true"
              model="#{iniciativaBean.generarEstadistica()}"
-             widgetVar="chart"/>
-    <p:commandButton id="exportar" value="Exportar" onclick="return exportChart()" type="Submit"/>
-    <script type="application/javascript">
-        function exportChart() {
-            var image = PF('chart').exportAsImage();
-            var imageSrc = $(image).attr('src');
-            var url = imageSrc.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
-            var link = document.createElement('a');
-            link.download = "chart.png";
-            link.href = url;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            return false;
-        }
-    </script>
 
-    <h:form id="iniciativasPublic" prependId="false" style="margin-top: -10%;">
+    />
+
+    <br/>
+    <h1>Estadisticas por Estado</h1>
+    <p:chart type="pie" id="pie2"
+             responsive="true"
+             model="#{iniciativaBean.generarEstadisticaPorEstado()}"
+
+    />
+    <br/>
+
+
+    <h:form id="iniciativasPublic" prependId="false" style="margin-top: -2%;">
         <h1>Lista de iniciativas</h1>
         <p:dataTable id="tbl" var="iniciative" value="#{iniciativaBean.iniciativasBusquedaBasica}" rowKey="#{iniciative.id}" selection="#{iniciativaBean.selectedIniciativa}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"

@@ -29,24 +29,15 @@
             <p:outputLabel for="@next" value="Nombre de la Iniciativa" style="font-family: Quicksand; font-weight: bold; font-size: large"/>
             <p:inputText  id= "nombreIniciativa" required="true" type="String" binding="#{nombreIni}" style="border-radius: 15px; margin-left:20%; width: 150% "> </p:inputText>
 
-
-
-            <p:outputLabel for="@next" value="Correo del proponente" style="font-family: Quicksand; font-weight: bold; font-size: large"/>
-            <p:inputText  id="Correo" required="true" type="String" binding="#{email}" style="border-radius: 15px; margin-left:20%; width: 150% "> </p:inputText>
-
-
-
-
             <p:outputLabel for="@next" value="Descripción" style="font-family: Quicksand; font-weight: bold; font-size: large" />
-            <p:inputTextarea id="descripcion" counter="display"  rows="10" maxlength="300" counterTemplate="Le quedan {0} caracteres" binding="#{descripcionIni}" autoResize="true" style="width: 200%"/>
+            <p:inputTextarea id="descripcion" counter="display" required="true"  rows="10" maxlength="300" counterTemplate="Le quedan {0} caracteres" binding="#{descripcionIni}" autoResize="true" style="width: 200%"/>
 
             <p:outputLabel for="@next" value="Palabras Clave" style="font-family: Quicksand; font-weight: bold; font-size: large" />
             <p:inputText id= "palabrasClave" placeholder="Separadas por comas y sin espacios" required="true" type="String" binding="#{palabras}" style="border-radius: 15px; margin-left:20%; width: 200% "> </p:inputText>
 
             <br />
             <h:outputText id="display" />
-
-            <p:commandButton id="registrar" value="Registrar Iniciativa"  action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.agregarIniciativa(nombreIni.value, descripcionIni.value, palabras.value ,email.value)}" style="margin-top: 4px; margin-left: 5%;width: 120%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
+            <p:commandButton id="registrar" value="Registrar Iniciativa"  action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.agregarIniciativa(nombreIni.value, descripcionIni.value, palabras.value)}" style="margin-top: 4px; margin-left: 5%;width: 120%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
             <p:commandButton process="@this" value="Consultar reporte de iniciativas" actionListener="#{adminBean.redirectReporteIniciativas()}" style="background-color: mintcream; border-radius: 15px;font-family:Quicksand; width:120%; margin-left: 50%  "/>
         </h:panelGrid>
         <br/>

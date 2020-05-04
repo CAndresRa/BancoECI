@@ -1,9 +1,8 @@
-.idea
-
-### De Eclipse ###
+.settings
+target/
+.DS_Store
+.idea/
 .classpath
 .project
-.settings
-
-
-/target/
+.#*
+*.log

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" type="text/css" href="../css/registrarIniciativa.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+    <title>#{msg['application.title']}</title>
+</h:head>
+
+<h:body>
+    <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}" style=" width: 5%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;margin: 1px 1px;   float: right;"/>
+    <br/>
+    <br/>
+    <p:dataTable var="iniciative" value="#{iniciativaBean.consultarIniciativaSolita()}" >
+        <p:column headerText="Id" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+            <h:outputText value="#{iniciative.id}" />
+        </p:column>
+        <p:column headerText="Nombre" style=" background-color: mintcream;font-family: Quicksand; font-size: 18px">
+            <h:outputText value="#{iniciativaBean.iniciativa.nombre}" />
+        </p:column>
+        <p:column headerText="Contacto" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+            <h:outputText value="#{iniciativaBean.iniciativa.usuario.email}" />
+        </p:column>
+        <p:column headerText="Descripcion" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
+            <h:outputText value="#{iniciativaBean.iniciativa.descripcion}" />
+        </p:column>
+
+        <p:column headerText="Palabras Clave" style="background-color: skyblue; font-family: Quicksand; font-size: 18px">
+            <h:outputText value="#{iniciativaBean.iniciativa.palabras_clave}" />
+        </p:column>
+
+        <p:column headerText="Estado" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
+            <h:outputText value="#{iniciativaBean.iniciativa.estado}" />
+        </p:column>
+
+    </p:dataTable>
+
+    <h1>Modificar Iniciativa</h1>
+    <h:form id="registroIniciativa" prependId="false" style="background-color: lightskyblue">
+        <p:messages>
+            <p:autoUpdate />
+        </p:messages>
+        <h:panelGrid columns="2" cellpadding="11">
+            <p:outputLabel for="@next" value="Nombre de la Iniciativa"  style="font-family: Quicksand; font-weight: bold; font-size: large"/>
+            <p:inputText  id= "nombreIniciativa" required="false" type="String"  binding="#{nombreIni}" style="border-radius: 15px; margin-left:20%; width: 150% "> </p:inputText>
+
+            <p:outputLabel for="@next" value="Descripción" style="font-family: Quicksand; font-weight: bold; font-size: large" />
+            <p:inputTextarea id="descripcion" counter="display"  rows="10" maxlength="300" counterTemplate="Le quedan {0} caracteres" binding="#{descripcionIni}" autoResize="true" style="width: 200%"/>
+
+            <p:outputLabel for="@next" value="Palabras Clave" style="font-family: Quicksand; font-weight: bold; font-size: large" />
+            <p:inputText id= "palabrasClave" placeholder="Separadas por comas y sin espacios" required="false" type="String" binding="#{palabras}" style="border-radius: 15px; margin-left:20%; width: 200% "> </p:inputText>
+
+            <br />
+            <h:outputText id="display" />
+            <p:commandButton id="modificar" value="modificar" actionListener="#{iniciativaBean.modificarIniciativa(nombreIni.value,descripcionIni.value,palabras.value)}" style="margin-top: 4px; margin-left: 5%;width: 120%;font-family: Quicksand;background-color: mintcream;border-radius: 15px"></p:commandButton>
+
+
+        </h:panelGrid>
+        <br/>
+    </h:form>
+    <br/>
+</h:body>
+</html>

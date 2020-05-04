@@ -21,7 +21,7 @@ h1{
     color: yellowgreen ;
 }
 
-#pie{
+#pie,pie2{
     opacity: 0.8;
     -moz-opacity: 0.8;
     filter: alpha(opacity=10);

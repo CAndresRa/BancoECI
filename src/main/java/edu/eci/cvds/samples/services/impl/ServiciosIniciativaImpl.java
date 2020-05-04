@@ -7,6 +7,7 @@ import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.UsuarioDAO;
 import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.PalabraClave;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosIniciativa;
 
@@ -74,7 +75,7 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
     }
     
     @Override
-    public void insertarIniciativa(Iniciativa iniciativa , List<String> palabras) throws ExcepcionServiciosBancoProyectos, PersistenceException {
+    public void insertarIniciativa(Iniciativa iniciativa, List<String> palabras) throws ExcepcionServiciosBancoProyectos, PersistenceException {
         try{
             if(iniciativa.getDescripcion() == null) {
                 throw new ExcepcionServiciosBancoProyectos("La iniciativa no tiene toda la informacion necesaria");
@@ -93,7 +94,7 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
     }
 
     @Override
-    public void agregarPalabrasClaveAIniciativa(Iniciativa iniciativa, List < String > palabras) throws ExcepcionServiciosBancoProyectos {
+    public void agregarPalabrasClaveAIniciativa(Iniciativa iniciativa, List<String> palabras) throws ExcepcionServiciosBancoProyectos {
         try{
             if(iniciativa == null){
                 throw new ExcepcionServiciosBancoProyectos("La iniciativa no existe");
@@ -163,6 +164,42 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
             iniciativaDAO.agregarIniciativaRelacionadaAIniciativa(idIni, idIniRelacionada);
         } catch (PersistenceException e){
             throw new ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public List<Iniciativa> consultarIniciativasDelProponente(String email) throws ExcepcionServiciosBancoProyectos {
+        try{
+            return iniciativaDAO.consultarIniciativasDelProponente(email);
+        } catch (PersistenceException e){
+            throw new  ExcepcionServiciosBancoProyectos(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void modificarIniciativa(String nombre, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
+        iniciativaDAO.modificarIniciativa(nombre, iniciativa);
+    }
+
+    @Override
+    public void modificarDescripcion(String descripcion, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
+        iniciativaDAO.modificarDescripcion(descripcion, iniciativa);
+    }
+
+    @Override
+    public void deletePalabraClave(int id) throws ExcepcionServiciosBancoProyectos {
+        iniciativaDAO.deletePalabraClave(id);
+    }
+
+    @Override
+    public int consultarNumeroDeIniciativasPorEstado(String estado) throws ExcepcionServiciosBancoProyectos {
+        return iniciativaDAO.consultarNumeroDeIniciativasPorEstado(estado);
+    }
+
+    @Override
+    public void eliminarPalabrasClaveDeUnaIniciativa(Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
+        for(PalabraClave palabraClave : iniciativa.getPalabras_clave()){
+            deletePalabraClave(palabraClave.getId());
         }
     }
 }

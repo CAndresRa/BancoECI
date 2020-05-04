@@ -84,4 +84,38 @@ public interface IniciativaMapper {
      */
     public void cambiarEstadoAiniciativa(@Param("estado") String estado, @Param("iniciativa") Iniciativa iniciativa);
 
+    /**
+     * Listado de las iniciativas de un proponente
+     * @param email email del proponente
+     * @return lista de iniciativas del proponente
+     */
+    public List<Iniciativa> consultarIniciativasDelProponente(@Param("email") String email);
+
+    /**
+     * Permite modificar una iniciativa del proponente
+     * @param nombre nuevo nombre de la inicitiva
+     * @param iniciativa iniciativa que se va a modificar
+     */
+    public void modificarIniciativa(@Param("nombre") String nombre, @Param("iniciativa") Iniciativa iniciativa);
+
+    /**
+     * Permite modificar una iniciativa del proponente
+     * @param descripcion nueva descripcion de la inicitiva
+     * @param iniciativa iniciativa que se va a modificar
+     */
+    public void modificarDescripcion(@Param("descripcion") String descripcion, @Param("iniciativa") Iniciativa iniciativa);
+
+
+    /**
+     * Elimina las palabras clave
+     * @param id id de la palabra que se desea eliminar
+     */
+    public void deletePalabraClave(@Param("id") int id);
+
+    /**
+     * Permite conocer el numero de iniciativas en el estado
+     * @param estado estado de la iniciativa
+     * @return numero de iniciativas con ese estado
+     */
+    public int consultarNumeroDeIniciativasPorEstado(@Param("estado") String estado);
 }

@@ -13,6 +13,52 @@
             and u.area = #{area};
     </select>
 
+    <select parameterType="map" resultType="int" id="consultarNumeroDeIniciativasPorEstado">
+        SELECT
+        count(i.id)
+        FROM iniciativa i
+        WHERE i.estado = #{estado};
+    </select>
+
+    <delete id="deletePalabraClave">
+        DELETE FROM palabraclave
+        WHERE id = #{id};
+    </delete>
+
+    <update parameterType="map" id="modificarIniciativa">
+        UPDATE iniciativa
+        SET nombre = #{nombre}
+        WHERE id =  #{iniciativa.id};
+    </update>
+
+    <update parameterType="map" id="modificarDescripcion">
+        UPDATE iniciativa
+        SET descripcion = #{descripcion}
+        WHERE id =  #{iniciativa.id};
+    </update>
+
+    <select parameterType="map" id="consultarIniciativasDelProponente" resultMap="IniciativaResult">
+               SELECT
+            i.id,
+            i.nombre,
+            i.descripcion,
+            i.estado,
+            i.fecha_registro,
+            u.documento as usuario_documento,
+            u.email as usuario_email,
+            u.nombre as usuario_nombre,
+            u.apellido as usuario_apellido,
+            u.password as usuario_password,
+            u.area as usuario_area,
+            u.rol as usuario_rol,
+            p.id as palabraclave_id,
+            p.palabra as palabraclave_palabra
+        FROM iniciativa i
+        left join usuario u on i.usuario = u.documento
+        left join palabraclave p on p.iniciativa = i.nombre
+        WHERE u.email = #{email};
+    </select>
+
     <select parameterType="map" id="consultarIniciativasPorArea" resultMap="IniciativaResult">
         SELECT
             i.id,
@@ -124,7 +170,6 @@
         left join palabraclave p on p.iniciativa = i.nombre
         WHERE p.palabra = #{palabra};
     </select>
-
 
     <update parameterType="map" id="cambiarEstadoAiniciativa">
         UPDATE iniciativa

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" type="text/css" href="../css/registrarIniciativa.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+    <title>#{msg['application.title']}</title>
+</h:head>
+
+<h:body>
+    <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}" style=" width: 5%;font-family: Quicksand;background-color: mintcream;border-radius: 15px;margin: 1px 1px;   float: right;"/>
+
+    <h1>Mis Iniciativas</h1>
+    <br/><br/><br/><br/><br/><br/><br/><br/>
+
+    <h:form id="iniciativasProponente" prependId="false" style="float: left;width: 70%;margin-left: 10%">
+        <p:dataTable id="tbl" var="ini" value="#{iniciativaBean.consultarIniciativasDelPropoponente()}" rowKey="#{ini.id}" selection="#{iniciativaBean.selectedIniciativa}" >
+
+            <p:column selectionMode="single" style="width:16px;text-align:center;background-color: mintcream"/>
+            <p:column headerText="Id Iniciativa" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{ini.id}" />
+            </p:column>
+            <p:column headerText="Nombre" style=" background-color: mintcream;font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{ini.nombre}" />
+            </p:column>
+            <p:column headerText="Estado" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{ini.estado}" />
+            </p:column>
+            <p:column headerText="Descripcion" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{ini.descripcion}" />
+            </p:column>
+            <p:column headerText="Palabras Clave" style="background-color: mintcream; font-family: Quicksand; font-size: 18px">
+                <h:outputText value="#{ini.palabras_clave}" />
+            </p:column>
+        </p:dataTable>
+        <p:commandButton id="registrar" value="Registrar Iniciativa" actionListener="#{iniciativaBean.redirectRegistroDeIniciativa()}" style="background-color: mintcream; border-radius: 15px; width: 20%;float: left; font-family: Quicksand"/>
+        <p:commandButton id="modificar" value="Modificar Iniciativa" actionListener="#{iniciativaBean.redirectModificacionDeIniciativa()}" style="background-color: mintcream; border-radius: 15px; width: 20%;float: left; font-family: Quicksand"/>
+    </h:form>
+    <br/>
+</h:body>
+</html>

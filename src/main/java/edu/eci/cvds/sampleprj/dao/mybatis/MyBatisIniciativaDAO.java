@@ -7,6 +7,7 @@ import edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper;
 import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 import java.util.List;
 
@@ -126,6 +127,52 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
         try{
             iniciativaMapper.agregarIniciativaRelacionadaAIniciativa(idIni, idIniRelacionada);
         } catch (javax.persistence.PersistenceException e ){
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public List<Iniciativa> consultarIniciativasDelProponente(String email) throws PersistenceException {
+        try{
+            return iniciativaMapper.consultarIniciativasDelProponente(email);
+        } catch (javax.persistence.PersistenceException e){
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+
+    }
+
+    @Override
+    public void modificarIniciativa(String nombre, Iniciativa iniciativa) {
+        try{
+            iniciativaMapper.modificarIniciativa(nombre,iniciativa);
+        } catch (javax.persistence.PersistenceException e){
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void modificarDescripcion(String descripcion, Iniciativa iniciativa) {
+        try{
+            iniciativaMapper.modificarDescripcion(descripcion, iniciativa);
+        }catch (javax.persistence.PersistenceException e){
+            throw new javax.persistence.PersistenceException(e.getMessage(),e);
+        }
+    }
+
+    @Override
+    public void deletePalabraClave(int id) {
+        try{
+            iniciativaMapper.deletePalabraClave(id);
+        } catch (javax.persistence.PersistenceException e){
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public int consultarNumeroDeIniciativasPorEstado(String estado) {
+        try{
+            return iniciativaMapper.consultarNumeroDeIniciativasPorEstado(estado);
+        } catch (javax.persistence.PersistenceException e){
             throw new javax.persistence.PersistenceException(e.getMessage(), e);
         }
     }

@@ -1,9 +1,8 @@
 package edu.eci.cvds.view;
-
-
 import com.google.inject.Inject;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.PalabraClave;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosIniciativa;
@@ -14,6 +13,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
@@ -38,6 +38,7 @@ public class IniciativaBean extends BasePageBean implements Serializable {
     private List<Iniciativa> iniciativasPorPalabra;
     private String message;
     private PieChartModel model;
+    private PieChartModel modelEstado;
     private List<Iniciativa> iniciativasRelacionadasList;
     private List<Iniciativa> iniciativasBusquedaBasica;
 
@@ -51,10 +52,13 @@ public class IniciativaBean extends BasePageBean implements Serializable {
             e.printStackTrace();
         }
     }
-    public void agregarIniciativa(String nombre, String descripcion, String palabras, String email) throws ExcepcionServiciosBancoProyectos, PersistenceException {
+    public void agregarIniciativa(String nombre, String descripcion, String palabras) throws ExcepcionServiciosBancoProyectos, PersistenceException {
         try {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            String correoSession = (String) session.getAttribute("username");
             List<String> palabrasListas = Arrays.asList(palabras.split(","));
-            Usuario usuario = serviciosUsuario.consultarUsuario(email);
+            Usuario usuario = serviciosUsuario.consultarUsuario(correoSession);
             this.iniciativa = new Iniciativa(nombre, descripcion, "Espera", new Date((new java.util.Date()).getTime()), usuario);
             serviciosIniciativa.insertarIniciativa(iniciativa, palabrasListas);
             this.message = "La iniciativa se registro correctamente";
@@ -124,12 +128,26 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         facesContext.getExternalContext().redirect("../publico/consultarComentarios.xhtml");
     }
 
+    public void redirectModificacionDeIniciativa() throws IOException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
+        facesContext.getExternalContext().redirect("modificarIniciativa.xhtml");
+    }
+
     public void redirectModificacionEstadoIniciativa() throws IOException{
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
         facesContext.getExternalContext().redirect("cambioEstado.xhtml");
     }
+
+    public void redirectRegistroDeIniciativa() throws IOException{
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        facesContext.getExternalContext().redirect("registrarIniciativa.xhtml");
+    }
+
 
 
     public void agregarIniciativaRelacionadaAIniciativa() throws ExcepcionServiciosBancoProyectos {
@@ -170,6 +188,52 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         return resultante;
     }
 
+    public List<Iniciativa> consultarIniciativasDelPropoponente() throws ExcepcionServiciosBancoProyectos {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        String correoSession = (String) session.getAttribute("username");
+        return serviciosIniciativa.consultarIniciativasDelProponente(correoSession);
+    }
+
+    public void modificarIniciativa(String nombre, String descripcion, String palabras){
+        try{
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
+            this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
+            if(!nombre.equals("") && !palabras.equals("")) {
+                List<String> palabrasListas = Arrays.asList(palabras.split(","));
+                serviciosIniciativa.eliminarPalabrasClaveDeUnaIniciativa(iniciativa);
+                serviciosIniciativa.modificarIniciativa(nombre, iniciativa);
+                this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
+                serviciosIniciativa.agregarPalabrasClaveAIniciativa(iniciativa, palabrasListas);
+            }
+            else if (!nombre.equals("") && palabras.equals("")){
+                String temporal = "";
+                for(PalabraClave palabrasclave : iniciativa.getPalabras_clave()){
+                    temporal = temporal + palabrasclave.getPalabra() + ',';
+                }
+                List<String> palabrasListas = Arrays.asList(temporal.split(","));
+                System.out.println(palabrasListas);
+                serviciosIniciativa.eliminarPalabrasClaveDeUnaIniciativa(iniciativa);
+                serviciosIniciativa.modificarIniciativa(nombre, iniciativa);
+                this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
+                serviciosIniciativa.agregarPalabrasClaveAIniciativa(iniciativa, palabrasListas);
+            }
+            else if (nombre.equals("") && !palabras.equals("")){
+                serviciosIniciativa.eliminarPalabrasClaveDeUnaIniciativa(iniciativa);
+                List<String> palabrasListas = Arrays.asList(palabras.split(","));
+                serviciosIniciativa.agregarPalabrasClaveAIniciativa(iniciativa, palabrasListas);
+            }
+            if(!descripcion.equals("")) {
+                serviciosIniciativa.modificarDescripcion(descripcion, iniciativa);
+            }
+
+        } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos) {
+            excepcionServiciosBancoProyectos.printStackTrace();
+        }
+    }
+
     public PieChartModel generarEstadistica() throws ExcepcionServiciosBancoProyectos {
         model = new PieChartModel();
         model.set("Finanzas", serviciosIniciativa.consultarNumeroDeIniciativasPorArea("Finanzas"));
@@ -186,6 +250,24 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         model.setDataLabelFormatString("%d");
         model.setSeriesColors("aaf,afa,faa,ffa");
         return model;
+    }
+
+    public PieChartModel generarEstadisticaPorEstado() throws ExcepcionServiciosBancoProyectos {
+        modelEstado = new PieChartModel();
+        modelEstado.set("Espera", serviciosIniciativa.consultarNumeroDeIniciativasPorEstado("Espera"));
+        modelEstado.set("Proyecto", serviciosIniciativa.consultarNumeroDeIniciativasPorEstado("Proyecto"));
+        modelEstado.set("Solucionado", serviciosIniciativa.consultarNumeroDeIniciativasPorEstado("Solucionado"));
+        modelEstado.set("Revision", serviciosIniciativa.consultarNumeroDeIniciativasPorEstado("Revision"));
+        modelEstado.setTitle("");
+        modelEstado.setShowDataLabels(true);
+        modelEstado.setDataLabelFormatString("%dK");
+        modelEstado.setLegendPosition("e");
+        modelEstado.setShowDatatip(true);
+        modelEstado.setShowDataLabels(true);
+        modelEstado.setDataFormat("value");
+        modelEstado.setDataLabelFormatString("%d");
+        modelEstado.setSeriesColors("aaf,afa,faa,ffa");
+        return modelEstado;
     }
 
     public void info() {
