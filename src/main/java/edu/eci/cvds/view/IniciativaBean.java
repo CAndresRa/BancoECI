@@ -26,8 +26,6 @@ import java.util.List;
 @ManagedBean(name = "iniciativaBean")
 @RequestScoped
 public class IniciativaBean extends BasePageBean implements Serializable {
-
-
     @Inject
     private ServiciosIniciativa serviciosIniciativa;
     @Inject
@@ -231,6 +229,37 @@ public class IniciativaBean extends BasePageBean implements Serializable {
 
         } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos) {
             excepcionServiciosBancoProyectos.printStackTrace();
+        }
+    }
+
+    public void agregarVoto(String correo) throws ExcepcionServiciosBancoProyectos {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
+        this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
+        Usuario usuario = serviciosUsuario.consultarUsuario(correo);
+        if(serviciosIniciativa.confirmarSiYaVoto(usuario, iniciativa) == 0) {
+            serviciosIniciativa.agregarVoto(usuario, iniciativa);
+            this.message = "Su voto ha sido registrado";
+        }
+        else {
+            this.message = "No es posible votar mas de una vez por la misma iniciativa";
+        }
+    }
+
+    public void deleteVoto(String correo) throws ExcepcionServiciosBancoProyectos{
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
+        this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
+        Usuario usuario = serviciosUsuario.consultarUsuario(correo);
+        if(serviciosIniciativa.confirmarSiYaVoto(usuario, iniciativa) > 0) {
+            int idIni = serviciosIniciativa.consultarIdDeVotacion(usuario, iniciativa);
+            serviciosIniciativa.deleteVoto(idIni);
+            this.message = "Su voto ha sido eliminado satisfactoriamente";
+        }
+        else {
+            this.message = "No es posible eliminar el voto si no ha votado";
         }
     }
 

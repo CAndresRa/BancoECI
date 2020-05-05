@@ -3,6 +3,7 @@ package edu.eci.cvds.samples.services;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.Usuario;
 
 import java.util.Date;
 import java.util.List;
@@ -142,4 +143,37 @@ public interface ServiciosIniciativa {
      * @throws ExcepcionServiciosBancoProyectos
      */
     public abstract void eliminarPalabrasClaveDeUnaIniciativa(Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos;
+
+    /**
+     *
+     * @param usuario
+     * @param iniciativa
+     * @throws ExcepcionServiciosBancoProyectos
+     */
+    public abstract void agregarVoto(Usuario usuario, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos;
+
+    /**
+     *
+     * @param usuario
+     * @param iniciativa
+     * @throws ExcepcionServiciosBancoProyectos
+     */
+    public abstract int confirmarSiYaVoto(Usuario usuario, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos;
+
+
+    /**
+     *
+     * @param id
+     * @throws ExcepcionServiciosBancoProyectos
+     */
+    public abstract void deleteVoto(int id) throws ExcepcionServiciosBancoProyectos;
+
+    /**
+     *
+     * @param usuario
+     * @param iniciativa
+     * @return
+     * @throws ExcepcionServiciosBancoProyectos
+     */
+    public abstract int consultarIdDeVotacion(Usuario usuario, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos;
 }

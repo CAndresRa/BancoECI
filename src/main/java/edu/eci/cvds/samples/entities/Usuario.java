@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Usuario implements Serializable{
 
@@ -16,6 +17,7 @@ public class Usuario implements Serializable{
     private String password;
     private String rol;
     private String area;
+    //private List<Voto> votos;
 
     public Usuario() {}
 
@@ -38,6 +40,22 @@ public class Usuario implements Serializable{
         this.rol=rol;
         this.area=area;
     }
+
+    /*
+
+    public Usuario(long documento,  String email , String nombre ,  String apellido  , String password , String rol, String area, List<Voto> votos) {
+        this.documento=documento;
+        this.email=email;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.password=password;
+        this.rol=rol;
+        this.area=area;
+        this.votos=votos;
+    }
+
+     */
+
 
     /**
      * Contructor de usuario
@@ -124,6 +142,18 @@ public class Usuario implements Serializable{
     public String getArea() { return area; }
 
     public void setArea(String area) { this.area = area; }
+
+    /*
+    public List<Voto> getVotos() {
+        return votos;
+    }
+
+    public void setVotos(List<Voto> votos) {
+        this.votos = votos;
+    }
+
+     */
+
 
     @Override
     public String toString() {

@@ -1,13 +1,11 @@
 package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.sampleprj.dao.ComentarioDAO;
-import edu.eci.cvds.sampleprj.dao.IniciativaDAO;
-import edu.eci.cvds.sampleprj.dao.PersistenceException;
-import edu.eci.cvds.sampleprj.dao.UsuarioDAO;
+import edu.eci.cvds.sampleprj.dao.*;
 import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.PalabraClave;
+import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosIniciativa;
 
@@ -24,6 +22,9 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
 
     @Inject
     private ComentarioDAO comentarioDAO;
+
+    @Inject
+    private VotoDAO votoDAO;
 
     @Override
     public List<Comentario> consultarComentariosPorIniciativa(int idIniciativa) throws ExcepcionServiciosBancoProyectos {
@@ -203,5 +204,25 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
         for(PalabraClave palabraClave : iniciativa.getPalabras_clave()){
             deletePalabraClave(palabraClave.getId());
         }
+    }
+
+    @Override
+    public void agregarVoto(Usuario usuario, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
+        votoDAO.agregarVoto(usuario,iniciativa);
+    }
+
+    @Override
+    public int confirmarSiYaVoto(Usuario usuario, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
+        return votoDAO.confirmarSiYaVoto(usuario,iniciativa);
+    }
+
+    @Override
+    public void deleteVoto(int id) throws ExcepcionServiciosBancoProyectos {
+        votoDAO.deleteVoto(id);
+    }
+
+    @Override
+    public int consultarIdDeVotacion(Usuario usuario, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
+        return votoDAO.consultarIdDeVotacion(usuario, iniciativa);
     }
 }

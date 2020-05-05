@@ -6,6 +6,7 @@ import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper;
 import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.Usuario;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
@@ -176,4 +177,5 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
             throw new javax.persistence.PersistenceException(e.getMessage(), e);
         }
     }
+
 }

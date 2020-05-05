@@ -2,6 +2,7 @@ package edu.eci.cvds.sampleprj.dao;
 
 import edu.eci.cvds.samples.entities.Comentario;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.Usuario;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
@@ -121,5 +122,7 @@ public interface IniciativaDAO {
      * @return numero de iniciativas con ese estado
      */
     public int consultarNumeroDeIniciativasPorEstado(String estado);
+
+
 
 }

@@ -77,12 +77,6 @@
                 </f:facet>
                 <h:outputText value="#{iniciative.usuario.area}" />
             </p:column>
-            <p:column style="background-color: mintcream">
-                <f:facet name="header">
-                    <h:outputText value="¿Te gusta esta iniciativa?" />
-                </f:facet>
-                <p:selectBooleanButton id="value" onLabel="No me gusta" offLabel="Me gusta" style="width:100% ; border-radius: 10px; background-color: mintcream; font-family: Quicksand; font-size: 15px" />
-            </p:column>
             <f:facet name="footer">
                 <p:commandButton process="tbl" value="Cambiar estado de iniciativa" actionListener="#{iniciativaBean.redirectModificacionEstadoIniciativa()}" style="border-radius: 15px; background-color: mintcream; font-family: Quicksand"/>
                 <p:commandButton id="exportar" value="Consultar reporte de iniciativas" actionListener="#{adminBean.redirectReporteIniciativas()}" style="border-radius: 15px; background-color: mintcream; font-family: Quicksand"/>

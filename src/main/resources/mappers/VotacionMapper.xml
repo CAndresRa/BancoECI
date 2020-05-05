@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.VotacionMapper">
+
+    <select parameterType="map" id="consultarVotaciones" resultMap="VotacionResult">
+        SELECT
+            v.iniciativa as nombreIniciativa,
+            v.usuario as documentoUsuario
+        FROM votacion as v;
+    </select>
+
+    <select parameterType="map" id="confirmarSiYaVoto" resultType="int">
+        select count(v.id)
+        from votacion v
+        where v.usuario = #{usuario.documento} and v.iniciativa = #{iniciativa.nombre};
+    </select>
+
+    <insert id="agregarVoto" parameterType="map">
+        INSERT INTO votacion (usuario, iniciativa) VALUES( #{usuario.documento}, #{iniciativa.nombre});
+    </insert>
+
+    <delete id="deleteVoto">
+        DELETE FROM votacion
+        WHERE id = #{id};
+    </delete>
+
+    <select parameterType="map" id="consultarIdDeVotacion" resultType="int">
+        select v.id
+        from votacion v
+        where v.usuario = #{usuario.documento} and v.iniciativa = #{iniciativa.nombre};
+    </select>
+
+    <resultMap type='Voto' id='VotacionResult'>
+        <result property='documentoUsuario' column='documentoUsuario'/>
+        <result property='nombreIniciativa' column='nombreIniciativa'/>
+    </resultMap>
+</mapper>

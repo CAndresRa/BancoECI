@@ -13,6 +13,7 @@ public class Iniciativa {
     private Date fecha_registro;
     private List<PalabraClave> palabras_clave;
     private List<Iniciativa> iniciativasRelacionadas;
+    //private List<Voto> votos;
 
     public Iniciativa() {
     }
@@ -35,6 +36,20 @@ public class Iniciativa {
         this.palabras_clave = palabras_clave;
         this.iniciativasRelacionadas = iniciativasRelacionadas;
     }
+
+    /*
+    public Iniciativa(int id, String nombre, String descripcion, String estado, Date fecha_registro, List<PalabraClave> palabras_clave, List<Iniciativa> iniciativasRelacionadas, List<Voto> votos) {
+        this.id = id;
+        this.descripcion = descripcion;
+        this.nombre = nombre;
+        this.estado = estado;
+        this.fecha_registro = fecha_registro;
+        this.palabras_clave = palabras_clave;
+        this.iniciativasRelacionadas = iniciativasRelacionadas;
+        this.votos = votos;
+    }
+
+     */
 
     public Iniciativa(String nombre, String descripcion, String estado, Date fecha_registro, List<PalabraClave> palabras_clave, Usuario usuario) {
         this.nombre = nombre;
@@ -117,7 +132,19 @@ public class Iniciativa {
         this.palabras_clave = palabras_clave;
     }
 
-    
+    /*
+    public List<Voto> getVotos() {
+        return votos;
+    }
+
+    public void setVotos(List<Voto> votos) {
+        this.votos = votos;
+    }
+
+     */
+
+
+    /*
     @Override public String toString() {
      return "Iniciativa{" +
      "id=" + id +
@@ -130,12 +157,14 @@ public class Iniciativa {
       ", iniciativasRelacionadas=" + iniciativasRelacionadas +
       '}';
       }
+      */
 
 
-/*
+
+
     @Override
     public String toString() {
         return
                 "id=" + id;
-    }*/
+    }
 }

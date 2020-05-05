@@ -102,12 +102,7 @@
                 </f:facet>
                 <h:outputText value="#{iniciative.getPalabras_clave()}"  />
             </p:column>
-            <p:column style="background-color: mintcream">
-                <f:facet name="header">
-                    <h:outputText value="¿Te gusta esta iniciativa?" />
-                </f:facet>
-                <p:selectBooleanButton id="value" onLabel="No me gusta" offLabel="Me gusta" style="width:100% ; border-radius: 10px; background-color: mintcream; font-family: Quicksand; font-size: 15px" />
-            </p:column>
+
             <f:facet name="footer">
                 <h:commandButton  value="Comentar iniciativa" actionListener="#{iniciativaBean.redirectAddComentario()}" style="border-radius: 15px; background-color: mintcream; font-family: Quicksand"/>
                 <h:commandButton  value="Consultar comentarios" actionListener="#{iniciativaBean.redirectConsultaComentario()}" style="border-radius: 15px;background-color: mintcream;font-family: Quicksand"/>

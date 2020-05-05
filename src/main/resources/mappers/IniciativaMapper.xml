@@ -193,6 +193,8 @@
         INSERT INTO comentario  (fecha_comentario , contenido ,  correo_usuario , nombre_usuario , apellido_usuario , iniciativa) VALUES( #{comentario.fecha_comentario}, #{comentario.contenido} , #{comentario.correo_usuario}, #{comentario.nombre_usuario} , #{comentario.apellido_usuario} , #{iniciativa} );
     </insert>
 
+
+
     <resultMap type='Iniciativa' id='IniciativaResult'>
         <id property='id' column='id'/>
         <result property='nombre' column='nombre'/>
@@ -203,7 +205,5 @@
         <collection property='palabras_clave' ofType='PalabraClave'  resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.PalabraClaveMapper.PalabraClaveResult" columnPrefix='palabraclave_'></collection>
         <collection property='iniciativasRelacionadas' ofType='Iniciativa'  resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.IniciativaMapper.IniciativaResult" columnPrefix='iniciativarelacionada_'></collection>
     </resultMap>
-
-
 
 </mapper>
