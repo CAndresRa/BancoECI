@@ -7,7 +7,7 @@
 
     <select parameterType="map" id="consultarVotaciones" resultMap="VotacionResult">
         SELECT
-            v.iniciativa as nombreIniciativa,
+            v.iniciativa as idIniciativa,
             v.usuario as documentoUsuario
         FROM votacion as v;
     </select>
@@ -15,11 +15,11 @@
     <select parameterType="map" id="confirmarSiYaVoto" resultType="int">
         select count(v.id)
         from votacion v
-        where v.usuario = #{usuario.documento} and v.iniciativa = #{iniciativa.nombre};
+        where v.usuario = #{usuario.documento} and v.iniciativa = #{iniciativa.id};
     </select>
 
     <insert id="agregarVoto" parameterType="map">
-        INSERT INTO votacion (usuario, iniciativa) VALUES( #{usuario.documento}, #{iniciativa.nombre});
+        INSERT INTO votacion (usuario, iniciativa) VALUES( #{usuario.documento}, #{iniciativa.id});
     </insert>
 
     <delete id="deleteVoto">
@@ -30,11 +30,11 @@
     <select parameterType="map" id="consultarIdDeVotacion" resultType="int">
         select v.id
         from votacion v
-        where v.usuario = #{usuario.documento} and v.iniciativa = #{iniciativa.nombre};
+        where v.usuario = #{usuario.documento} and v.iniciativa = #{iniciativa.id};
     </select>
 
     <resultMap type='Voto' id='VotacionResult'>
         <result property='documentoUsuario' column='documentoUsuario'/>
-        <result property='nombreIniciativa' column='nombreIniciativa'/>
+        <result property='idIniciativa' column='idIniciativa'/>
     </resultMap>
 </mapper>
