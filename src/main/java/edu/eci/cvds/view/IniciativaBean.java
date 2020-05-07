@@ -119,6 +119,13 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         facesContext.getExternalContext().redirect("../publico/comentariosIniciativa.xhtml");
     }
 
+    public void redirectAddComentarioUsuario() throws IOException{
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
+        facesContext.getExternalContext().redirect("../publico/comentarIniciativaUsuario.xhtml");
+    }
+
     public void redirectConsultaComentario() throws IOException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
@@ -247,12 +254,45 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         }
     }
 
+    public void agregarVoto() throws ExcepcionServiciosBancoProyectos {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
+        this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
+        String correoSession = (String) session.getAttribute("username");
+        Usuario usuario = serviciosUsuario.consultarUsuario(correoSession);
+        if(serviciosIniciativa.confirmarSiYaVoto(usuario, iniciativa) == 0) {
+            serviciosIniciativa.agregarVoto(usuario, iniciativa);
+            this.message = "Su voto ha sido registrado";
+        }
+        else {
+            this.message = "No es posible votar mas de una vez por la misma iniciativa";
+        }
+    }
+
     public void deleteVoto(String correo) throws ExcepcionServiciosBancoProyectos{
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
         this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
         Usuario usuario = serviciosUsuario.consultarUsuario(correo);
+        if(serviciosIniciativa.confirmarSiYaVoto(usuario, iniciativa) > 0) {
+            int idIni = serviciosIniciativa.consultarIdDeVotacion(usuario, iniciativa);
+            serviciosIniciativa.deleteVoto(idIni);
+            this.message = "Su voto ha sido eliminado satisfactoriamente";
+        }
+        else {
+            this.message = "No es posible eliminar el voto si no ha votado";
+        }
+    }
+
+    public void deleteVoto() throws ExcepcionServiciosBancoProyectos{
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
+        this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
+        String correoSession = (String) session.getAttribute("username");
+        Usuario usuario = serviciosUsuario.consultarUsuario(correoSession);
         if(serviciosIniciativa.confirmarSiYaVoto(usuario, iniciativa) > 0) {
             int idIni = serviciosIniciativa.consultarIdDeVotacion(usuario, iniciativa);
             serviciosIniciativa.deleteVoto(idIni);

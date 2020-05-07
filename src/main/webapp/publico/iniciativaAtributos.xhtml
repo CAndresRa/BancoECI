@@ -114,7 +114,9 @@
 
             <f:facet name="footer">
                <!-- <p:commandButton process="tbl" value="Agregar Comentario" action="comentariosIniciativa.xhtml?faces-redirect = true" style="border-radius: 15px; background-color: mintcream"/> -->
-                <p:commandButton process="tbl" value="Ver detalles" actionListener="#{iniciativaBean.redirectConsultaComentario()}" style="border-radius: 15px; background-color: mintcream"/>
+                <p:commandButton process="tbl" value="Ver detalles" actionListener="#{iniciativaBean.redirectConsultaComentario()}" style="border-radius: 15px; background-color: mintcream; font-family: Quicksand"/>
+                <p:commandButton process="@this" value="Regresar" actionListener="#{loginBean.redirectHome()}" style="border-radius: 15px; background-color: mintcream;font-family: Quicksand "/>
+                <p:commandButton process="tbl" value="Comentar Iniciativa" actionListener="#{iniciativaBean.redirectAddComentarioUsuario()}" style="border-radius: 15px; background-color: mintcream;font-family: Quicksand "/>
             </f:facet>
         </p:dataTable>
 

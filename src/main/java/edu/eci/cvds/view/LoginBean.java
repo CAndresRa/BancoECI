@@ -54,17 +54,17 @@ public class LoginBean extends BasePageBean {
         if(logger.isAdmin()){
             HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
             session.setAttribute("username", username);
-            facesContext.getExternalContext().redirect("admin/administrador.xhtml");
+            facesContext.getExternalContext().redirect("../admin/administrador.xhtml");
         }
         if(logger.isProponente()){
             HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
             session.setAttribute("username", username);
-            facesContext.getExternalContext().redirect("proponente/proponente.xhtml");
+            facesContext.getExternalContext().redirect("../proponente/proponente.xhtml");
         }
         if(logger.isPMO()){
             HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
             session.setAttribute("username", username);
-            facesContext.getExternalContext().redirect("PMO/pmo.xhtml");
+            facesContext.getExternalContext().redirect("../PMO/pmo.xhtml");
         }
     }
 

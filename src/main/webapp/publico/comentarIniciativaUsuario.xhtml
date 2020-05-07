@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" type="text/css" href="../css/iniciativaAtributos.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+    <title>#{msg['application.title']}</title>
+</h:head>
+<h:body>
+    <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
+    <br/>
+    <h1>Comenta y expresa tu afinidad con la iniciativa</h1>
+    <h:form id="aportesIniciativa" style="margin-left: 10%; opacity: 0.9; -moz-opacity: 0.9; filter: alpha(opacity=10);-khtml-opacity: 0.8;background-color: mintcream;border-radius: 15px;margin-top: 3%; width:80%">
+        <p:messages>
+            <p:autoUpdate />
+        </p:messages>
+
+        <h:panelGrid columns="2" cellpadding="15">
+            <p:outputLabel for="@next" value="Comentario sobre la iniciativa:" style="font-family: Quicksand; font-weight: bold; font-size: large"/>
+            <p:inputTextarea id="comentarios" type="String" binding="#{comentario}"  rows="7" maxlength="300" counterTemplate="Le quedan {0} caracteres" autoResize="true" style="width: 210%"/>
+
+            <p:commandButton id="votar" value="Like" action="#{iniciativaBean.info}"  actionListener="#{iniciativaBean.agregarVoto()}" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
+            <p:commandButton id="quitarVoto" value="Dislike" action="#{iniciativaBean.info}"  actionListener="#{iniciativaBean.deleteVoto()}" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
+
+            <p:commandButton id="validar" value="Aporta a Iniciativa" action="#{iniciativaBean.info}" actionListener="#{comentarioBean.agregarComentarioAIniciativa(comentario.value,correousuario.value,nombreusuario.value,apellidousuario.value)}" style="background-color: mintcream;border-radius: 15px; width: 80%; font-family: Quicksand"/>
+            <p:commandButton value="Regresar" process="@this" action="busquedaIniciativaPalabras.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
+        </h:panelGrid>
+    </h:form>
+    <br/>
+    <br/>
+</h:body>
+</html>
