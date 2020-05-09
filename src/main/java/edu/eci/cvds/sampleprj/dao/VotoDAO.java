@@ -33,4 +33,11 @@ public interface VotoDAO {
      */
      public int consultarIdDeVotacion(Usuario usuario, Iniciativa iniciativa);
 
+    /**
+     * Numero de votos de una iniciativa
+     * @param iniciativa
+     * @return
+     */
+     public int numeroDeVotosIniciativa(Iniciativa iniciativa);
+
 }

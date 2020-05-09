@@ -19,7 +19,13 @@
 <h:body>
     <p:commandButton process="@this" id="boton_salir" value="Salir" actionListener="#{loginBean.logOut}"/>
     <br/>
+
     <h1>Iniciativa</h1>
+    <br/>
+    <h:outputLabel value="Numero de votos: " style="font-weight:bold"/>
+    <h:outputText value="#{iniciativaBean.numeroDeVotosIniciativa()}" />
+
+    <br/>
     <h:form id="aportesIniciativa" style="margin-left: 10%; opacity: 0.9; -moz-opacity: 0.9; filter: alpha(opacity=10);-khtml-opacity: 0.8;background-color: mintcream;border-radius: 15px;margin-top: 3%; width:80%">
         <p:dataTable var="iniciative" value="#{iniciativaBean.consultarIniciativaSolita()}" >
             <p:column headerText="Id" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">

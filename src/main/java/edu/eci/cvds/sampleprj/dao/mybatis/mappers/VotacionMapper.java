@@ -35,4 +35,10 @@ public interface VotacionMapper {
      */
     public int consultarIdDeVotacion(@Param("usuario") Usuario usuario, @Param("iniciativa") Iniciativa iniciativa);
 
+    /**
+     * Permite conocer el numero de votos de una iniciativa
+     * @param iniciativa
+     * @return
+     */
+    public int numeroDeVotosIniciativa(@Param("iniciativa") Iniciativa iniciativa);
 }

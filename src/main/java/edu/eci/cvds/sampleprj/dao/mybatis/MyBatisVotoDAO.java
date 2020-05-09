@@ -46,4 +46,13 @@ public class MyBatisVotoDAO  implements VotoDAO {
         }
 
     }
+
+    @Override
+    public int numeroDeVotosIniciativa(Iniciativa iniciativa) {
+        try{
+            return votoMapper.numeroDeVotosIniciativa(iniciativa);
+        } catch (javax.persistence.PersistenceException e){
+            throw new javax.persistence.PersistenceException(e.getMessage(), e);
+        }
+    }
 }

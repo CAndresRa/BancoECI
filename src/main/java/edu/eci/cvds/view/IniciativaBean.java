@@ -323,6 +323,18 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         }
     }
 
+    public int numeroDeVotosIniciativa() throws ExcepcionServiciosBancoProyectos {
+        try{
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
+            this.iniciativa = serviciosIniciativa.consultarIniciativasPorId(idIniciativa);
+            return serviciosIniciativa.numeroDeVotosIniciativa(iniciativa);
+        } catch (ExcepcionServiciosBancoProyectos e){
+            throw new ExcepcionServiciosBancoProyectos("No se pudo obtener el numero de votos");
+        }
+    }
+
     public PieChartModel generarEstadistica() throws ExcepcionServiciosBancoProyectos {
         model = new PieChartModel();
         model.set("Finanzas", serviciosIniciativa.consultarNumeroDeIniciativasPorArea("Finanzas"));

@@ -176,4 +176,6 @@ public interface ServiciosIniciativa {
      * @throws ExcepcionServiciosBancoProyectos
      */
     public abstract int consultarIdDeVotacion(Usuario usuario, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos;
+
+    public abstract int numeroDeVotosIniciativa(Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos;
 }

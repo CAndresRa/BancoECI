@@ -225,4 +225,9 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
     public int consultarIdDeVotacion(Usuario usuario, Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
         return votoDAO.consultarIdDeVotacion(usuario, iniciativa);
     }
+
+    @Override
+    public int numeroDeVotosIniciativa(Iniciativa iniciativa) throws ExcepcionServiciosBancoProyectos {
+        return votoDAO.numeroDeVotosIniciativa(iniciativa);
+    }
 }

@@ -12,6 +12,13 @@
         FROM votacion as v;
     </select>
 
+    <select parameterType="map" id="numeroDeVotosIniciativa" resultType="int">
+        select count(v.id)
+        from votacion v
+        where v.iniciativa = #{iniciativa.id};
+    </select>
+
+
     <select parameterType="map" id="confirmarSiYaVoto" resultType="int">
         select count(v.id)
         from votacion v
