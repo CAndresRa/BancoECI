@@ -144,7 +144,12 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
-        facesContext.getExternalContext().redirect("modificarIniciativa.xhtml");
+        if(selectedIniciativa.getEstado().equals("Espera") || selectedIniciativa.getEstado().equals("Revision")){
+            facesContext.getExternalContext().redirect("modificarIniciativa.xhtml");
+        }
+        else{
+            this.message = "El estado de la iniciativa no permite cambio";
+        }
     }
 
     public void redirectModificacionEstadoIniciativa() throws IOException{
@@ -246,8 +251,10 @@ public class IniciativaBean extends BasePageBean implements Serializable {
             if(!descripcion.equals("")) {
                 serviciosIniciativa.modificarDescripcion(descripcion, iniciativa);
             }
+            this.message = "La iniciativa se modifico satisfactoriamente";
 
         } catch (ExcepcionServiciosBancoProyectos excepcionServiciosBancoProyectos) {
+            this.message = "Hubo un problema modificando la iniciativa, verifique los datos";
             excepcionServiciosBancoProyectos.printStackTrace();
         }
     }
