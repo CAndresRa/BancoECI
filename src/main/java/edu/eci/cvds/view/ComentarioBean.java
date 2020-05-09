@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Comentario;
+import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBancoProyectos;
 import edu.eci.cvds.samples.services.ServiciosIniciativa;
 import edu.eci.cvds.samples.services.ServiciosUsuario;
@@ -34,6 +35,22 @@ public class ComentarioBean extends BasePageBean implements Serializable {
             Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
             Date fecha = new Date((new java.util.Date()).getTime());
             Comentario comentario = new Comentario (contenido,fecha,correo_usuario,nombre_usuario,apellido_usuario);
+            serviciosIniciativa.agregarComentarioAIniciativa(comentario,idIniciativa);
+            this.message = "Comentario agregado exitosamente";
+        } catch (ExcepcionServiciosBancoProyectos e){
+            this.message = "Hubo un error agregando el comentario";
+        }
+    }
+
+    public void agregarComentarioAIniciativaUsuario(String contenido) throws ExcepcionServiciosBancoProyectos {
+        try {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            Integer idIniciativa = Integer.parseInt(session.getAttribute("selectedIniciativa").toString());
+            Date fecha = new Date((new java.util.Date()).getTime());
+            String correo = session.getAttribute("username").toString();
+            Usuario u = serviciosUsuario.consultarUsuario(correo);
+            Comentario comentario = new Comentario (contenido,fecha,u.getEmail(),u.getNombre(),u.getApellido());
             serviciosIniciativa.agregarComentarioAIniciativa(comentario,idIniciativa);
             this.message = "Comentario agregado exitosamente";
         } catch (ExcepcionServiciosBancoProyectos e){
