@@ -130,6 +130,13 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
+        facesContext.getExternalContext().redirect("../publico/consultarComentariosUsuarios.xhtml");
+    }
+
+    public void redirectConsultarComentarioPublico() throws IOException{
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        session.setAttribute("selectedIniciativa", selectedIniciativa.getId());
         facesContext.getExternalContext().redirect("../publico/consultarComentarios.xhtml");
     }
 
@@ -153,6 +160,12 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         facesContext.getExternalContext().redirect("registrarIniciativa.xhtml");
     }
 
+    public void redirectIniciativaAtributos() throws IOException, ExcepcionServiciosBancoProyectos {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        String correoSession = (String) session.getAttribute("username");
+        facesContext.getExternalContext().redirect("../publico/iniciativaAtributos.xhtml");
+    }
 
 
     public void agregarIniciativaRelacionadaAIniciativa() throws ExcepcionServiciosBancoProyectos {

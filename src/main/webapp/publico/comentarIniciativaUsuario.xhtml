@@ -33,7 +33,7 @@
             <p:commandButton id="quitarVoto" value="Dislike" action="#{iniciativaBean.info}"  actionListener="#{iniciativaBean.deleteVoto()}" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
 
             <p:commandButton id="validar" value="Aporta a Iniciativa" action="#{iniciativaBean.info}" actionListener="#{comentarioBean.agregarComentarioAIniciativa(comentario.value,correousuario.value,nombreusuario.value,apellidousuario.value)}" style="background-color: mintcream;border-radius: 15px; width: 80%; font-family: Quicksand"/>
-            <p:commandButton value="Regresar" process="@this" action="busquedaIniciativaPalabras.xhtml?faces-redirect = true" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
+            <p:commandButton value="Regresar" process="@this" actionListener="#{iniciativaBean.redirectIniciativaAtributos()}" style="background-color: mintcream; border-radius: 15px; font-family: Quicksand"/>
         </h:panelGrid>
     </h:form>
     <br/>

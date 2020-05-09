@@ -97,7 +97,7 @@
         </p:dataTable>
     </h:form>
     <br/>
-    <p:commandButton process="@this" id="boton_regresar" value="Regresar" action="busquedaIniciativaPalabras.xhtml?faces-redirect = true" style="border-radius: 15px;width: 10%;background-color: mintcream;font-family: Quicksand"/>
+    <p:commandButton process="@this" id="boton_regresar" value="Regresar" actionListener="#{iniciativaBean.redirectIniciativaAtributos()}" style="border-radius: 15px;width: 10%;background-color: mintcream;font-family: Quicksand"/>
     <br/>
 </h:body>
 </html>
