@@ -36,8 +36,12 @@
             <f:facet name="{Exporters}">
                 <div style="float:right; margin-right: 2%">
                     <h:commandLink>
-                        <p:graphicImage url="img/excel.png" width="22"/>
+                        <p:graphicImage url="../img/excel.png" width="22"/>
                         <p:dataExporter type="xls" target="tbl" fileName="Iniciativas" encoding="UTF-8"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage url="../img/pdf.png" width="22"/>
+                        <p:dataExporter type="pdf" target="tbl" fileName="Iniciativas" encoding="UTF-8"/>
                     </h:commandLink>
                 </div>
             </f:facet>
@@ -104,8 +108,8 @@
             </p:column>
 
             <f:facet name="footer">
-                <h:commandButton  value="Comentar iniciativa" actionListener="#{iniciativaBean.redirectAddComentario()}" style="border-radius: 15px; background-color: mintcream; font-family: Quicksand"/>
-                <h:commandButton  value="Ver detalles" actionListener="#{iniciativaBean.redirectConsultarComentarioPublico()}" style="border-radius: 15px;background-color: mintcream;font-family: Quicksand"/>
+                <h:commandButton  value="Comentar iniciativa" actionListener="#{iniciativaBean.redirectAddComentario()}" style="width: 20%;height:20%;border-radius: 15px; background-color: mintcream; font-family: Quicksand"/>
+                <h:commandButton  value="Ver detalles" actionListener="#{iniciativaBean.redirectConsultarComentarioPublico()}" style="width: 20%;height:20%;border-radius: 15px;background-color: mintcream;font-family: Quicksand"/>
             </f:facet>
         </p:dataTable>
     </h:form>

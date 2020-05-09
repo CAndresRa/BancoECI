@@ -24,9 +24,8 @@
     <br/>
 
     <h1>Estadisticas por Area</h1>
-
     <br/>
-    <p:chart type="pie" id="pie"
+    <p:chart style="opacity: 0.8;-moz-opacity: 0.8;filter: alpha(opacity=10);-khtml-opacity: 0.8;width: 70%;margin-left: 15%;border-radius: 10px;background-color: mintcream;" type="pie" id="pie"
              responsive="true"
              model="#{iniciativaBean.generarEstadistica()}"
 
@@ -34,8 +33,8 @@
 
     <br/>
     <h1>Estadisticas por Estado</h1>
-    <p:chart type="pie" id="pie2"
-             responsive="true" style="opacity: 0.8;-moz-opacity: 0.8;filter: alpha(opacity=10);-khtml-opacity: 0.8;width: 70%;margin-left: 15%;border-radius: 15px;background-color: yellowgreen;"
+    <p:chart style="opacity: 0.8;-moz-opacity: 0.8;filter: alpha(opacity=10);-khtml-opacity: 0.8;width: 70%;margin-left: 15%;border-radius: 10px;background-color: mintcream;" type="pie" id="pie2"
+             responsive="true"
              model="#{iniciativaBean.generarEstadisticaPorEstado()}"
 
     />
@@ -51,8 +50,12 @@
             <f:facet name="{Exporters}">
                 <div style="float: right; margin-right: 2%">
                     <h:commandLink>
-                        <p:graphicImage url="img/excel.png" width="22"/>
+                        <p:graphicImage url="../img/excel.png" width="22"/>
                         <p:dataExporter type="xls" target="tbl" fileName="Iniciativas" encoding="UTF-8"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage url="../img/pdf.png" width="21"/>
+                        <p:dataExporter type="pdf" target="tbl" fileName="Iniciativas" encoding="UTF-8"/>
                     </h:commandLink>
                 </div>
             </f:facet>

@@ -57,7 +57,7 @@
 
     </h:form>
     <br/>
-    <h1>Comentarios de Iniciativa</h1>
+    <h1 style="color: mintcream">Comentarios de Iniciativa</h1>
     <h:form id="comentarios">
         <p:dataTable var="comentario" value="#{comentarioBean.consultarComentariosDeIniciativa()}" style="width: 70%; margin-left: 15%" >
             <p:column headerText="Comentario" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
@@ -69,7 +69,7 @@
             <p:column headerText="Correo del usuario" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
                 <h:outputText value="#{comentario.correo_usuario}" />
             </p:column>
-            <p:column headerText="Nombre del usuario" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
+            <p:column headerText="Nombre del usuario" style=" background-color: mintcream; font-family: Quicksand; font-size: 18px">
                 <h:outputText value="#{comentario.nombre_usuario}" />
             </p:column>
             <p:column headerText="Apellido del usuario" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
@@ -78,7 +78,7 @@
         </p:dataTable>
     </h:form>
 
-    <h1>Iniciativas Relacionadas</h1>
+    <h1 style="color: mintcream">Iniciativas Relacionadas</h1>
     <h:form id="iniciativasRelacionadas">
         <p:dataTable var="iniRelacionadas" value="#{iniciativaBean.consultarIniciativasRelacionadas()}" style="width: 70%; margin-left: 15%" >
             <p:column headerText="Id" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">

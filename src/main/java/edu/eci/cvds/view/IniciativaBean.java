@@ -349,7 +349,7 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         model.setShowDataLabels(true);
         model.setDataFormat("value");
         model.setDataLabelFormatString("%d");
-        model.setSeriesColors("aaf,afa,faa,ffa");
+        model.setSeriesColors("006600,FFFF00,000099,990000");
         return model;
     }
 
@@ -367,7 +367,7 @@ public class IniciativaBean extends BasePageBean implements Serializable {
         modelEstado.setShowDataLabels(true);
         modelEstado.setDataFormat("value");
         modelEstado.setDataLabelFormatString("%d");
-        modelEstado.setSeriesColors("aaf,afa,faa,ffa");
+        modelEstado.setSeriesColors("006600,FFFF00,000099,990000");
         return modelEstado;
     }
 

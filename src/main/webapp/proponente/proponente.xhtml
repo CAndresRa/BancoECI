@@ -28,7 +28,6 @@
             <p:autoUpdate />
         </p:messages>
         <p:dataTable id="tbl" var="ini" value="#{iniciativaBean.consultarIniciativasDelPropoponente()}" rowKey="#{ini.id}" selection="#{iniciativaBean.selectedIniciativa}" >
-
             <p:column selectionMode="single" style="width:16px;text-align:center;background-color: mintcream"/>
             <p:column headerText="Id Iniciativa" style=" background-color: skyblue; font-family: Quicksand; font-size: 18px">
                 <h:outputText value="#{ini.id}" />
@@ -46,8 +45,8 @@
                 <h:outputText value="#{ini.palabras_clave}" />
             </p:column>
         </p:dataTable>
-        <p:commandButton id="registrar" value="Registrar Iniciativa" actionListener="#{iniciativaBean.redirectRegistroDeIniciativa()}" style="background-color: mintcream; border-radius: 15px; width: 20%;float: left; font-family: Quicksand"/>
-        <p:commandButton id="modificar" value="Modificar Iniciativa" action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.redirectModificacionDeIniciativa()}" style="background-color: mintcream; border-radius: 15px; width: 20%;float: left; font-family: Quicksand"/>
+        <p:commandButton id="registrar" value="Registrar iniciativa" actionListener="#{iniciativaBean.redirectRegistroDeIniciativa()}" style="background-color: mintcream; border-radius: 15px; width: 20%;float: left; font-family: Quicksand"/>
+        <p:commandButton id="modificar" value="Modificar iniciativa" action="#{iniciativaBean.info}" actionListener="#{iniciativaBean.redirectModificacionDeIniciativa()}" style="background-color: mintcream; border-radius: 15px; width: 20%;float: left; font-family: Quicksand"/>
         <p:commandButton process="@this" value="Consultar reporte de iniciativas" actionListener="#{adminBean.redirectReporteIniciativas()}" style="background-color: mintcream; border-radius: 15px;font-family:Quicksand; width:30%;float: left"/>
     </h:form>
     <br/>

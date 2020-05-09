@@ -30,7 +30,7 @@
             <p:outputLabel for="@next" value="Comentario sobre la iniciativa:" style="font-family: Quicksand; font-weight: bold; font-size: large"/>
             <p:inputTextarea id="comentarios" type="String" binding="#{comentario}"  rows="7" maxlength="300" counterTemplate="Le quedan {0} caracteres" autoResize="true" style="width: 210%"/>
 
-            <p:commandButton id="votar" value="Like" action="#{iniciativaBean.info}"  actionListener="#{iniciativaBean.agregarVoto()}" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
+            <p:commandButton id="votar" value="Like" action="#{iniciativaBean.info}"  actionListener="#{iniciativaBean.agregarVoto()}" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand;"/>
             <p:commandButton id="quitarVoto" value="Dislike" action="#{iniciativaBean.info}"  actionListener="#{iniciativaBean.deleteVoto()}" style="background-color: mintcream; border-radius: 15px; width: 80%; font-family: Quicksand"/>
 
             <p:commandButton id="validar" value="Aporta a Iniciativa" action="#{comentarioBean.info}" actionListener="#{comentarioBean.agregarComentarioAIniciativaUsuario(comentario.value)}" style="background-color: mintcream;border-radius: 15px; width: 80%; font-family: Quicksand"/>
