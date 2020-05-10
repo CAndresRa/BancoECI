@@ -106,7 +106,7 @@ Para asociar iniciativas, damos click en el botón Asociar Iniciativas, nos llev
       
       También podemos seleccionar una iniciativa para comentarla o consultar los comentarios de una iniciativa. Seleccionamos la iniciativa, damos click en "Comentar iniciativa" 
       ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/publicoConsultarIniciativasPalabras.PNG)
-      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/seleccionarIniciativaPublico.PNG.PNG)
+      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/seleccionarIniciativaPublico.PNG)
       ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/comentarIniciativaPublico.PNG)
      
      Podemos consultar los comentarios de las iniciativas, dando click en "Consultar comentarios" 
