@@ -112,3 +112,29 @@ Para asociar iniciativas, damos click en el botón Asociar Iniciativas, nos llev
      Podemos consultar los comentarios de las iniciativas, dando click en "Ver detalles" 
      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/verDetallePublicos.PNG)
      
+## Arquitectura y Diseño Detallado 
+### Capas 
+ - Presentación 
+ - Aplicación 
+ - Persistencia
+### Tecnologias Utilizadas 
+ - Primefaces
+ - Guice
+ - PostgreSQL
+ - CSS 
+ - Java 
+ - XML, HTML, XHTML
+ 
+## Descripción del proceso 
+### Sprint 1
+ ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/Sprint1.PNG)
+ ### Backlog
+ ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/SPRINT1B.PNG)
+### Sprint 2 
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/Sprint2.PNG)
+### Backlog
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/SPRINT2B.PNG)
+### Sprint 3 
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/Sprint3.PNG)
+### Backlog
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/SPRINT3B.PNG)
