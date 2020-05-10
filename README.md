@@ -99,15 +99,16 @@ Para asociar iniciativas, damos click en el botón Asociar Iniciativas, nos llev
       ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/publicoConsultarIniciativasPalabras.PNG)
       
       En el campo de búsqueda ingresamos las palabras claves separadas por coma 
-      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/busquedaPorPalabras.PNG)
+      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/buscarPorPalabras.PNG)
       
       Damos click en "Buscar" y obtenemos el resultado. 
       ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/resultadoBusquedaPalabras.PNG)
       
       También podemos seleccionar una iniciativa para comentarla o consultar los comentarios de una iniciativa. Seleccionamos la iniciativa, damos click en "Comentar iniciativa" 
       ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/publicoConsultarIniciativasPalabras.PNG)
-      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/comentariosIniciativa.PNG)
+      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/seleccionarIniciativaPublico.PNG.PNG)
+      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/comentarIniciativaPublico.PNG)
      
      Podemos consultar los comentarios de las iniciativas, dando click en "Consultar comentarios" 
-     ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/consultarComentarios.PNG)
+     ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/verDetallePublicos.PNG)
      
