@@ -60,9 +60,9 @@ Para asociar iniciativas, damos click en el botón Asociar Iniciativas, nos llev
   La vista de proponente, nos dirige a visualizar sus iniciativas 
  ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/vistaProponente.PNG)
  
-  Podremos registrar una nueva iniciativa dando click en el boton "Registrar iniciativa" nos llevara a la siguiente pagina 
+  Podremos registrar una nueva iniciativa dando click en el botón "Registrar iniciativa" nos llevara a la siguiente pagina 
  ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/registrarIniciativas.PNG)
-  Para modificar una iniciativa podremos seleccionarla primero como se muestra y despues dar click en modificar iniciativa, llenamos los  campos que queremos modificar y damos click a modificar, podremos modificar nombre, descripción o palabras clave (No es obligatorio modificar todo) 
+  Para modificar una iniciativa podremos seleccionarla primero como se muestra y después dar click en modificar iniciativa, llenamos los campos que queremos modificar y damos click a modificar, podremos modificar nombre, descripción o palabras clave (No es obligatorio modificar todo) 
   ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/seleccionIniciativa.PNG)
   ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/modificarIniciatia.PNG)
  Podemos consultar las iniciativas propuestas dando click en el botón "Consultar reporte de iniciativas" 
@@ -78,13 +78,13 @@ Para asociar iniciativas, damos click en el botón Asociar Iniciativas, nos llev
   ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/cambioEstadoIniciativa.PNG)
   ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/cambioEstado.png)
   
-  Adicionalmente como mencionamos los usuarios anteriores desde la pagina Consultar Reporte de inicitivas, podran selecciona cualquiera de estas iniciativas y expresar su afinidad. Podran dar me gusta, comentar la iniciativa y ver los detalles de dicha iniciativa. 
+  Adicionalmente como mencionamos los usuarios anteriores desde la página Consultar Reporte de iniciativas, podrán selecciona cualquiera de estas iniciativas y expresar su afinidad. Podrán dar me gusta, comentar la iniciativa y ver los detalles de dicha iniciativa. 
    ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/consultarReporteIniciativasPMO.PNG)
    Seleccionamos la iniciativa para comentar 
     ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/seleccionIniciativaComentar.PNG)
-    Damos click en "Comentar iniciativa", aqui podremos darle me gusta quitar este, hacer un comentario y damos click en "Aportar a iniciativa" o podemos regresar
+    Damos click en "Comentar iniciativa", aquí podremos darle me gusta quitar este, hacer un comentario y damos click en "Aportar a iniciativa" o podemos regresar
      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/aportarIniciativaUsuario.PNG)
-     Damos click en "Ver detalle y podremos ver la iniciativa, el numero de votos que esta tiene, los comentarios realizados y las iniciativas relacionadas 
+     Damos click en "Ver detalles” y podremos ver la iniciativa, el número de votos que esta tiene, los comentarios realizados y las iniciativas relacionadas 
      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/verDetalleUsuarios.PNG)
   
   
@@ -109,6 +109,6 @@ Para asociar iniciativas, damos click en el botón Asociar Iniciativas, nos llev
       ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/seleccionarIniciativaPublico.PNG)
       ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/comentarIniciativaPublico.PNG)
      
-     Podemos consultar los comentarios de las iniciativas, dando click en "Consultar comentarios" 
+     Podemos consultar los comentarios de las iniciativas, dando click en "Ver detalles" 
      ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/verDetallePublicos.PNG)
      
