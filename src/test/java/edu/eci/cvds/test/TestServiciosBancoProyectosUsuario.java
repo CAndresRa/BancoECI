@@ -25,14 +25,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ServiciosBancoProyectosTestUsuario {
+public class TestServiciosBancoProyectosUsuario {
     @Inject
     private SqlSession sqlSession;
 
     ServiciosUsuario serviciosUsuario;
 	ServiciosIniciativa serviciosIniciativa;
     
-    public ServiciosBancoProyectosTestUsuario() {
+    public TestServiciosBancoProyectosUsuario() {
         serviciosUsuario = ServiciosBancoProyectosFactory.getInstance().getServiciosUsuarioTesting();
 		serviciosIniciativa = ServiciosBancoProyectosFactory.getInstance().getServiciosIniciativaTesting();
     }
