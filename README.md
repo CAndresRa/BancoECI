@@ -127,6 +127,11 @@ Para asociar iniciativas, damos click en el botón Asociar Iniciativas, nos llev
  - Java 
  - XML, HTML, XHTML
  
+## Metodologia Utilizada 
+### Taiga
+Enlace de [Taiga](https://tree.taiga.io/project/nicolasaguilera9906-plataforma-banco-de-iniciativas-de-proyectos/timeline) para ver el manejo que dimos al proyecto(Sprints, Backlog). 
+
+ 
 ## Descripción del proceso 
 ### Sprint 1
  ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/Sprint1.PNG)
