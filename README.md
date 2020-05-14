@@ -145,3 +145,13 @@ Enlace de [Taiga](https://tree.taiga.io/project/nicolasaguilera9906-plataforma-b
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/Sprint3.PNG)
 ### Backlog
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/SPRINT3B.PNG)
+
+## Reporte de Pruebas 
+### Jacoco
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/jacoco-1.PNG)
+
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/jacoco-2.PNG)
+
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/jacoco-3.PNG)
+
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/jacoco-4.PNG)
