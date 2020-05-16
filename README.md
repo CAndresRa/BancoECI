@@ -22,6 +22,8 @@
 El **Banco de Iniciativas de Proyectos** es una herramienta desarrollada con la comunidad de la Escuela Colombiana de ingeniería en mente, la cual tiene el objetivo de facilitar el registro y desarrollo de iniciativas de proyectos para la comunidad. La herramienta facilita la participación, de la comunidad de la escuela, para el proceso de retroalimentación y desarrollo del proyecto; adicional a eso, el personal Académico puede integrar estudiantes de diferentes ámbitos, para el desarrollo de Iniciativas.
 
 ## Modelo ER
+![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recuersos/modeloapp.PNG)
+## Modelo ER
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/ModeloER.PNG)
 ## Manual de Usuario
 ![](https://github.com/BancoIniciativasECI/BancoECI/blob/master/modelos/Recursos/VistaLogin.PNG)
